@@ -12,12 +12,12 @@ import play.db.jpa.*;
  * @author Pawel
  *
  */
-public class Rides extends Model {
+public class Ride extends Model {
 
 	// public User driver (will be created during registration, for now
-	@Required(message = "Name of the driver is required")
+	// @Required(message = "Name of the driver is required")
 	public String nameOfDriver;
-
+  
 	@Required(message = "Start point is required")
 	public String startPoint;
 
@@ -39,7 +39,7 @@ public class Rides extends Model {
 	@Temporal(TemporalType.DATE)
 	public Date rideDate;
 
-	public Rides(String nameOfDriver, String startPoint, String destinationUniveristy,
+	public Ride(String nameOfDriver, String startPoint, String destinationUniveristy,
 			String destinationCampus, String timeOfArrival, int numOfSeatsAvailable,
 			String comments, Date rideDate) {
 
@@ -52,13 +52,8 @@ public class Rides extends Model {
 		this.comments = comments;
 		this.rideDate = rideDate;
 	}
-	
-	public Rides addRide(String nameOfDriver, String startPoint, String destinationUniveristy,
-			String destinationCampus, String timeOfArrival, int numOfSeatsAvailable,
-			String comments, Date rideDate) {
-	    new Rides(nameOfDriver, startPoint, destinationUniveristy,
-				destinationCampus, timeOfArrival, numOfSeatsAvailable,
-				comments, rideDate).save();
-	    return this;
+		
+	public Ride(String nameOfDriver){
+		this.nameOfDriver=nameOfDriver;
 	}
 }
