@@ -12,7 +12,7 @@ import play.db.jpa.*;
  * @author Pawel
  *
  */
-public class Rides {
+public class Rides extends Model {
 
 	// public User driver (will be created during registration, for now
 	@Required(message = "Name of the driver is required")
@@ -51,5 +51,14 @@ public class Rides {
 		this.numOfSeatsAvailable = numOfSeatsAvailable;
 		this.comments = comments;
 		this.rideDate = rideDate;
+	}
+	
+	public Rides addRide(String nameOfDriver, String startPoint, String destinationUniveristy,
+			String destinationCampus, String timeOfArrival, int numOfSeatsAvailable,
+			String comments, Date rideDate) {
+	    new Rides(nameOfDriver, startPoint, destinationUniveristy,
+				destinationCampus, timeOfArrival, numOfSeatsAvailable,
+				comments, rideDate).save();
+	    return this;
 	}
 }
