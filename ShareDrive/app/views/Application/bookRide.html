@@ -1,7 +1,10 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
  
-<h1>Name of Driver: ${nameOfDriver ?: 'guest'}!</h1>
-<h1>Start point: ${startPoint?: 'Muenchen'}!</h1>
+<p><strong>Name of Driver:</strong> ${newRide.nameOfDriver ?: 'guest'}!</p>
+<p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>
+
  
-<a href="@{Application.showRides()}">Back to form</a>
+<br>
+<br>
+<a href="@{Application.showRides()}">Show all offered rides</a>

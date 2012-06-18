@@ -23,6 +23,7 @@ public class Ride extends Model {
 
 	@Required(message="Destination campus is required")
 	public int destinationCampusId;
+	public Map<Integer, String> destinationCampusMap = new HashMap<Integer, String>();
 
 	@Required(message="Time of arrival is required")
 	public String timeOfArrival;
@@ -53,6 +54,13 @@ public class Ride extends Model {
 		this.numOfSeatsAvailable = numOfSeatsAvailable;
 		this.comments = comments;
 		this.rideDate = rideDate;
+		initializeMap();
+	}
+	
+	public void initializeMap(){
+		destinationCampusMap.put(1, "TUM, Garching");
+		destinationCampusMap.put(2, "TUM, Stammgelende");
+		destinationCampusMap.put(2, "LMU, City center");
 	}
 	
 	public Ride(String nameOfDriver){

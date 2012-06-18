@@ -1,7 +1,7 @@
 # Test data
 
 Ride(r1):
-    nameOfDriver:          abc
+    nameOfDriver:          oooh
     startPoint: Munchner Freiheit
     destinationUniveristy: TUM
     destinationCampus: Garching
