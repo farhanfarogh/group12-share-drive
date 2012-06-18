@@ -1,6 +1,7 @@
 package models;
 
 import java.util.*;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -23,7 +24,7 @@ public class Ride extends Model {
 
 	@Required(message="Destination campus is required")
 	public int destinationCampusId;
-	public Map<Integer, String> destinationCampusMap = new HashMap<Integer, String>();
+	public HashMap<Integer, String> destinationCampusMap;
 
 	@Required(message="Time of arrival is required")
 	public String timeOfArrival;
@@ -58,6 +59,7 @@ public class Ride extends Model {
 	}
 	
 	public void initializeMap(){
+		destinationCampusMap = new HashMap<Integer, String>();
 		destinationCampusMap.put(1, "TUM, Garching");
 		destinationCampusMap.put(2, "TUM, Stammgelende");
 		destinationCampusMap.put(2, "LMU, City center");

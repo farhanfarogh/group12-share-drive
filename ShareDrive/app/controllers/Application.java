@@ -31,7 +31,7 @@ public class Application extends Controller {
 			flash.error("Oops, please enter your name!");
 			index();
 		}
-		Ride newRide = new Ride(nameOfDriver, regularity, destinationCampusId);
+		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId, null, numOfSeatsAvailable, comments, null);
 		newRide.save();
 
 		render(newRide);
