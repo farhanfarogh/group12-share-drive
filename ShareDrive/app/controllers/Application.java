@@ -17,11 +17,7 @@ public class Application extends Controller {
 	 */
 
 	public static void index() {
-		Ride frontPost = Ride.find("order by nameOfDriver desc").first();
-		List<Ride> olderPosts = Ride.find("order by nameOfDriver desc").from(1)
-				.fetch(10);
-		render(frontPost, olderPosts);
-
+		render();
 	}
 
 	public static void bookRide(@Required String nameOfDriver,
@@ -33,18 +29,21 @@ public class Application extends Controller {
 		}
 		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
 				null, numOfSeatsAvailable, comments, null);
-
+		System.out.println(newRide.destinationCampusMap.get(newRide.destinationCampusId));
 		newRide.save();
+		
+
 		render(newRide);
 	}
 
 	public static void showRides() {
-		Ride frontPost = Ride.find("order by nameOfDriver desc").first();
-		List<Ride> olderPosts = Ride.find("order by nameOfDriver desc").from(1)
-				.fetch(10);
-		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(1)
+		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(0)
 				.fetch();
-		render(frontPost, olderPosts, rides);
+		// List<Ride> newRide2 = Ride.find("nameOfDriver like ?", "Pawel").fetch();
+		// System.out.println(newRide2);
+		
+		// System.out.println(rides.get(3).regularityMap);
+		render(rides);
 	}
 
 }

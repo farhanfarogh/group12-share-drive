@@ -49,17 +49,6 @@ public class Ride extends Model {
 	public Ride(String nameOfDriver, String startPoint, int destinationCampusId, String timeOfArrival, int numOfSeatsAvailable,
 			String comments, Date rideDate) {
 
-		this.nameOfDriver = nameOfDriver;
-		this.startPoint = startPoint;
-		this.destinationCampusId = destinationCampusId;
-		this.timeOfArrival = timeOfArrival;
-		this.numOfSeatsAvailable = numOfSeatsAvailable;
-		this.comments = comments;
-		this.rideDate = rideDate;
-		initializeMap();
-
-	}
-	public void initializeMap(){
 		destinationCampusMap = new HashMap<Integer, String>();
 		destinationCampusMap.put(1, "TUM, Garching");
 		destinationCampusMap.put(2, "TUM, Stammgelende");
@@ -67,8 +56,17 @@ public class Ride extends Model {
 
 		regularityMap = new HashMap<Integer, String>();
 		regularityMap.put(1, "once");
-		regularityMap.put(1, "multiple");
-		regularityMap.put(1, "weekly");
+		regularityMap.put(2, "multiple");
+		regularityMap.put(3, "weekly");
+		
+		this.nameOfDriver = nameOfDriver;
+		this.startPoint = startPoint;
+		this.destinationCampusId = destinationCampusId;
+		this.timeOfArrival = timeOfArrival;
+		this.numOfSeatsAvailable = numOfSeatsAvailable;
+		this.comments = comments;
+		this.rideDate = rideDate;
+
 	}
 	
 	public Ride(String nameOfDriver){

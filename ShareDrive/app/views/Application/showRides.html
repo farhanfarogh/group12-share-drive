@@ -7,9 +7,10 @@
             <tr>
                 <th>Name of driver</th>
                 <th>Start point</th>
-                <th>City, State</th>
-                <th width="8%">Zip</th>
-                <th width="13%">Action</th>
+                <th>Dest. campus</th>
+                <th width="8%">Num. of seats</th>
+                <th >Regularity</th>
+                <th width="13%">Comments</th>
             </tr>
         </thead>
         <tbody>
@@ -17,13 +18,10 @@
                 <tr>
                     <td>${ride.nameOfDriver}</td>
                     <td>${ride.startPoint}</td>
+                    <td>${ride.destinationCampusId}</td>
+                    <td>${ride.numOfSeatsAvailable }</td>
                     <td>${ride.regularity}</td>
-                    <td></td>
-                    <td></td>
-                    
-                    
-              
-                    
+                    <td>${ride.comments}</td>
                     
                 </tr>
             #{/list}
