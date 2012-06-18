@@ -40,7 +40,8 @@ public class Ride extends Model {
 	 * 3 - weekly
 	 */
 	public int regularity;
-
+	public HashMap<Integer, String> regularityMap;
+	
 	@Required
 	@Temporal(TemporalType.DATE)
 	public Date rideDate;
@@ -56,13 +57,18 @@ public class Ride extends Model {
 		this.comments = comments;
 		this.rideDate = rideDate;
 		initializeMap();
+
 	}
-	
 	public void initializeMap(){
 		destinationCampusMap = new HashMap<Integer, String>();
 		destinationCampusMap.put(1, "TUM, Garching");
 		destinationCampusMap.put(2, "TUM, Stammgelende");
 		destinationCampusMap.put(2, "LMU, City center");
+
+		regularityMap = new HashMap<Integer, String>();
+		regularityMap.put(1, "once");
+		regularityMap.put(1, "multiple");
+		regularityMap.put(1, "weekly");
 	}
 	
 	public Ride(String nameOfDriver){
