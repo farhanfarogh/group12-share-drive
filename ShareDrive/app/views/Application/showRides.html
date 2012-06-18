@@ -1,47 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'Show rides' /}
 
-#{if frontPost}
-    <div class="post">
-        <h2 class="post-title">
-            <a href="#">${frontPost.nameOfDriver}</a>
-        </h2>
-        <div class="post-metadata">
-            <span class="post-author">by ${frontPost.startPoint}</span>
-            <span class="post-author">by ${frontPost.regularity}</span>
-            <span class="post-author">by ${frontPost.destinationCampusId}</span>
-            </span>
-        </div>
-        <div class="post-content">
-            ${frontPost.comments.nl2br()}
-        </div>
-    </div>
-    
-    #{if olderPosts}
-        <div class="older-posts">    
-            <h3>Older posts <span class="from">from this blog</span></h3>
-        
-            #{list items:olderPosts, as:'oldPost'}
-                <div class="post">
-                    <h2 class="post-title">
-                        <a href="#">${oldPost.nameOfDriver}</a>
-                    </h2>
-                    <div class="post-metadata">
-                       
-            <span class="post-author">start point ${oldPost.startPoint}</span><br>
-            <span class="post-author">regularity ${oldPost.regularity}</span> <br>
-            <span class="post-author">destination campus ${oldPost.destinationCampusId}</span><br>
-                        
-                     </div>
-                    </div>
-                </div>
-            #{/list}
-        </div>
-        
-    #{/if}
-    
-#{/if}
  
+ <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City, State</th>
+                <th width="8%">Zip</th>
+                <th width="13%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list rides, as:'ride'}
+                <tr>
+                    <td>${ride.nameOfDriver}</td>
+                    <td>${ride.startPoint}</td>
+                    <td>${ride.regularity}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            #{/list}
+        </tbody>
+    </table>
+    
 #{else}
     <div class="empty">
         There is currently nothing to read here.

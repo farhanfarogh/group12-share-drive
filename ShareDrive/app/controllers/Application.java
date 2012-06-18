@@ -38,7 +38,8 @@ public class Application extends Controller {
 		Ride frontPost = Ride.find("order by nameOfDriver desc").first();
 		List<Ride> olderPosts = Ride.find("order by nameOfDriver desc").from(1)
 				.fetch(10);
-		render(frontPost, olderPosts);
+		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(1).fetch();
+		render(frontPost, olderPosts, rides);
 	}
 	
 	
