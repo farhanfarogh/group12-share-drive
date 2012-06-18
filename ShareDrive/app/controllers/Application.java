@@ -23,12 +23,15 @@ public class Application extends Controller {
 
 	}
 
-	public static void sayHello(@Required String myName) {
+	public static void bookRide(@Required String nameOfDriver, String startPoint, int regularity, int destinationCampusId) {
 		if (validation.hasErrors()) {
 			flash.error("Oops, please enter your name!");
 			index();
 		}
-		render(myName);
+		Ride newRide = new Ride(nameOfDriver, regularity, destinationCampusId);
+		newRide.save();
+		
+		render(nameOfDriver, startPoint, regularity);
 	}
 
 	public static void showRides() {
@@ -36,8 +39,9 @@ public class Application extends Controller {
 		List<Ride> olderPosts = Ride.find("order by nameOfDriver desc").from(1)
 				.fetch(10);
 		render(frontPost, olderPosts);
-		render();
 	}
+	
+	
 	
     
 }

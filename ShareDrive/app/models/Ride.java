@@ -21,11 +21,8 @@ public class Ride extends Model {
 	@Required(message = "Start point is required")
 	public String startPoint;
 
-	@Required(message="Destination university is required")
-	public String destinationUniveristy;
-	
 	@Required(message="Destination campus is required")
-	public String destinationCampus;
+	public int destinationCampusId;
 
 	@Required(message="Time of arrival is required")
 	public String timeOfArrival;
@@ -34,26 +31,36 @@ public class Ride extends Model {
 	public int numOfSeatsAvailable;
 	
 	public String comments;
+	
+	/**
+	 * 1 - once
+	 * 2 - multiple
+	 * 3 - weekly
+	 */
+	public int regularity;
 
 	@Required
 	@Temporal(TemporalType.DATE)
 	public Date rideDate;
 
-	public Ride(String nameOfDriver, String startPoint, String destinationUniveristy,
-			String destinationCampus, String timeOfArrival, int numOfSeatsAvailable,
+	public Ride(String nameOfDriver, String startPoint, int destinationCampusId, String timeOfArrival, int numOfSeatsAvailable,
 			String comments, Date rideDate) {
 
 		this.nameOfDriver = nameOfDriver;
 		this.startPoint = startPoint;
-		this.destinationUniveristy = destinationUniveristy;
-		this.destinationCampus = destinationCampus;
+		this.destinationCampusId = destinationCampusId;
 		this.timeOfArrival = timeOfArrival;
 		this.numOfSeatsAvailable = numOfSeatsAvailable;
 		this.comments = comments;
 		this.rideDate = rideDate;
 	}
-		
+	
 	public Ride(String nameOfDriver){
 		this.nameOfDriver=nameOfDriver;
+	}	
+	public Ride(String nameOfDriver, int regularity, int destinationCampusId){
+		this.nameOfDriver=nameOfDriver;
+		this.regularity = regularity;
+		this.destinationCampusId = destinationCampusId;
 	}
 }

@@ -8,7 +8,8 @@
         </h2>
         <div class="post-metadata">
             <span class="post-author">by ${frontPost.startPoint}</span>
-          
+            <span class="post-author">by ${frontPost.regularity}</span>
+            <span class="post-author">by ${frontPost.destinationCampusId}</span>
             </span>
         </div>
         <div class="post-content">
@@ -26,11 +27,12 @@
                         <a href="#">${oldPost.nameOfDriver}</a>
                     </h2>
                     <div class="post-metadata">
-                        <span class="post-author">
-                            by ${oldPost.startPoint}
-                        </span>
+                       
+            <span class="post-author">start point ${oldPost.startPoint}</span><br>
+            <span class="post-author">regularity ${oldPost.regularity}</span> <br>
+            <span class="post-author">destination campus ${oldPost.destinationCampusId}</span><br>
                         
-                        </div>
+                     </div>
                     </div>
                 </div>
             #{/list}
