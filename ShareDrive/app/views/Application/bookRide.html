@@ -3,9 +3,9 @@
  
 <p><strong>Name of Driver:</strong> ${newRide.nameOfDriver ?: 'guest'}!</p>
 <p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>
-<p><strong>Destination campus:</strong> ${newRide.destinationCampusMap.get(newRide.destinationCampusId)?: 'Garching'}</p>
-<p><strong>Number of seats available:</strong> ${newRide.numOfSeatsAvailable ?: '1'}</p>
-<p><strong>Regularity:</strong> ${newRide.regularityMap.get(newRide.regularity)?: 'once'}</p>
+<p><strong>Destination campus:</strong> ${newRide.destinationCampusMap.get(newRide.destinationCampusId)?: 'error'}</p>
+<p><strong>Number of seats available:</strong> ${newRide.numOfSeatsAvailable ?: 'error'}</p>
+<p><strong>Regularity:</strong> ${newRide.regularityList.get(newRide.regularity) ?: 'error'}</p>
 <p><strong>Comments:</strong> ${newRide.comments ?: 'No comments'}</p>
  
 <br>

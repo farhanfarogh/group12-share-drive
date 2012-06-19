@@ -28,11 +28,8 @@ public class Application extends Controller {
 			index();
 		}
 		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
-				null, numOfSeatsAvailable, comments, null);
-		System.out.println(newRide.destinationCampusMap.get(newRide.destinationCampusId));
+				null, numOfSeatsAvailable, regularity, comments, null);
 		newRide.save();
-		
-
 		render(newRide);
 	}
 
@@ -43,7 +40,8 @@ public class Application extends Controller {
 		// System.out.println(newRide2);
 		
 		// System.out.println(rides.get(3).regularityMap);
-		render(rides);
+		AppModel unis = new AppModel();
+		render(rides, unis);
 	}
 
 }
