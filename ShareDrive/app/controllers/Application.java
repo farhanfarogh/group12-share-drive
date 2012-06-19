@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.data.validation.Required;
+import play.data.validation.Valid;
 import play.mvc.*;
 
 import java.util.*;
@@ -9,41 +10,57 @@ import java.util.*;
 import models.*;
 
 public class Application extends Controller {
-	/*
-	 * @Before static void addDefaults() { renderArgs.put("blogTitle",
-	 * Play.configuration.getProperty("blog.title"));
-	 * renderArgs.put("blogBaseline",
-	 * Play.configuration.getProperty("blog.baseline")); }
-	 */
 
-	public static void index() {
+	public static void register() {
 		render();
 	}
 
-	public static void bookRide(@Required String nameOfDriver,
-			String startPoint, int destinationCampusId,
-			int numOfSeatsAvailable, int regularity, String comments) {
-		if (validation.hasErrors()) {
-			flash.error("Oops, please enter your name!");
-			index();
+	static User connected() {
+		String username = session.get("user");
+		System.out.println(session.get("user"));
+		if (username != null) {
+			return User.find("byUsername", username).first();
 		}
-		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
-				null, numOfSeatsAvailable, regularity, comments, null);
-
-		AppModel unis = new AppModel();
-		newRide.save();
-		render(newRide, unis);
+		return null;
 	}
 
-	public static void showRides() {
-		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(0)
-				.fetch();
-		// List<Ride> newRide2 = Ride.find("nameOfDriver like ?", "Pawel").fetch();
-		// System.out.println(newRide2);
-		
-		// System.out.println(rides.get(3).regularityMap);
-		AppModel unis = new AppModel();
-		render(rides, unis);
+
+	public static void index() {
+		if (connected() != null) {
+			Rides.index();
+		}
+		render();
 	}
+
+	public static void login(String username, String password) {
+		System.out.println("user:" + username);
+		User user = User.find("byUsernameAndPassword", username, password)
+				.first();
+		if (user != null) {
+			session.put("user", user.username);
+			flash.success("Welcome, " + user.lname);
+			Rides.index();
+		}
+		// Oops
+		System.out.print("user not found");
+		flash.put("username", username);
+		flash.error("Login failed");
+		index();
+	}
+
+	public static void saveUser(String username, String fname, String lname,
+			String email, String password) {
+		User user = new User(username, fname, lname, email, password);
+		user.save();
+		user.create();
+		session.put("user", user.username);
+		flash.success("Welcome, " + user.fname);
+		Rides.index();
+	}
+	
+	public static void logout() {
+        session.clear();
+        index();
+    }
 
 }

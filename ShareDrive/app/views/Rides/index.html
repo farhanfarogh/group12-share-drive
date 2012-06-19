@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+<div class="formLayout">
+
+<form action="@{Rides.bookRide()}" method="GET">
+        <label>Type of ride</label>
+        <select name="regularity">
+            <option value="0">One time</option>
+            <option value="1">Multiple times</option>
+            <option value="2">Weekly</option>
+        </select><br>
+        <label>Name of driver</label>
+        <input name="nameOfDriver"><br>
+        <label>Start point</label>
+        <input name="startPoint"><br>
+        <label>Destination University</label>
+        
+        <select name="destinationCampusId">
+			<optgroup label="TUM">
+				<option value="1">Garching</option>
+				<option value="2">Stammgaelende</option>
+			</optgroup>
+			<optgroup label="LMU">
+				<option value="3">City center</option>
+			</optgroup>
+		</select><br>
+        <label>Number of seats</label>
+        <select name="numOfSeatsAvailable">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select><br>
+         <label>Comments</label>
+        	<textarea  style="height:200px;" name="comments" > </textarea>
+        <br>
+<input type="submit" value="Offer a ride!" />
+
+</form> 
+</div>
+<br>
+
+<a href="@{Rides.logout()}">Logout</a>    
+

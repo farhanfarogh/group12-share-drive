@@ -1,18 +1,15 @@
 package models;
 
 import java.util.*;
-import java.util.Map;
 
 import javax.persistence.*;
 
 import play.data.validation.Required;
 import play.db.jpa.*;
 
+
 @Entity
-/**
- * @author Pawel
- *
- */
+@Table(name="ride")
 public class Ride extends Model {
 
 	// public User driver (will be created during registration, for now
