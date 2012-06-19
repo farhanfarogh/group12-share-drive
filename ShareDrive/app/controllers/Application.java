@@ -29,8 +29,10 @@ public class Application extends Controller {
 		}
 		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
 				null, numOfSeatsAvailable, regularity, comments, null);
+
+		AppModel unis = new AppModel();
 		newRide.save();
-		render(newRide);
+		render(newRide, unis);
 	}
 
 	public static void showRides() {

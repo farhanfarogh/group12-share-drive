@@ -13,11 +13,12 @@ public class AppModel {
 		destinationCampusMap = new HashMap<Integer, String>();
 		destinationCampusMap.put(1, "TUM, Garching");
 		destinationCampusMap.put(2, "TUM, Stammgelende");
-		destinationCampusMap.put(2, "LMU, City center");
+		destinationCampusMap.put(3, "LMU, City center");
 		
 		regularityList = new LinkedList<String>();
 		regularityList.add("once");
 		regularityList.add("multiple times");
 		regularityList.add("weekly");
 	}
+	
 }
