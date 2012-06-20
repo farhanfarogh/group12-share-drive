@@ -32,32 +32,55 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static void login(String username, String password) {
-		System.out.println("user:" + username);
-		User user = User.find("byUsernameAndPassword", username, password)
-				.first();
-		if (user != null) {
-			session.put("user", user.username);
-			flash.success("Welcome, " + user.lname);
-			Rides.index();
-		}
-		// Oops
-		System.out.print("user not found");
-		flash.put("username", username);
-		flash.error("Login failed");
-		index();
-	}
 
-	public static void saveUser(String username, String fname, String lname,
-			String email, String password) {
-		User user = new User(username, fname, lname, email, password);
-		user.save();
-		user.create();
-		session.put("user", user.username);
-		flash.success("Welcome, " + user.fname);
-		Rides.index();
-	}
+    public static void saveUser(@Valid User user, String verifyPassword) {
+        validation.required(verifyPassword);
+        validation.equals(verifyPassword, user.password).message("Your password doesn't match");
+        User objUser = User.UserExist(user.username); 
+     
+        if(validation.hasErrors()) { //show form validation error
+            render("@register", user, verifyPassword);
+        }
+        else if(objUser != null) { //show user exist error
+            if(validation.equals(user.username, objUser.username) != null)
+            {
+            	String userExist = "**Username exist! Please use different username.";
+            	render("@register", user, verifyPassword, userExist);
+            }
+        }
+        
+        user.create();
+        session.put("user", user.username);
+        flash.success("Welcome, " + user.lname);
+        Rides.index();
+    }
 	
+    public static void login(String username, String password) {
+        User user = User.find("byUsernameAndPassword", username, password).first();
+      
+        if(user != null) { //executes when the username and password is empty
+        	if(user.username != "") { //login when the user object is not null and also the return obj has a username
+                session.put("user", user.username);
+                flash.success("Welcome, " + user.lname);
+                Rides.index();         
+
+        	}
+        	else { //executes when the return obj is emty, i.e. it does not contain any username
+                flash.put("username", username);
+                flash.error("Login failed! Please try again.");
+                index();
+
+        	}
+        }
+        else { //executes the query returns a null when the username and password does not match
+            // Oops
+           flash.put("username", username);
+            flash.error("Login failed! Please try again.");
+            index();
+        }
+
+    }
+
 	public static void logout() {
         session.clear();
         index();

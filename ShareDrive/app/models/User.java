@@ -2,6 +2,7 @@ package models;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+
 import javax.persistence.*;
 
 @Entity

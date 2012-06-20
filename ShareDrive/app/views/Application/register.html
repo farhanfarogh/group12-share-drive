@@ -2,23 +2,52 @@
 #{set title:'Register' /}
 
 <h1>Register</h1>
-
-<form action="@{Application.saveUser()}" method="GET">
-        <p>
-            <strong>Username:</strong> <input type="text" name="username" size="16">
+    
+    #{field 'userExist'}
+    <p class="fError">
+        <span class="error">${userExist}</span>
+    </p>
+    #{/field}    
+     
+   
+#{form @saveUser()}
+    #{field 'user.fname'}
+        <p class="${field.errorClass}">
+            <strong>First name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.fname}"> *
+            <span class="error">${field.error}</span>
         </p>
-    <p>
-            <strong>First name:</strong> <input type="text" name="fname" size="16">
+    #{/field}
+    #{field 'user.lname'}
+        <p class="${field.errorClass}">
+            <strong>Surname:</strong> <input type="text" name="${field.name}" size="16" value="${user?.lname}"> *
+            <span class="error">${field.error}</span>
         </p>
-        <p>
-            <strong>Last name:</strong> <input type="text" name="lname" size="16">
+    #{/field}
+    #{field 'user.email'}
+        <p class="${field.errorClass}">
+            <strong>Email:</strong> <input type="text" name="${field.name}" size="16" value="${user?.email}"> *
+            <span class="error">${field.error}</span>
         </p>
-        <p>
-            <strong>Email:</strong> <input type="text" name="email" size="16">
+    #{/field}
+    #{field 'user.username'}
+        <p class="${field.errorClass}">
+            <strong>Username:</strong> <input type="text" name="${field.name}" size="16" value="${user?.username}"> *
+            <span class="error">${field.error}</span>
         </p>
-        <p>
-            <strong>Password:</strong> <input type="password" name="password" size="16">
+    #{/field}	
+    #{field 'user.password'}
+        <p class="${field.errorClass}">
+            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
+            <span class="error">${field.error}</span>
         </p>
+    #{/field}
+    #{field 'verifyPassword'}
+        <p class="${field.errorClass}">
+            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}   
     <p class="buttons">
-        <input type="submit" value="Register"> <a href="@{Application.index()}">Cancel</a>    
-</p>
+        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+    </p>
+#{/form}

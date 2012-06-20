@@ -109,3 +109,7 @@ form .buttons {
     padding: 10px;
     margin-top: 20px;
 }
+.fError {
+	color:#FF0000;
+	font-weight:bold;
+}
