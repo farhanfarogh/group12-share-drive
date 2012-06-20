@@ -1,7 +1,70 @@
 #{extends 'main.html' /}
 #{set title:'Show rides' /}
 
- 
+ <h1>Search Rides</h1>
+
+<p>
+    <input type="text" id="search" size="30">
+    <input type="submit" id="submit" value="Find Rides">
+
+    <br>
+
+    Maximum results: 
+    <select id="size">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+    </select>
+</p>
+
+<div id="result">
+</div>
+
+<script type="text/javascript" charset="${_response_encoding}">
+
+    // Rebuild state
+    $('#search').val(sessvars.search)    
+    if(sessvars.page == undefined) {
+        sessvars.page = 1
+    }
+    if(sessvars.size == undefined) {
+        sessvars.size = 10
+    }
+    $('#size option[value='+sessvars.size+']').attr('selected', 'true')
+    
+    // Search function
+    var search = function() {
+        sessvars.search = $('#search').val()
+        sessvars.size = $('#size').val()
+        var listAction = #{jsAction @list(':search', ':size') /} 
+        $('#result').load(listAction({search: sessvars.search, size: sessvars.size}), function() {
+            $('#content').css('visibility', 'visible')
+        })
+    }
+    
+    // Events handler
+    $('#submit').click(function() {
+        sessvars.page = 1
+        search()
+    })
+    $('#search').keyup(function() {
+        sessvars.page = 1
+        search()
+    })
+    
+    // Init
+    if(sessvars.search != undefined) {
+        $('#content').css('visibility', 'hidden')
+        search()
+    }
+    
+</script>
+#{ifnot rides}
+    <p>
+        No Rides Found
+    </p>
+#{/ifnot}
+#{else}
  <table>
         <thead>
             <tr>
@@ -27,6 +90,8 @@
             #{/list}
         </tbody>
     </table>
+    
+#{/else}
 
 
 <a href="@{Rides.logout()}">Logout</a> <br>

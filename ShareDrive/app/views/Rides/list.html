@@ -1,0 +1,33 @@
+#{if rides}
+<table>
+        <thead>
+            <tr>
+                <th>Name of driver</th>
+                <th>Start point</th>
+                <th>Dest. campus</th>
+                <th width="8%">Num. of seats</th>
+                <th >Regularity</th>
+                <th width="13%">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list rides, as:'ride'}
+                <tr>
+                    <td>${ride.nameOfDriver}</td>
+                    <td>${ride.startPoint}</td>
+                    <td>${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
+                    <td>${ride.numOfSeatsAvailable }</td>
+                    <td>${unis.regularityList.get(ride.regularity)}</td>
+                    <td>${ride.comments}</td>
+                    
+                </tr>
+            #{/list}
+        </tbody>
+    </table>
+#{/if}
+
+#{else}
+    <p>
+        No more results
+    </p>
+#{/else}
