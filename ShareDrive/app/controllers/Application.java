@@ -32,21 +32,6 @@ public class Application extends Controller {
 		render();
 	}
 
-	
-//	Author: Dragan
-//	This is the function for the search but it is not linked yet we have to discuss this thing
-	public static void list(String search, Integer size) {
-        List<Ride> rides = null;
-        if(search.trim().length() == 0) {
-            rides = Ride.all().fetch(size);
-        } else {
-            search = search.toLowerCase();
-            System.out.println("search> " + search);
-            rides = Ride.find("lower(nameOfDriver) like ? ", search).fetch(size);
-        
-        }
-        render(rides, search, size);
-    }
 
     public static void saveUser(@Valid User user, String verifyPassword) {
         validation.required(verifyPassword);

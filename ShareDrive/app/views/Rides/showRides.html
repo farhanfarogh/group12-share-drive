@@ -5,7 +5,7 @@
 
 <p>
     <input type="text" id="search" size="30">
-    <input type="submit" id="submit" value="Find Rides">
+    <input type="submit" id="submit" value="Find Hotels">
 
     <br>
 
@@ -36,8 +36,8 @@
     var search = function() {
         sessvars.search = $('#search').val()
         sessvars.size = $('#size').val()
-        var listAction = #{jsAction @list(':search', ':size') /} 
-        $('#result').load(listAction({search: sessvars.search, size: sessvars.size}), function() {
+        var listAction = #{jsAction @list(':search', ':size', ':page') /} 
+        $('#result').load(listAction({search: sessvars.search, size: sessvars.size, page: sessvars.page}), function() {
             $('#content').css('visibility', 'visible')
         })
     }
@@ -51,6 +51,11 @@
         sessvars.page = 1
         search()
     })
+    $('#nextPage').live('click', function(e) {
+        sessvars.page = $(this).attr('href')
+        e.preventDefault()
+        search()        
+    })
     
     // Init
     if(sessvars.search != undefined) {
@@ -59,6 +64,9 @@
     }
     
 </script>
+
+<h1>Current Rides</h1>
+
 #{ifnot rides}
     <p>
         No Rides Found
