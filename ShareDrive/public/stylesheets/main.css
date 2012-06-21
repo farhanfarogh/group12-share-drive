@@ -1,63 +1,115 @@
-.formLayout
-    {
-        background-color: #f3f3f3;
-        border: solid 1px #a1a1a1;
-        padding: 10px;
-        width: 500px;
+body{
+	background: #d0d0f5;
+	font-family:"Arial";
+	font-size:9px;
 }
 
 
-.formLayout label, .formLayout input
-{
-        display: block;
-        width: 220px;
-        float: left;
-        margin-bottom: 10px;
-}
-.formLayout span
-{		
-		text-align: right;
-        padding-right: 60px;
+.nav {
+	background: #1e5799; /* Old browsers */
+	background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* IE10+ */
+	background: linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+    overflow:hidden;
+    border: 1px solid;
+    position:relative;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    margin:0px auto;
+    padding:0px;
+    text-align:center;
+    font-family:"Arial";
+    font-size: 14px;
+    color:white;
+    border-color:black;
 }
 
-.formLayout p
-{
-        width: 220px;
-        float: left;
-        margin-bottom: 10px;
+
+.navSpalte{
+	border-right: 1px solid;
+	border-bottom: 4px solid;
+	position:relative;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+	border-color:black;
 }
- 
-.formLayout label
-{
-        text-align: right;
-        padding-right: 20px;
+
+.navSpalte:hover{
+	color:white;
+	border-color: black;
+	cursor:pointer;
 }
+
+
+.mainTable{
+	 position:relative;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+
+
+.content{
+	background:white;
+	 position:relative;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+}
+
+.subNav{
+	visibility:hidden;
+}
+
+.search{
+	background: #d0d0f5;
+	border-color: black;
+}
+
+.button{
+	position:relative;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+	background: #d0d0f5;
+	border-color: black;
+}
+
+.bottom {
+     color:#7070a2;
+     font-size:11px;
+     text-align:center;
+     margin:10px;
+}
+
+.content{
+	font-family:"Arial";
+	font-size:13px;
+}
+
+.textbox{
+	border-color: black;
+	font-family:"Arial";
+	font-size:13px;
+}
+
+a {
+    background: none repeat scroll 0 0 transparent;
+    text-decoration: none;
+}
+a.whiteAnchor{ color: white;}
+
  
 br
 {
         clear: left;
 }
-
-
-/** Table **/
-
-table {
-    border-collapse: collapse;
-    border: 1px solid #aaa;
-    width: 60%;
-}
-
-th {
-    background: #eee !important;
-}
-
-td, th {
-    padding: 5px;
-    text-align: left;
-    border-right: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
-}
-
 
 
 label {
@@ -108,8 +160,4 @@ form .buttons {
     background: #dedede;
     padding: 10px;
     margin-top: 20px;
-}
-.fError {
-	color:#FF0000;
-	font-weight:bold;
 }

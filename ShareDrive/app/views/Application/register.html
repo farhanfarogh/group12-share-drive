@@ -11,6 +11,8 @@
      
    
 #{form @saveUser()}
+#{/form}
+#{form @saveUser()}
     #{field 'user.fname'}
         <p class="${field.errorClass}">
             <strong>First name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.fname}"> *
