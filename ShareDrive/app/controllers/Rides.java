@@ -37,21 +37,18 @@ public class Rides extends Application {
 		render(newRide, unis);
 	}
 	
-//	Author: Dragan
-//	This is the function for the search but it is not linked yet we have to discuss this thing i need some help or advice from somebody
-// I think that I am doing everything exactly like in the HotelBooking app but it doestn work
-	public static void list(String search, Integer size, Integer page) {
-        List<Ride> rides = null;
-        page = page != null ? page : 1;
-        if(search.trim().length() == 0) {
-            rides = Ride.all().fetch(page, size);
-        } else {
-            search = search.toLowerCase();
-            rides = Ride.find("lower(startingPoint) like ? ", search).fetch(page, size);
-        
-        }
-        render(rides, search, size, page);
-    }
+	
+	public static void searchRides(String search) {
+		System.out.println("Searching started");
+		List<Ride> rides = null;
+		if(search.trim().length() == 0) {
+			rides = Ride.all().fetch();
+		} else {
+			search = search.toLowerCase();
+			rides = Ride.find("lower(nameOfDriver) like ? OR lower(startPoint) like ?", "%"+search+"%", "%"+search+"%").fetch();
+		}
+		render(rides, search);
+	}
 
 	public static void showRides() {
 		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(0)
