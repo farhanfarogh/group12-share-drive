@@ -47,7 +47,7 @@ public class Rides extends Application {
             rides = Ride.all().fetch(page, size);
         } else {
             search = search.toLowerCase();
-            rides = Ride.find("lower(nameOfDriver) like ? ", search).fetch(page, size);
+            rides = Ride.find("lower(startingPoint) like ? ", search).fetch(page, size);
         
         }
         render(rides, search, size, page);
