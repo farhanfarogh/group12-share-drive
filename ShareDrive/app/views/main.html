@@ -1,20 +1,23 @@
 <!DOCTYPE html >
 <html>
-	<head>
+    <head>
 		<title>#{get 'title' /}</title>
 		<link rel="stylesheet" href="/public/stylesheets/main.css" type="text/css" media="screen">
 		<script type="text/javascript" src="/public/javascripts/links.js"></script>
 		<title>unicarpool.com - ride your own way</title>
 	</head>
-	<body>
-		<div align="center">
-			<table width="1200" class="mainTable" cellspacing="0" cellpadding="0"><tr><td>
+    <body>
+    <div align="center">
+		
+    <table width="1200" class="mainTable" cellspacing="0" cellpadding="0"><tr><td>
+					
+					
 					<table border="0" cellspacing="0" width=100%><tr><td><img src="/public/images/logo neu.png"/></td>
-					<td align="right" valign="bottom"><form action="#"><input type="text" class="search" name="search" value="search for..."> <input type="submit" value="Go" class="button">
-					</td></tr></table>
-				</td></tr>
-				<tr><td><br>
-				<table width="1200" class="nav" cellspacing="0" cellpadding="5"><tr><td width="300" class="navSpalte" id="Start" >
+
+					</table>
+					
+        <table width="1200" class="nav" cellspacing="0" cellpadding="5">
+        <tr><td width="300" class="navSpalte" id="Start"> <a class="whiteAnchor" title="Create Ride" href="@{Rides.search()}">
 				Start</td>
 				<td width="300" class="navSpalte" id="Rides" onClick="show('Rides')" id="">Rides</td>
 				<td width="300" class="navSpalte" id="Profile" onClick="show('Profile')">Profile</td>
@@ -22,15 +25,15 @@
 				
 				</td></tr>
 				<tr><td>
-					<div id="SubStart" class="subNav">&nbsp;</div>
+					<div id="SubStart" class="subNav"></div>
 				</td><td>
-					<div id="SubRides" class="subNav"><a class="whiteAnchor" title="Create Ride" href="@{Rides.index()}">Create Ride</a> | <a class="whiteAnchor" title="Search Ride" href="@{Rides.showRides()}">Search Ride</a></div>
+					<div id="SubRides" class="subNav"><a class="whiteAnchor" title="Create Ride" href="@{Rides.index()}">Create Ride</a> | <a class="whiteAnchor" title="Search Ride" href="@{Rides.showRides()}">Show all rides</a></div>
 				</td><td>
 					<div id="SubProfile" class="subNav"><a class="whiteAnchor" title="Account" href="/NeedsToBeFixed">Account</a> | <a class="whiteAnchor" title="My Rides" href="/NeedsToBeFixed">My Rides</a></div>
 				</td><td>
 					<div id="SubHelp" class="subNav"><a class="whiteAnchor" title="Help" href="/NeedsToBeFixed">Help</a> | <a class="whiteAnchor" title="bla" href="/NeedsToBeFixed">bla</a></div>
 				</td></tr></table>
-			</td></tr>
+        </td></tr>
 			<tr><td>
 				<br>
 				<table class="content" width="1200" cellpadding="5" class="content">
