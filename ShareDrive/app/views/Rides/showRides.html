@@ -1,85 +1,31 @@
 #{extends 'main.html' /}
 #{set title:'Show rides' /}
 
- <h1>Search Rides</h1>
-
-<p>
-    <input type="text" id="search" size="30">
-    <input type="submit" id="submit" value="Search">
-
-    <br>
-
-</p>
-
-<div id="result">
-</div>
-
-<script type="text/javascript">
-
-    // Rebuild state
-    $('#search').val(sessvars.search)    
-    
-    // Search function
-    var search = function() {
-        sessvars.search = $('#search').val()
-        var listAction = #{jsAction @searchRides(':search') /} 
-        $('#result').load(listAction({search: sessvars.search}), function() {
-            $('#content').css('visibility', 'visible')
-        })
-    }
-    
-    // Events handler
-    $('#submit').click(function() {
-        search()
-    })
-    $('#submit').keyup(function() {
-        search()
-    })
-    
-    // Init
-    if(sessvars.search != undefined) {
-        $('#content').css('visibility', 'hidden')
-        search()
-    }
-    
-</script>
-
-<h1>Current Rides</h1>
-
-#{ifnot rides}
-    <p>
-        No Rides Found
-    </p>
-#{/ifnot}
-#{else}
- <table>
-        <thead>
-            <tr>
-                <th>Name of driver</th>
-                <th>Start point</th>
-                <th>Dest. campus</th>
-                <th width="8%">Num. of seats</th>
-                <th >Regularity</th>
-                <th width="13%">Comments</th>
+ <table class="ridesTable">
+        <thead >
+            <tr valign="middle">
+                <th  align="center">Name of driver</th>
+                <th align="center">Start point</th>
+                <th align="center">Dest. campus</th>
+                <th width="8%" align="center">Num. of seats</th>
+                <th  align="center">Regularity</th>
+                <th width="13%" align="center">Comments</th>
             </tr>
         </thead>
         <tbody>
             #{list rides, as:'ride'}
-                <tr>
-                    <td>${ride.nameOfDriver}</td>
-                    <td>${ride.startPoint}</td>
-                    <td>${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
-                    <td>${ride.numOfSeatsAvailable }</td>
-                    <td>${unis.regularityList.get(ride.regularity)}</td>
-                    <td>${ride.comments}</td>
+                <tr valign="middle">
+                    <td align="center">${ride.nameOfDriver}</td>
+                    <td align="center">${ride.startPoint}</td>
+                    <td align="center">${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
+                    <td align="center">${ride.numOfSeatsAvailable }</td>
+                    <td align="center">${unis.regularityList.get(ride.regularity)}</td>
+                    <td align="center">${ride.comments}</td>
                     
                 </tr>
             #{/list}
         </tbody>
     </table>
-    
-#{/else}
-
 
 <a href="@{Rides.logout()}">Logout</a> <br>
 <a href="@{Rides.index()}">Back to main page</a>
