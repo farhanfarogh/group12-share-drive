@@ -14,15 +14,14 @@ public class BasicTest extends UnitTest {
 	@Test
 	public void createAndRetrieveUser() {
 	    // Create a new ride
-	    /*new Ride("DriverXYZ", "Munchner Freiheit", "TUM",
-				"Garching", "11:00", 5,
-				"Sample ride", new Date()).save();
+		new Ride("testing" , "Munchen", 1,
+				null, 4, 1, "some comments", null).save();
 	    // Retrieve the ride
-	    Ride testRide = Ride.find("nameOfDriver", "DriverXYZ").first();
+	    Ride testRide = Ride.find("nameOfDriver", "testing").first();
 	    
 	    // Test 
 	    assertNotNull(testRide);
-	    assertEquals("DriverXYZ", testRide.nameOfDriver);*/
+	    assertEquals("testing", testRide.nameOfDriver);
 	}
 	
 	@Test
