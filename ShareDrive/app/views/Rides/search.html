@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+<form action="@{Rides.searchResults()}" method="GET">
+        <label>Start point: </label>
+        <input name="startPoint"><br>
+        <label>Destination campus:</label>
+        <input name="destinationCampusId"><br>
+		<input type="submit" value="Search a ride!" />
+</form> 
+<br>
+
+<a href="@{Rides.logout()}">Logout</a>    
