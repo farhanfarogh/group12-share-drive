@@ -160,4 +160,27 @@ form .buttons {
     background: #dedede;
     padding: 10px;
     margin-top: 20px;
+}table.ridesTable {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: outset;
+	border-color: gray;
+	border-collapse: separate;
+	background-color: white;
+}
+table.ridesTable th {
+	border-width: 1px;
+	padding: 2px;
+	border-style: dotted;
+	border-color: gray;
+	background-color: rgb(255, 250, 250);
+	-moz-border-radius: ;
+}
+table.ridesTable td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: dotted;
+	border-color: gray;
+	background-color: rgb(255, 250, 250);
+	-moz-border-radius: ;
 }
