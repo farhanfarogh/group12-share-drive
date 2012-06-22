@@ -1,6 +1,8 @@
 package controllers;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import models.AppModel;
 import models.Ride;
@@ -28,7 +30,7 @@ public class Rides extends Application {
 			flash.error("Oops, please enter your name!");
 			index();
 		}
-		
+
 		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
 				null, numOfSeatsAvailable, regularity, comments, null);
 
@@ -36,24 +38,65 @@ public class Rides extends Application {
 		newRide.create();
 		render(newRide, unis);
 	}
-	
-	
-	public static void searchRides(String search) {
-		System.out.println("Searching started");
-		List<Ride> rides = null;
-		if(search.trim().length() == 0) {
-			rides = Ride.all().fetch();
-		} else {
-			search = search.toLowerCase();
-			rides = Ride.find("lower(nameOfDriver) like ? OR lower(startPoint) like ?", "%"+search+"%", "%"+search+"%").fetch();
-		}
-		render(rides, search);
-	}
 
 	public static void showRides() {
 		List<Ride> rides = Ride.find("order by nameOfDriver desc").from(0)
 				.fetch();
 		AppModel unis = new AppModel();
+		render(rides, unis);
+	}
+
+	public static void search() {
+		render();
+	}
+
+	public static void searchResults(String startPoint,
+			String destinationCampusId) {
+		AppModel unis = new AppModel();
+		List<Ride> rides = new LinkedList<Ride>();
+		List<Ride> finalRides = new LinkedList<Ride>();
+		if (destinationCampusId.equals("")) {
+			finalRides = Ride.find("startPoint like ? ", startPoint).from(0)
+					.fetch();
+		} else if (startPoint.equals("")) {
+			Set<Integer> unisId = unis.destinationCampusMap.keySet();
+			int destinationCampusIndex = -1;
+			for (Integer uni : unisId) {
+				if (unis.destinationCampusMap.get(uni).contains(
+						destinationCampusId)) {
+					destinationCampusIndex = uni;
+					break;
+				}
+			}
+			finalRides = Ride
+					.find("destinationCampusId like ? ", destinationCampusIndex)
+					.from(0).fetch();
+		} else {
+			rides = Ride.find("startPoint like ? ", startPoint).from(0).fetch();
+			Set<Integer> unisId = unis.destinationCampusMap.keySet();
+			int destinationCampusIndex = -1;
+			for (Integer uni : unisId) {
+				if (unis.destinationCampusMap.get(uni).contains(
+						destinationCampusId)) {
+					destinationCampusIndex = uni;
+					break;
+				}
+			}
+			for (Ride ride : rides) {
+				System.out.println("destinationCampusIndex: "
+						+ destinationCampusIndex
+						+ " ride.destinationCampusId: "
+						+ ride.destinationCampusId);
+				if (ride.destinationCampusId == destinationCampusIndex) {
+					finalRides.add(ride);
+				}
+			}
+
+			System.out.println("search: " + startPoint + " " + finalRides);
+
+		}
+
+		rides = finalRides;
 		render(rides, unis);
 	}
 }
