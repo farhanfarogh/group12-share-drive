@@ -22,6 +22,8 @@ public class Rides extends Application {
 	public static void index() {
 		render();
 	}
+	
+	//this is bookRIde
 
 	public static void bookRide(@Required String nameOfDriver,
 			String startPoint, int destinationCampusId,
