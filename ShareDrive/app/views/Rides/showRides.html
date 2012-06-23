@@ -7,6 +7,7 @@
                 <th  align="center">Name of driver</th>
                 <th align="center">Start point</th>
                 <th align="center">Dest. campus</th>
+                <th align="center">Date</th>
                 <th width="8%" align="center">Num. of seats</th>
                 <th  align="center">Regularity</th>
                 <th width="13%" align="center">Comments</th>
@@ -18,6 +19,7 @@
                     <td align="center">${ride.nameOfDriver}</td>
                     <td align="center">${ride.startPoint}</td>
                     <td align="center">${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
+                    <td align="center">${ride.rideDate}</td>
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
                     <td align="center">${ride.comments}</td>

@@ -1,21 +1,19 @@
 <!DOCTYPE html >
 <html>
-    <head>
+	<head>
 		<title>#{get 'title' /}</title>
+		#{script 'jquery-1.6.4.min.js' /}
 		<link rel="stylesheet" href="/public/stylesheets/main.css" type="text/css" media="screen">
+		#{get 'moreStyles' /}
 		<script type="text/javascript" src="/public/javascripts/links.js"></script>
+		#{get 'moreScripts' /}
 		<title>unicarpool.com - ride your own way</title>
 	</head>
-    <body>
-    <div align="center">
-		
-    <table width="1200" class="mainTable" cellspacing="0" cellpadding="0"><tr><td>
-					
-					
-					<table border="0" cellspacing="0" width=100%><tr><td><img src="/public/images/logo neu.png"/></td>
-
-					</table>
-					
+	<body>
+		<div align="center">
+			<table width="1200" class="mainTable" cellspacing="0" cellpadding="0"><tr><td>
+					<table border="0" cellspacing="0" width=100%><tr><td><img src="/public/images/logo neu.png"/></td></tr></table>
+				</td></tr>
         <table width="1200" class="nav" cellspacing="0" cellpadding="5">
         <tr><td width="300" class="navSpalte" id="Start"> <a class="whiteAnchor" title="Create Ride" href="@{Rides.search()}">
 				Start</td>

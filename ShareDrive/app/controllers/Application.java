@@ -80,8 +80,7 @@ public class Application extends Controller {
         }
 
     }
-    
-    
+
 	public static void logout() {
         session.clear();
         index();

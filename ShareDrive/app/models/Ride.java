@@ -41,7 +41,7 @@ public class Ride extends Model {
 	@Required
 	@Temporal(TemporalType.DATE)
 	public Date rideDate;
-
+	
 	public Ride(String nameOfDriver, String startPoint, int destinationCampusId, String timeOfArrival, int numOfSeatsAvailable,
 			int regularity, String comments, Date rideDate) {
 		this.regularity = regularity;

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -22,19 +23,21 @@ public class Rides extends Application {
 	public static void index() {
 		render();
 	}
-	
-	//this is bookRIde
 
 	public static void bookRide(@Required String nameOfDriver,
-			String startPoint, int destinationCampusId,
+			String startPoint, int destinationCampusId, String datep, String timepicker,
 			int numOfSeatsAvailable, int regularity, String comments) {
 		if (validation.hasErrors()) {
 			flash.error("Oops, please enter your name!");
 			index();
 		}
-
+		Date dp = new Date(datep);
+		int hour = Integer.parseInt(timepicker.substring(0,2));
+		int min = Integer.parseInt(timepicker.substring(3, 5));
+		dp.setHours(hour);
+		dp.setMinutes(min);
 		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
-				null, numOfSeatsAvailable, regularity, comments, null);
+				null, numOfSeatsAvailable, regularity, comments, dp);
 
 		AppModel unis = new AppModel();
 		newRide.create();
