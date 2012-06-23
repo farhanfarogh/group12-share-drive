@@ -12,7 +12,7 @@ import play.db.jpa.*;
 @Table(name="ride")
 public class Ride extends Model {
 
-	// public User driver (will be created during registration, for now
+	// public User driver (will be created during registration, so far!
 	// @Required(message = "Name of the driver is required")
 	public String nameOfDriver;
   
