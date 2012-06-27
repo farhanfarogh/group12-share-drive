@@ -39,17 +39,18 @@
     #{/field}	
     #{field 'user.password'}
         <p class="${field.errorClass}">
-            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
-            <span class="error">${field.error}</span>
+            <strong>Password:</strong> <input type="password" name="${field.name}" id="txtPassword" size="16" value="${user?.password}" onkeyup="chkPassword(this, passError)"> *
+            <span class="error" id="passError">${field.error}</span>
         </p>
     #{/field}
     #{field 'verifyPassword'}
         <p class="${field.errorClass}">
-            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
-            <span class="error">${field.error}</span>
+            <strong>Verify password:</strong> <input type="password" name="${field.name}" id="txtVerifyPassword" size="16" value="${verifyPassword}" onkeyup="varifyPassword(this, txtPassword, verifyPassError)"> *
+            <span class="error" id="verifyPassError">${field.error}</span>
         </p>
     #{/field}   
     <p class="buttons">
-        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+        <input type="submit" value="Register"> 
+        <a href="@{index()}">Cancel</a>    
     </p>
 #{/form}

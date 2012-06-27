@@ -147,6 +147,7 @@ form p {
 
 form p.hasError {
     color: #c00;
+	font-size:16px;
 }
 
 form .hasError .error {
