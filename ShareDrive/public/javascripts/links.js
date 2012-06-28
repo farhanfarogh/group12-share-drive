@@ -1,11 +1,17 @@
-function show(elem){		
+function showSubmenu(elem){
+	hideAll();
 	document.getElementById('Sub' + elem).style.visibility = 'visible';
-	document.getElementById(elem).style.borderBottomWidth = '0';
+	document.getElementById(elem).style.borderBottomWidth = '0px';
 }
 
-function hide(elem){
-	document.getElementById('Sub' + elem).style.visibility = 'hidden';
+function unklick(elem){
 	document.getElementById(elem).style.borderBottomWidth = '4px';
+}
+
+function hideAll(){
+	document.getElementById('SubRides').style.visibility = 'hidden';
+	document.getElementById('SubProfile').style.visibility = 'hidden';
+	document.getElementById('SubHelp').style.visibility = 'hidden';
 }
 
 function chkPassword(passwordObj, errorDispObj) { //checking password length

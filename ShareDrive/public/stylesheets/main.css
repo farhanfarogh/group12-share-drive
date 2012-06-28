@@ -1,9 +1,61 @@
 body{
+	margin:auto;
+	margin-top:1%;
 	background: #d0d0f5;
 	font-family:"Arial";
 	font-size:9px;
+	width:1200px;
 }
 
+#banner{
+	width:1200px;
+	height:100px;
+	border:1px solid black;
+}
+
+#navigationBar{
+	width:1200px;
+	height:60px;
+	border:1px solid black;
+	margin-top:10px;
+}
+
+#mainContent{
+	border:1px solid black;
+	float:left;
+	padding:10px;
+	margin-top:10px;
+}
+
+#content{
+	width:900px;
+	float:left;
+	border:1px solid black;
+}
+
+#user{
+	width:270px;
+	float:right;
+	border:1px solid black;
+}
+
+#ads{
+	width:270px;
+	margin-top:10px;
+	float:right;
+	border:1px solid black;
+}
+
+#footer{
+	width:1200px;
+	height:40px;
+	float:left;
+	color:#7070a2;
+    font-size:11px;
+    text-align:center;
+	border:1px solid black;
+	margin-top:10px;
+}
 
 .nav {
 	background: #1e5799; /* Old browsers */
