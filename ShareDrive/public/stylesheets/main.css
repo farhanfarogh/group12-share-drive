@@ -3,20 +3,18 @@ body{
 	margin-top:1%;
 	background: #d0d0f5;
 	font-family:"Arial";
-	font-size:9px;
+	font-size:13px;
 	width:1200px;
 }
 
 #banner{
 	width:1200px;
 	height:100px;
-	border:1px solid black;
 }
 
 #navigationBar{
 	width:1200px;
 	height:60px;
-	border:1px solid black;
 	margin-top:10px;
 }
 
@@ -28,8 +26,9 @@ body{
 }
 
 #content{
-	width:900px;
+	width:880px;
 	float:left;
+	padding:10px;
 	border:1px solid black;
 }
 
@@ -53,7 +52,9 @@ body{
 	color:#7070a2;
     font-size:11px;
     text-align:center;
-	border:1px solid black;
+	font-size: 70%;
+    border-top: 1px dotted #ccc;
+    padding:10px;
 	margin-top:10px;
 }
 
@@ -81,7 +82,6 @@ body{
     border-color:black;
 }
 
-
 .navSpalte{
 	border-right: 1px solid;
 	border-bottom: 4px solid;
@@ -96,22 +96,6 @@ body{
 	color:withe;
 	border-color: black;
 	cursor:pointer;
-}
-
-.mainTable{
-	 position:relative;
-    -moz-border-radius:15px;
-    -webkit-border-radius:15px;
-    border-radius:15px;
-}
-
-
-.content{
-	background:white;
-	 position:relative;
-    -moz-border-radius:15px;
-    -webkit-border-radius:15px;
-    border-radius:15px;
 }
 
 .subNav{
@@ -240,12 +224,4 @@ table.ridesTable td {
 	border-color: gray;
 	background-color: rgb(255, 250, 250);
 	-moz-border-radius: ;
-}
-* Footer **/
-
-#footer {
-    padding: 10px;
-    font-size: 70%;
-    border-top: 1px dotted #ccc;
-    text-align: center;
 }

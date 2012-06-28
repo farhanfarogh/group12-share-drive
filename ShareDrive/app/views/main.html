@@ -11,6 +11,7 @@
 	</head>
 	<body>
 		<div id="banner"><img src="/public/images/logo neu.png"/></div>
+		
 		<div id="navigationBar">
 			<table width="1200" class="nav" cellspacing="0" cellpadding="5">
         		<tr><td width="300" class="navSpalte" id="Start"> <a class="whiteAnchor" title="Create Ride" href="@{Rides.search()}">
@@ -31,6 +32,7 @@
 				</td></tr>
 			</table>
 		</div>
+		
 		<div id="mainContent">
 			<div id="content">
 				#{if flash.error}
@@ -43,67 +45,16 @@
 				</p>
 				#{/if} #{doLayout /}
 			</div>
-			<div id="user">User</div>
+			
+			<div id="user">
+				User
+			</div>
+			
 			<div id="ads">Ads</div>
 		</div>
 		
 		<div id="footer">
 			Impressum | AGB | Copyright by unicarpool.com, 2012
 		</div>
-
-<!--  	
-		<div align="center">
-			<table width="1200" class="mainTable" cellspacing="0" cellpadding="0"><tr><td>
-					<table border="0" cellspacing="0" width=100%><tr><td><img src="/public/images/logo neu.png"/></td></tr></table>
-				</td></tr>
-        <table width="1200" class="nav" cellspacing="0" cellpadding="5">
-        <tr><td width="300" class="navSpalte" id="Start"> <a class="whiteAnchor" title="Create Ride" href="@{Rides.search()}">
-				Start</td>
-				<td width="300" class="navSpalte" id="Rides" onMouseover="showSubmenu('Rides')" onMouseOut="unklick('Rides')" id="">Rides</td>
-				<td width="300" class="navSpalte" id="Profile" onMouseover="showSubmenu('Profile')" onMouseOut="unklick('Profile')">Profile</td>
-				<td width="300" class="navSpalte" id="Help" onMouseover="showSubmenu('Help')" onMouseOut="unklick('Help')" style="border-right: 0px solid;">Help
-				
-				</td></tr>
-				<tr><td>
-					<div id="SubStart" class="subNav"></div>
-				</td><td>
-					<div id="SubRides" class="subNav"><a class="whiteAnchor" title="Create Ride" href="@{Rides.index()}">Create Ride</a> | <a class="whiteAnchor" title="Search Ride" href="@{Rides.showRides()}">Show all rides</a></div>
-				</td><td>
-					<div id="SubProfile" class="subNav"><a class="whiteAnchor" title="Account" href="/NeedsToBeFixed">Account</a> | <a class="whiteAnchor" title="My Rides" href="/NeedsToBeFixed">My Rides</a></div>
-				</td><td>
-					<div id="SubHelp" class="subNav"><a class="whiteAnchor" title="Help" href="/NeedsToBeFixed">Help</a> | <a class="whiteAnchor" title="bla" href="/NeedsToBeFixed">bla</a></div>
-				</td></tr></table>
-        </td></tr>
-			<tr><td>
-				<br>
-				<table class="content" width="1200" cellpadding="5" class="content">
-				<tr><td>
-			       <div id="main" style="padding:7px;">
-			       		
-			            #{if flash.error}
-			                <p class="fError">
-			                    <strong>${flash.error}</strong>
-			                </p>
-			            #{/if}
-			            #{if flash.success}
-			                <p class="fSuccess">
-			                    <strong>${flash.success}</strong>
-			                </p>
-			            #{/if}
-			        
-			            #{doLayout /} 
-			        </div>
-			    </td>
-			    </tr>
-				
-				</table>
-			</td></tr>
-			<tr><td>
-				<div class="bottom">
-					Impressum | AGB | Copyright by unicarpool.com, 2012 
-				</div>
-			</td></tr></table>
-		</div>
-		-->
 	</body>
 </html>
