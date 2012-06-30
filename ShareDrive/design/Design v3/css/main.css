@@ -3,7 +3,7 @@
 
 body{
 
-	background-image: url(../images/background5.png);
+	background-image: url(../images/background.png);
    	font: 62.5%  Arial, Helvetica, sans-serif;
 }
 
@@ -11,6 +11,7 @@ body{
 .wrap{ 
 	position:relative;
 	width:1000px; height: auto; margin:auto; 
+	margin-top:0px;
 
 
 }
@@ -20,13 +21,22 @@ body{
 position:absolute;
 top:5px;
 left:3px;
+width:300px;
+
+}
+
+.slogan {
+
+position:absolute;
+top:10px;
+left:310px;
 
 }
 	
 	
 .header{ 
 
-	height:420px; 
+	height:220px; 
 	width:1000px;
 	
 
@@ -44,7 +54,7 @@ left:700px;
 	border:1px solid black;
 	width:999px;
 	position:absolute; top:70px; left:0; 
-	height:335px; 
+	height:144px; 
 
 	}
 
@@ -73,20 +83,13 @@ left:700px;
 
 
 		
-.sidebar{ 
-	
-	
-	position:absolute; 
-	left:768px;
-	top:440px;
-	
-	
-}
+
 	
 .search{
 position:absolute;
-top:5px;
+top:375px;
 left:700px;
+
 }	
 	
 
@@ -113,15 +116,25 @@ left:700px;
 	margin-left: 5px;
 }	
 
+.sidebar{ 
+	
+	
+	position:absolute; 
+	left:768px;
+	top:238px;
+	
+	
+}
 		
 .login{
 		border:2px white solid;
-		background-image: url(../images/login_hintergrund2.png);
+		background-image: url(../images/login_background.png);
 		border-radius:10px;
 		padding:20px;
 		margin-bottom:35px;
 		width:190px; 
 		height:310px; 
+	
 }		
 		.login a{ 
 			
@@ -175,17 +188,18 @@ left:700px;
 	opacity: .8;
 	height:35px;
 	position:absolute;
-	top:80px;
+	top:180px;
+	left:1px;
 		
 }
 
 				.nav a{ 
 					
-					top:8px;
+					top:0px;
 					padding-top: 10px;
 					width:200px;
 					height:35px;
-					position:relative;
+					position:absolute;
 					font-weight:bold;
 					vertical-align:middle;
 					font-size:15px;
@@ -199,40 +213,45 @@ left:700px;
 
 .subNav{
 
-
+		z-index:101;
 		font-size: 15px;
 		color:black;
 		position:absolute;
 		width:1000px;
-		top:115px; 
+		top:215px; 
 		height:35px;
 		text-align:center;
-		
-		
 		
 	
 }
 
 				.subNav table{ 
-				
+					top:0px;
+					opacity: .9;
+					margin-bottom:2px;
+					border-color:white;
 					width:100px;
 					position:absolute;
+					bottom:0px;
 					visibility:hidden;
+					background-color:#00123a;
 				
 				}
 				
 				.subNav tr{
+				
 					background-color:#00123a;
-					left:10px;
-					font-size:15px;
+					
+					font-size:13px;
 					color:white;
 					font-family:verdana;
 				}
 				.subNav td {
 				
 					
-				   display:block;
+				 
 				}
+				.subNav td:hover{ background-color:#0434a2;  }
 
 				
 

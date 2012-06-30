@@ -12,19 +12,26 @@
 
 <body>
 
-<p style="background-color:#001239; border-bottom:1px solid black;border-top:1px solid black; width:99.9%; left:0px; top:0px; height:328px; position:absolute;"> </p>	
+<p style="background-color:#001239; border-bottom:1px solid black;border-top:0px solid black; width:99.9%; left:0px; top:0px; height:160px; position:absolute;"> </p>	
 
 <div class="wrap"> 
 	
   <div class="header"> 
 	<div class="logo"> 
 		<img src="./images/logo.png" alt="" /> 
+		<img src="./images/slogan.png" style="left:400px" /> 
 	</div>
-	<input style="position:absolute;top:18px;left:795px;" type="text" class="search" name="search" value="search for ride..."> 
-	<input style="position:absolute;top:18px;left:950px;" type="submit" value="Go" class="button"> 
 	
+	<div class="slogan">
+	<img src="./images/slogan.png" /> 
+	</div>
+	
+	<div>
+	<input style="position:absolute;top:25px;left:795px;" type="text"  value="search for ride..."> 
+	<input style="position:absolute;top:25px;left:950px;" type="submit" value="Go" class="button"> 
+	</div>
     <div class="header-pic"  >
-		<img src="./images/index-header9.png" /> 
+		<img src="./images/header.png" /> 
     </div>
   </div>
   
@@ -39,31 +46,33 @@
 	
 		  <div class="subNav">
 				
-					<table style="top:-10px;" id="SubStart" onMouseOver="show('Start')" onmouseout="hide()">
-					<tr style="background-color:transparent; height:10px;"> <td style="background-color:transparent; height:10px;"> </td> </tr>
-					 <tr> <td>Start </td> </tr>
-					  <tr> <td>About </td> </tr>
+					<table   id="SubStart" onMouseOver="show('Start')">
+						<tr> <td>Start </td></tr> 
+						<tr> <td>About </td></tr> 
+						<tr> <td>Test </td></tr> 
+						<tr> <td>... </td> </tr>
+						
+					 </table>
+					 
+					 <table style="left:140px;"  id="SubRides" onMouseOver="show('Rides')" onmouseout="hide()">
+						<tr> <td>Create </td> </tr>
+						<tr> <td>Search </td> </tr>
+						<tr> <td>... </td> </tr>
 					 
 					 </table>
 					 
-					 <table style="left:200px;" id="SubRides" onMouseOver="show('Rides')" onmouseout="hide()">
-					 <tr style="background-color:transparent; height:10px;"> <td style="background-color:transparent; height:0px;"> </td> </tr>
-					 <tr> <td>Create </td> </tr>
-					  <tr> <td>Search </td> </tr>
-					 
-					 </table>
-					 
-					 <table style="left:408px;" id="SubProfile" onMouseOver="show('Profile')" onmouseout="hide()" >
-					 <tr style="background-color:transparent; height:10px;"> <td style="background-color:transparent; height:10px;"> </td> </tr>
+					 <table style="left:305px;" id="SubProfile" onMouseOver="show('Profile')" onmouseout="hide()" >
 					 <tr style=""> <td>Create </td> </tr>
 					  <tr> <td>Search </td> </tr>
+					  <tr> <td>... </td> </tr>
 					 
 					 </table>
 					 
-					 <table style="left:612px;" id="SubHelp" onMouseOver="show('Help')" onmouseout="hide()" >
-					 <tr style="background-color:transparent; height:10px;"> <td style="background-color:transparent; height:10px;"> </td> </tr>
-					 <tr style=""> <td>Create </td> </tr>
-					  <tr> <td>Search </td> </tr>
+					 <table style="left:445px;" id="SubHelp" onMouseOver="show('Help')" onmouseout="hide()" >
+					
+					 <tr style=""> <td>FAQ </td> </tr>
+					  <tr> <td>Contact us </td> </tr>
+					  <tr> <td>... </td> </tr>
 					 
 					 </table>
 				
