@@ -9,7 +9,12 @@
     </p>
     #{/field}    
      
-   
+    #{field 'invalidEmail'}
+    <p class="fError">
+        <span class="error">${invalidEmail}</span>
+    </p>
+    #{/field} 
+
 #{form @saveUser()}
 #{/form}
 #{form @saveUser()}
@@ -27,8 +32,8 @@
     #{/field}
     #{field 'user.email'}
         <p class="${field.errorClass}">
-            <strong>Email:</strong> <input type="text" name="${field.name}" size="16" value="${user?.email}"> *
-            <span class="error">${field.error}</span>
+            <strong>Email:</strong> <input type="text" id="regEmailField" onchange="validateFieldRegEmail()" name="${field.name}" size="16" value="${user?.email}"> *
+            <span id="invalidEmailMsgField" class="error">${field.error}</span>            
         </p>
     #{/field}
     #{field 'user.username'}
@@ -39,14 +44,14 @@
     #{/field}	
     #{field 'user.password'}
         <p class="${field.errorClass}">
-            <strong>Password:</strong> <input type="password" name="${field.name}" id="txtPassword" size="16" value="${user?.password}" onkeyup="chkPassword(this, passError)"> *
-            <span class="error" id="passError">${field.error}</span>
+            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
+            <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'verifyPassword'}
         <p class="${field.errorClass}">
-            <strong>Verify password:</strong> <input type="password" name="${field.name}" id="txtVerifyPassword" size="16" value="${verifyPassword}" onkeyup="varifyPassword(this, txtPassword, verifyPassError)"> *
-            <span class="error" id="verifyPassError">${field.error}</span>
+            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+            <span class="error">${field.error}</span>
         </p>
     #{/field}   
     <p class="buttons">

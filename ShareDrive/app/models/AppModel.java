@@ -21,4 +21,13 @@ public class AppModel {
 		regularityList.add("weekly");
 	}
 	
+	public static boolean ValidateEmail(String email){
+		
+		if(email.toLowerCase().endsWith("@tum.de") || 
+			email.toLowerCase().endsWith("@in.tum.de") ||
+			email.toLowerCase().endsWith("@mytum.de"))
+			return true;
+		else
+		return false;
+	}
 }

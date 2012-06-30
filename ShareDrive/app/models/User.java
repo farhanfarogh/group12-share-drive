@@ -32,13 +32,18 @@ public class User extends Model {
     @Email
     public String email; //user email
     
-   
+    public boolean isActivated;
+    
+    public String activationCode;
+    
     public User(String fname, String lname, String email, String password, String username) {
         this.username = username;
         this.password = password;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
+        this.isActivated = false;
+        this.activationCode = "";
     }
 
     public String toString()  {
@@ -49,4 +54,9 @@ public class User extends Model {
     public static User UserExist(String username) {
         return find("byUsername", username).first();
     }
+    
+    public static User UserExistByEmail(String email) {
+        return find("byEmail", email).first();
+    }
+    
 }

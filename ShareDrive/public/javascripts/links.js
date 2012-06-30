@@ -36,3 +36,18 @@ function varifyPassword(verifyPasswordObj, passwordObj, errorDispObj) { //verify
 	   errorDispObj.innerHTML = "Your password doesn't match";
 	}
 }
+
+function validateFieldRegEmail() {
+	var txtField = document.getElementById("regEmailField");
+	var MsgField = document.getElementById("invalidEmailMsgField");
+	var val = txtField.value.toLowerCase();
+	var index = val.lastIndexOf("@");
+	if(index > 0) {
+		var domain = val.substring(index);
+		if(domain == "@tum.de" || domain == "@in.tum.de" || domain == "@mytum.de"){
+			MsgField.innerHTML = "";
+			return;
+		}
+	}
+	MsgField.innerHTML = "Please use valid email address provided by your institue.";
+}
