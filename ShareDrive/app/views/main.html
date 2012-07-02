@@ -1,40 +1,129 @@
 <!DOCTYPE html >
 <html>
-	<head>
-		<title>#{get 'title' /}</title>
-		#{script 'jquery-1.6.4.min.js' /}
-		<link rel="stylesheet" href="/public/stylesheets/main.css" type="text/css" media="screen">
-		#{get 'moreStyles' /}
-		<script type="text/javascript" src="/public/javascripts/links.js"></script>
-		#{get 'moreScripts' /}
-		<title>unicarpool.com - ride your own way</title>
-	</head>
-	<body>
-		<div id="banner"><img src="/public/images/logo neu.png"/></div>
-		
-		<div id="navigationBar">
-			<table width="1200" class="nav" cellspacing="0" cellpadding="5">
-        		<tr><td width="300" class="navSpalte" id="Start"> <a class="whiteAnchor" title="Create Ride" href="@{Rides.search()}">
-					Start</td>
-					<td width="300" class="navSpalte" id="Rides" onMouseover="showSubmenu('Rides')" onMouseOut="unklick('Rides')" id="">Rides</td>
-					<td width="300" class="navSpalte" id="Profile" onMouseover="showSubmenu('Profile')" onMouseOut="unklick('Profile')">Profile</td>
-					<td width="300" class="navSpalte" id="Help" onMouseover="showSubmenu('Help')" onMouseOut="unklick('Help')" style="border-right: 0px solid;">Help
-					
-					</td></tr>
-					<tr><td>
-						<div id="SubStart" class="subNav"></div>
-					</td><td>
-						<div id="SubRides" class="subNav"><a class="whiteAnchor" title="Create Ride" href="@{Rides.index()}">Create Ride</a> | <a class="whiteAnchor" title="Search Ride" href="@{Rides.showRides()}">Show all rides</a></div>
-					</td><td>
-						<div id="SubProfile" class="subNav"><a class="whiteAnchor" title="Account" href="/NeedsToBeFixed">Account</a> | <a class="whiteAnchor" title="My Rides" href="/NeedsToBeFixed">My Rides</a></div>
-					</td><td>
-						<div id="SubHelp" class="subNav"><a class="whiteAnchor" title="Help" href="/NeedsToBeFixed">Help</a> | <a class="whiteAnchor" title="bla" href="/NeedsToBeFixed">bla</a></div>
-				</td></tr>
-			</table>
+<head>
+<title>#{get 'title' /}</title> #{script 'jquery-1.6.4.min.js' /}
+<link rel="stylesheet" href="/public/css/main.css" type="text/css"
+	media="screen">
+#{get 'moreStyles' /}
+<script type="text/javascript" src="/public/js/links.js"></script>
+#{get 'moreScripts' /}
+<title>unicarpool.com - ride your own way</title>
+</head>
+<body>
+
+	<p
+		style="background-color: #001239; border-bottom: 1px solid black; border-top: 0px solid black; width: 99.9%; left: 0px; top: 0px; height: 160px; position: absolute;">
+	</p>
+
+	<div class="wrap">
+
+		<div class="header">
+			<div class="logo">
+				<img src="public/images/logo.png" alt="" /> <img
+					src="public/images/slogan.png" style="left: 400px" />
+			</div>
+
+			<div class="slogan">
+				<img src="public/images/slogan.png" />
+			</div>
+
+			<div>
+				<input style="position: absolute; top: 25px; left: 795px;"
+					type="text" value="search for ride..."> <input
+					style="position: absolute; top: 25px; left: 950px;" type="submit"
+					value="Go" class="button">
+			</div>
+			<div class="header-pic">
+				<img src="public/images/header.png" />
+			</div>
 		</div>
-		
-		<div id="mainContent">
-			<div id="content">
+
+		<div class="nav">
+
+			<a style="left: 20px;" id="Start" onMouseOver="show('Start')"
+				onmouseout="hide()">START</a> <a style="left: 170px;" id="Rides"
+				onMouseOver="show('Rides')" onmouseout="hide()">RIDES</a> <a
+				style="left: 320px;" id="Profile" onMouseOver="show('Profile')"
+				onmouseout="hide()">PROFILE</a> <a style="left: 470px;" id="Help"
+				onMouseOver="show('Help')" onmouseout="hide()">HELP</a>
+
+		</div>
+
+		<div class="subNav">
+
+			<table id="SubStart" onMouseOver="show('Start')">
+				<tr>
+					<td>Start</td>
+				</tr>
+				<tr>
+					<td>About</td>
+				</tr>
+				<tr>
+					<td>Test</td>
+				</tr>
+				<tr>
+					<td>...</td>
+				</tr>
+
+			</table>
+
+			<table style="left: 140px;" id="SubRides" onMouseOver="show('Rides')"
+				onmouseout="hide()">
+				<tr>
+					<td><a class="whiteAnchor" title="Create Ride"
+						href="@{Rides.index()}">Create</a>
+					</td>
+				</tr>
+				<tr>
+					<td><a class="whiteAnchor" title="Search Ride"
+						href="@{Rides.showRides()}">Show all </a>
+					</td>
+				</tr>
+				<tr>
+					<td>...</td>
+				</tr>
+
+			</table>
+
+			<table style="left: 305px;" id="SubProfile"
+				onMouseOver="show('Profile')" onmouseout="hide()">
+				<tr style="">
+					<td><a class="whiteAnchor" title="Account"
+						href="/NeedsToBeFixed">Account </a>
+					</td>
+				</tr>
+				<tr>
+					<td><a class="whiteAnchor" title="MyRides"
+						href="/NeedsToBeFixed">My Rides</a>
+					</td>
+				</tr>
+				<tr>
+					<td>...</td>
+				</tr>
+
+			</table>
+
+			<table style="left: 445px;" id="SubHelp" onMouseOver="show('Help')"
+				onmouseout="hide()">
+
+				<tr style="">
+					<td>FAQ</td>
+				</tr>
+				<tr>
+					<td>Contact us</td>
+				</tr>
+				<tr>
+					<td>...</td>
+				</tr>
+
+			</table>
+
+		</div>
+
+
+
+		<div class="content-wrap">
+			<div class="content">
 				#{if flash.error}
 				<p class="fError">
 					<strong>${flash.error}</strong>
@@ -45,16 +134,65 @@
 				</p>
 				#{/if} #{doLayout /}
 			</div>
-			
-			<div id="user">
-				User
-			</div>
-			
+			<div id="user">User</div>
+
 			<div id="ads">Ads</div>
+			<br style="clear: both;" />
 		</div>
-		
-		<div id="footer">
-			Impressum | AGB | Copyright by unicarpool.com, 2012
+
+		<div class="sidebar">
+			<!--Sidebar links-->
+			<div class="login">
+				<h3></h3>
+				<br> <br>
+				<h4>Username:</h4>
+				<input name="username" type="text" size="25" maxlength="30" value="">
+				<br>
+				<br>
+				<h4>Kennwort:</h4>
+				<input name="kennwort" type="password" size="25" maxlength="12">
+				<br>
+				<br> <br>
+				<br> <input type="button" name="Text 2" value="Login"
+					style="height: 25px; width: 50px;"> <input type="button"
+					name="Text 2" value="Forgot password"
+					style="height: 25px; width: 120px;"> <br>
+				<br> <a href="index.html">>> register</a>
+				</form>
+			</div>
+			<!--Sidebar other info-->
+			<div class="advertising">
+				<h2>Your Advertising here</h2>
+				use the <a href="index.html">contact form</a> to get in touch with
+				us
+			</div>
+
+			<div class="advertising">
+				<h2>Your Advertising here</h2>
+				use the <a href="index.html">contact form</a> to get in touch with
+				us
+			</div>
+
+			<!--sfarsit sidebar-->
 		</div>
-	</body>
+
+
+	</div>
+	<div class="footer">
+
+
+
+
+		<p id="copyright">Copyright &copy; 2012</p>
+
+		<p>UniCarpool.com</p>
+
+		Impressum | AGB | Copyright by unicarpool.com, 2012
+
+
+	</div>
+	</div>
+
+	
+</body>
 </html>
