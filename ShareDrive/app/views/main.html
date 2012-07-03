@@ -19,12 +19,12 @@
 
 		<div class="header">
 			<div class="logo">
-				<img src="public/images/logo.png" alt="" /> <img
-					src="public/images/slogan.png" style="left: 400px" />
+				<img src="/public/images/logo.png" alt="" /> <img
+					src="/public/images/slogan.png" style="left: 400px" />
 			</div>
 
 			<div class="slogan">
-				<img src="public/images/slogan.png" />
+				<img src="/public/images/slogan.png" />
 			</div>
 
 			<div>
@@ -34,7 +34,7 @@
 					value="Go" class="button">
 			</div>
 			<div class="header-pic">
-				<img src="public/images/header.png" />
+				<img src="/public/images/header.png" />
 			</div>
 		</div>
 
@@ -53,7 +53,9 @@
 
 			<table id="SubStart" onMouseOver="show('Start')">
 				<tr>
-					<td>Start</td>
+					<td><a class="whiteAnchor" title="Start"
+						href="@{index()}">Start</a>
+					</td>
 				</tr>
 				<tr>
 					<td>About</td>
@@ -157,7 +159,7 @@
 					style="height: 25px; width: 50px;"> <input type="button"
 					name="Text 2" value="Forgot password"
 					style="height: 25px; width: 120px;"> <br>
-				<br> <a href="index.html">>> register</a>
+				<br> <a href="@{register()}">>> register</a>
 				</form>
 			</div>
 			<!--Sidebar other info-->
