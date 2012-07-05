@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<testsuite failures="0" time="0.245" errors="0" skipped="0" tests="2" name="BasicTest">
-  <testcase classname="BasicTest" name="createAndRetrieveUser" time="0.032">
+<testsuite failures="0" time="0.155" errors="0" skipped="0" tests="4" name="BasicTest">
+  <testcase classname="BasicTest" name="createAndRetrieveUser" time="0.059">
       </testcase>
-  <testcase classname="BasicTest" name="fullTest" time="0.213">
+  <testcase classname="BasicTest" name="fullTest" time="0.075">
+      </testcase>
+  <testcase classname="BasicTest" name="registerUser" time="0.014">
+      </testcase>
+  <testcase classname="BasicTest" name="addRide" time="0.007">
       </testcase>
 </testsuite>

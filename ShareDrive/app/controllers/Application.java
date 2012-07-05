@@ -78,9 +78,9 @@ public class Application extends Controller {
 	
     public static void login(String username, String password) {
         User user = User.find("byUsernameAndPassword", username, password).first();
-      
         if(user != null) { //executes when the username and password is empty
-        	if(user.username != "" && user.isActivated) { //login when the user object is not null and also the return obj has a username
+        	//if(user.username != "" && user.isActivated)
+        	if(user.username != ""){ //login when the user object is not null and also the return obj has a username
                 session.put("user", user.username);
                 flash.success("Welcome, " + user.lname);
                 Rides.index();         

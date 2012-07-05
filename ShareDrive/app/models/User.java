@@ -42,7 +42,7 @@ public class User extends Model {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        this.isActivated = false;
+        this.isActivated = true; // should be false
         this.activationCode = "";
     }
 

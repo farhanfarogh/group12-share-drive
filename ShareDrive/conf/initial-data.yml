@@ -1,41 +1,37 @@
 # Test data
 
 Ride(r1):
-    nameOfDriver:          oooh
-    startPoint: Munchner Freiheit
-    destinationUniveristy: TUM
-    destinationCampus: Garching
+    nameOfDriver: Pawel
+    startPoint: Kieferngarten
+    destinationCampusId: 1
     timeOfArrival: 11:30
     numOfSeatsAvailable: 4
-    comments: Sample comment
+    comments: Do not hesitate to join me
     rideDate : 
 
 Ride(r2):
-    nameOfDriver:          abcd
-    startPoint: Munchner Freiheit
-    destinationUniveristy: TUM
-    destinationCampus: Garching
-    timeOfArrival: 11:30
-    numOfSeatsAvailable: 4
-    comments: Sample comment
+    nameOfDriver: Dragan
+    startPoint: Apian
+    destinationCampusId: 1
+    timeOfArrival: 8:30
+    numOfSeatsAvailable: 2
+    comments: Join me
     rideDate : 
 
 Ride(r3):
-    nameOfDriver:          xyz
+    nameOfDriver: Jan
     startPoint: Munchner Freiheit
-    destinationUniveristy: TUM
-    destinationCampus: Garching
-    timeOfArrival: 11:30
-    numOfSeatsAvailable: 4
+    destinationCampusId: 2
+    timeOfArrival: 16:30
+    numOfSeatsAvailable: 3
     comments: Sample comment
     rideDate : 
 
 Ride(r4):
-    nameOfDriver:          xyzf
-    startPoint: Munchner Freiheit
-    destinationUniveristy: TUM
-    destinationCampus: Garching
+    nameOfDriver: Adam
+    startPoint: Studentenstadt
+    destinationCampusId: 3
     timeOfArrival: 11:30
     numOfSeatsAvailable: 4
-    comments: Sample comment
+    comments: Great ride
     rideDate : 
