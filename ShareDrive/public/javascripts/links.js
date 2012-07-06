@@ -26,7 +26,6 @@ function chkPassword(passwordObj, errorDispObj) { //checking password length
 }
 
 function varifyPassword(verifyPasswordObj, passwordObj, errorDispObj) { //verify the retype password
-	
 	if(verifyPasswordObj.value == passwordObj.value) { // show nothing as the retype pass match with the pass
 	   errorDispObj.innerHTML = "";
 	   errorDispObj.innerHTML = "Password matched";
@@ -49,5 +48,5 @@ function validateFieldRegEmail() {
 			return;
 		}
 	}
-	MsgField.innerHTML = "Please use valid email address provided by your institue.";
+	MsgField.innerHTML = "Please use university email address.";
 }

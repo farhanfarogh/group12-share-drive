@@ -63,7 +63,7 @@ public class Application extends Controller {
         }
         if(AppModel.ValidateEmail(user.email) != true)
         {
-        	String invalidEmail = "Please use valid email address provided by your institute.";
+        	String invalidEmail = "Please use university email address.";
         	render("@register", user, verifyPassword, invalidEmail);
         	return;
         }
