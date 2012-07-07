@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+ 
+#{form @bookNewRide(newRide.id)}
+<p><strong>Name of Driver:</strong> ${newRide.nameOfDriver ?: 'guest'}!</p>
+<p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>
+<p><strong>Destination campus:</strong> ${unis.destinationCampusMap.get(newRide.destinationCampusId)?: 'error'}</p>
+<p><strong>Number of seats available:</strong> ${newRide.numOfSeatsAvailable ?: 'error'}</p>
+<p><strong>Date:</strong> ${newRide.rideDate?: 'error'}</p>
+<p><strong>Regularity:</strong> ${unis.regularityList.get(newRide.regularity) ?: 'error'}</p>
+<p><strong>Comments:</strong> ${newRide.comments ?: 'No comments'}</p>
+ 
+    <p class="">
+        <input type="submit" value="Book Ride"> <a href="@{index()}">Back to search</a>      
+    </p>
+#{/form}
+<br>
+<br>
+
+    

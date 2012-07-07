@@ -17,6 +17,7 @@
                 <th width="8%" align="center">Num. of seats</th>
                 <th  align="center">Regularity</th>
                 <th width="13%" align="center">Comments</th>
+                <th align="center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
                     <td align="center">${ride.comments}</td>
+                    <td align="center"><a href="@{show(ride.id)}">Show ride</a></td>
                     
                 </tr>
             #{/list}
@@ -36,4 +38,4 @@
     </table>
 
 <a href="@{Rides.logout()}">Logout</a> <br>
-<a href="@{Rides.index()}">Back to create ride</a>
+<a href="@{Rides.search()}">Back to create ride</a>

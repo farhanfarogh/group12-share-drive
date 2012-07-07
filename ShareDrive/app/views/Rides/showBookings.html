@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Show rides' /}
+
+<script>
+	$(document).ready(function(){
+		showSubmenu('Rides');
+	});
+</script>
+
+ <table class="ridesTable">
+        <thead >
+            <tr valign="middle">
+                <th  align="center">Who booked</th>
+                <th align="center">What booked</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list bookings, as:'booking'}
+                <tr valign="middle">
+                    <td align="center">${booking.userId}</td>
+                    <td align="center">${booking.rideId}</td>
+                    
+                </tr>
+            #{/list}
+        </tbody>
+    </table>
+
+<a href="@{Rides.logout()}">Logout</a> <br>
+<a href="@{Rides.search()}">Back to create ride</a>
