@@ -43,7 +43,6 @@ public class RidesTest extends FunctionalTest{
     	
     	long numOfBooking = Booking.count();
     	Response response = POST("/Rides/bookNewRide", params, new HashMap<String, File>());
-    	Ride resultRides = (Ride) renderArgs("newRide");
     	assertIsOk(response);
     	Assert.assertEquals(numOfBooking+1, Booking.count());
     }
@@ -72,9 +71,7 @@ public class RidesTest extends FunctionalTest{
     	params.put("numOfSeatsAvailable", "4");
     	params.put("regularity", "1");
     	params.put("comments", "bla");
-    	
-    	long numOfRides = Ride.count();
-    	Response response = POST("/Rides/bookRide", params, new HashMap<String, File>());
+    	POST("/Rides/bookRide", params, new HashMap<String, File>());
     	
     	
     	Map<String, String> params2 = new HashMap<String, String>();
@@ -104,6 +101,6 @@ public class RidesTest extends FunctionalTest{
 	    loginUserParams.put("password", "test");
 
 	    // Login here so the following requests will be authenticated:
-	    Response response = POST("/Application/login", loginUserParams);
+	    POST("/Application/login", loginUserParams);
 	}
 }
