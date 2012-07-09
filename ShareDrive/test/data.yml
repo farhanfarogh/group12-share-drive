@@ -39,3 +39,10 @@ Ride(r4):
     numOfSeatsAvailable: 4
     comments: Sample comment
     rideDate : 
+
+User(u1):
+    username: test
+   	password: test
+    fname: Testuser
+    lname: Testuser
+   	email: test@tum.de
