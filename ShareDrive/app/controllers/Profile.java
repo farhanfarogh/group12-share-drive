@@ -2,6 +2,7 @@ package controllers;
 
 import models.AppModel;
 import models.CarInformation;
+import models.Timetable;
 import models.User;
 import play.mvc.Before;
 
@@ -15,6 +16,38 @@ public class Profile extends Application {
 		}
 	}
 	
+	public static void index() {
+		render();
+	}
+	
+	
+	public static void timetable(){
+		
+		String user = session.get("user");
+		Timetable timetable = Timetable.find("byUser", user).first();
+		
+		if(timetable != null){
+			render(timetable);
+		}
+		
+		else{
+			createTimetable();
+		}
+		
+	}
+	
+	public static void createTimetable(){
+		Timetable timetable = new Timetable(false, false, false, false, false, false, false, false, false, false, false, false, 
+				session.get("user"), "ss2020", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
+		
+		timetable.create();
+		
+		timetable();
+	}
+	
+	public static void saveTimetable(Timetable timetable){
+		timetable.save();
+	}	
 	
 	public static void changeCarInfo(CarInformation carInfo) {
 		User user=connected();
