@@ -1,0 +1,96 @@
+#{extends 'main.html' /}
+#{set title:'Timetable' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+<div align="left">
+	<h1>Timetable</h1>
+	<p>Please select the days you're going to <University> and specify your arrival and leaving times. 
+		Additionally you can add information about having a car available. (Don't forget to save your changes!)</p>
+</div>
+
+<div align="right" style="margin-right: 35px">
+	<form action="select.htm">
+	 <p>
+	   <select name="semester" size="1">
+	     <option selected value="SS 2010">SS 2010</option>
+	     <option>WS 11/12</option>
+	     <option>SS 2012</option>
+	     <option>WS 12/13</option>
+	     <option>SS 2013</option>
+	   </select>
+	 </p>
+</form>
+</div>
+
+#{if timetable}
+	<form action="@{Profile.saveTimetable()}" method="GET">
+	</form>
+	<form action="@{Profile.saveTimetable()}" method="GET">
+		<table class="timeTable" border="1" style="width: 95%;">
+			<tr valign="middle">
+			    <th align="center" width="14%"></th>
+			    <th align="center" width="13%">Monday</th>
+			    <th align="center" width="13%">Tuesday</th>
+			    <th align="center" width="13%">Wednesday</th>
+			    <th align="center" width="13%">Thursday</th>
+			    <th align="center" width="13%">Friday</th>
+			    <th align="center" width="13%">Saturday</th>
+			</tr>
+			<tr>
+				<td>Drive?</td>
+				<td align="center"><input type="checkbox" ${timetable.driveMonday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.driveTuesday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.driveWednesday? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.driveThursday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.driveFriday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.driveSaturday ? 'checked':''}  /> </td>
+			</tr>
+			<tr>
+				<td>Car?</td>
+				<td align="center"><input type="checkbox" ${timetable.carMonday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.carTuesday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.carWednesday? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.carThursday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.carFriday ? 'checked':''}  /> </td>
+				<td align="center"><input type="checkbox" ${timetable.carSaturday ? 'checked':''}  /> </td>
+			</tr>
+			<tr>
+				<td>Start Time:</td>
+				<td align="center">${timetable.startTimeMonday}</td>
+				<td align="center">${timetable.startTimeTuesday}</td>
+				<td align="center">${timetable.startTimeWednesday}</td>
+				<td align="center">${timetable.startTimeThursday}</td>
+				<td align="center">${timetable.startTimeFriday}</td>
+				<td align="center">${timetable.startTimeSaturday}</td>
+			</tr>
+			<tr>
+				<td>Leave Time:</td>
+				<td align="center">${timetable.leaveTimeMonday}</td>
+				<td align="center">${timetable.leaveTimeTuesday}</td>
+				<td align="center">${timetable.leaveTimeWednesday}</td>
+				<td align="center">${timetable.leaveTimeThursday}</td>
+				<td align="center">${timetable.leaveTimeFriday}</td>
+				<td align="center">${timetable.leaveTimeSaturday}</td>
+			</tr>
+		</table>
+	</form>
+
+	<br>
+	<input type="submit" value="Save">
+	
+#{/if}
+#{if !timetable}
+	<p>You don't have a timetable deposited yet. Do you want to deposit one now?</p>
+	<form action="@{Profile.createTimetable()}" method="GET">
+	</form>
+	<br>
+	<input type="submit" value="Create">
+#{/if}
+
+
+<a href="@{Profile.logout()}">Logout</a> 

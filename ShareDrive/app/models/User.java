@@ -57,6 +57,5 @@ public class User extends Model {
     
     public static User UserExistByEmail(String email) {
         return find("byEmail", email).first();
-    }
-    
+    } 
 }
