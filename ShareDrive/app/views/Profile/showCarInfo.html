@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+<div class="formLayout">
+<form action="@{Profile.changeCarInfo()}" method="GET">
+<table border="0" cellspacing="0">
+#{field 'carInfo.car'}
+<tr><td>
+        <label>Car</label>
+        </td><td>
+        <input type="text" name="${field.name}" value=${carInfo.car}>
+
+</td></tr>
+#{/field}
+
+#{field 'carInfo.ageOfCar'}
+<tr><td>
+        <label>Age of car</label></td><td>
+        <input type="text" name="${field.name}" value=${carInfo.ageOfCar}><br>
+</td></tr>
+#{/field}
+</table>
+<input type="submit" value="Save" />
+
+</form> 
+</div>
+
