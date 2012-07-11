@@ -113,61 +113,67 @@ public class Rides extends Application {
 	}
 
 	public static void searchResults(String startPoint,
-			String destinationCampusId) {
-		AppModel unis = new AppModel();
-		List<Ride> rides = new LinkedList<Ride>();
-		List<Ride> finalRides = new LinkedList<Ride>();
-		if (destinationCampusId.equals("")) {
-			finalRides = Ride.find("startPoint like ? ", startPoint).from(0)
-					.fetch();
-		} else if (startPoint.equals("")) {
-			Set<Integer> unisId = unis.destinationCampusMap.keySet();
-			int destinationCampusIndex = -1;
-			for (Integer uni : unisId) {
-				if (unis.destinationCampusMap.get(uni).contains(
-						destinationCampusId)) {
-					destinationCampusIndex = uni;
-					break;
+			String destinationCampusId, String search, String logout) {
+		if(search != null){
+			AppModel unis = new AppModel();
+			List<Ride> rides = new LinkedList<Ride>();
+			List<Ride> finalRides = new LinkedList<Ride>();
+			if (destinationCampusId.equals("")) {
+				finalRides = Ride.find("startPoint like ? ", startPoint).from(0)
+						.fetch();
+			} else if (startPoint.equals("")) {
+				Set<Integer> unisId = unis.destinationCampusMap.keySet();
+				int destinationCampusIndex = -1;
+				for (Integer uni : unisId) {
+					if (unis.destinationCampusMap.get(uni).contains(
+							destinationCampusId)) {
+						destinationCampusIndex = uni;
+						break;
+					}
 				}
-			}
-			finalRides = Ride
-					.find("destinationCampusId like ? ", destinationCampusIndex)
-					.from(0).fetch();
-		} else {
-			rides = Ride.find("startPoint like ? ", startPoint).from(0).fetch();
-			Set<Integer> unisId = unis.destinationCampusMap.keySet();
-			int destinationCampusIndex = -1;
-			for (Integer uni : unisId) {
-				if (unis.destinationCampusMap.get(uni).contains(
-						destinationCampusId)) {
-					destinationCampusIndex = uni;
-					break;
+				finalRides = Ride
+						.find("destinationCampusId like ? ", destinationCampusIndex)
+						.from(0).fetch();
+			} else {
+				rides = Ride.find("startPoint like ? ", startPoint).from(0).fetch();
+				Set<Integer> unisId = unis.destinationCampusMap.keySet();
+				int destinationCampusIndex = -1;
+				for (Integer uni : unisId) {
+					if (unis.destinationCampusMap.get(uni).contains(
+							destinationCampusId)) {
+						destinationCampusIndex = uni;
+						break;
+					}
 				}
-			}
-			for (Ride ride : rides) {
-				System.out.println("destinationCampusIndex: "
-						+ destinationCampusIndex
-						+ " ride.destinationCampusId: "
-						+ ride.destinationCampusId);
-				if (ride.destinationCampusId == destinationCampusIndex) {
+				for (Ride ride : rides) {
+					System.out.println("destinationCampusIndex: "
+							+ destinationCampusIndex
+							+ " ride.destinationCampusId: "
+							+ ride.destinationCampusId);
+					if (ride.destinationCampusId == destinationCampusIndex) {
 
-					System.out.println("ride date: " + ride.rideDate);
-					finalRides.add(ride);
+						System.out.println("ride date: " + ride.rideDate);
+						finalRides.add(ride);
+					}
 				}
+
+				System.out.println("search: " + startPoint + " " + finalRides);
+
 			}
+			List<Ride> finalRides2 = new LinkedList<Ride>();
+			rides = finalRides;
 
-			System.out.println("search: " + startPoint + " " + finalRides);
-
+			for(Ride rid : finalRides){
+				  Calendar cal = Calendar.getInstance();
+				if(rid.rideDate.after(cal.getTime()) || rid.rideDate ==null)
+					finalRides2.add(rid);
+			}
+			rides = finalRides2;
+			render(rides, unis);
 		}
-		List<Ride> finalRides2 = new LinkedList<Ride>();
-		rides = finalRides;
-
-		for(Ride rid : finalRides){
-			  Calendar cal = Calendar.getInstance();
-			if(rid.rideDate.after(cal.getTime()) || rid.rideDate ==null)
-				finalRides2.add(rid);
+		
+		else if(logout != null){
+			Application.logout();
 		}
-		rides = finalRides2;
-		render(rides, unis);
 	}
 }

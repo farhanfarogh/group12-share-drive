@@ -6,10 +6,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
 <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.ui.timepicker.css'}" />
 
-#{set 'moreStyles'}
-    
-#{/set}
-
 #{if flash.error}
     <p style="color:#c00">
         ${flash.error}
@@ -38,7 +34,7 @@
 		    showPeriodLabels: true,       // Define if the AM/PM labels on the left are displayed. (default: true)
 		    periodSeparator: ' ',         // The character to use to separate the time from the time period.
 		    altField: '#alternate_input', // Define an alternate input to parse selected time to
-		    defaultTime: '12:34',         // Used as default time when input field is empty or for inline timePicker
+		    defaultTime: '12:00',         // Used as default time when input field is empty or for inline timePicker
 		                                  // (set to 'now' for the current time, '' for no highlighted time,
 		                                   //  default value: now)
 
@@ -89,7 +85,7 @@
 </script>
 #{/set}
 
-<div align="left">
+<div align="left" style="width: 95%">
 	<h1>Timetable</h1>
 	<p>Please select the days you're going to <b>${user.university}</b> and specify your arrival and leaving times. 
 		Additionally you can add information about having a car available. (Don't forget to save your changes!)</p>

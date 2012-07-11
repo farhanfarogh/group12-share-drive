@@ -119,7 +119,7 @@ public class Profile extends Application {
 		else if(delete != null){
 			myTimetable.delete();
 			
-			timetable("Timetable deleted");
+			timetable("Timetable deleted!");
 		}
 		
 		else if(logout != null){
