@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import models.AppModel;
-import models.Booking;
 import models.CarInformation;
 import models.Timetable;
 import models.User;
@@ -215,6 +214,16 @@ public class Profile extends Application {
 	
 	public static void showCarInfo(){
 		User user = connected();
+		CarInformation carInfo = CarInformation.findByUser(user);
+		if(carInfo==null){
+			carInfo=new CarInformation(0, "", 0, false, user);
+		}
+		AppModel unis=new AppModel();
+		render(carInfo, unis);
+	}
+	
+	public static void showCarInfoForRide(User user){
+		user = User.findByUsername(user.username);
 		CarInformation carInfo = CarInformation.findByUser(user);
 		if(carInfo==null){
 			carInfo=new CarInformation(0, "", 0, false, user);
