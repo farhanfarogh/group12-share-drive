@@ -198,11 +198,12 @@ public class Profile extends Application {
 		}
 		else if(carInfoActual==null){
 			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, connected().username);
-			carInfo.create();
+			carInfoActual.create();
 		}
 		else{
 			carInfoActual.ageOfCar=carInfo.ageOfCar;
 			carInfoActual.car=carInfo.car;
+			carInfoActual.save();
 		}
 		AppModel unis=new AppModel();
 		carInfo=carInfoActual;
