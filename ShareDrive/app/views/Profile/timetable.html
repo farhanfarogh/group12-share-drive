@@ -1,6 +1,9 @@
 #{extends 'main.html' /}
 #{set title:'Timetable' /}
 
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
+
 #{if flash.error}
     <p style="color:#c00">
         ${flash.error}
@@ -31,7 +34,7 @@
 	<form action="@{Profile.saveTimetable()}" method="GET">
 	</form>
 	<form action="@{Profile.saveTimetable()}" method="GET">
-		<table class="timeTable" border="1" style="width: 95%;">
+		<table class="box-table-a" border="1" style="width: 95%;">
 			<tr valign="middle">
 			    <th align="center" width="14%"></th>
 			    <th align="center" width="13%">Monday</th>

@@ -1,5 +1,30 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
+<style type="text/css">
+    label, input, select, textarea {
+        display: compact;
+        width: 180px;
+        float: left;
+        margin-bottom: 1em;
+    }
+
+    select {
+        width: 185px;
+    }
+
+    label {
+        text-align: left;
+        width: 100px;
+        padding-right: 2em;
+    }
+
+    .clear {
+      clear: both;
+    }
+  </style>
+
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
 
 #{script 'jquery-ui-1.7.2.custom.min.js' /}
 #{set 'moreScripts'}
@@ -95,20 +120,24 @@
     </p>
 #{/if}
 
-<div class="formLayout">
+
+
+
 <form action="@{Rides.bookRide()}" method="GET">
-</form>
-<form action="@{Rides.bookRide()}" method="GET">
+	<fieldset>
         <label>Type of ride</label>
         <select name="regularity">
             <option value="0">One time</option>
             <option value="1">Multiple times</option>
             <option value="2">Weekly</option>
-        </select><br>
+        </select>
+		<br class="clear" />
         <label>Name of driver</label>
-        <input name="nameOfDriver"><br>
+        <input name="nameOfDriver">
+		<br class="clear" />
         <label>Start point</label>
-        <input name="startPoint"><br>
+        <input name="startPoint">
+        <br class="clear" />
         <label>Destination University</label>
         <select name="destinationCampusId">
 			<optgroup label="TUM">
@@ -118,10 +147,12 @@
 			<optgroup label="LMU">
 				<option value="3">City center</option>
 			</optgroup>
-		</select><br>
+		</select>
+		<br class="clear" />
             <label>Date </label><input type="text" name="datep" id="datep" class="datepicker"> 
-            <br/>
-            <label>Time </label><input type="text" size="10" name ="timepicker" id="timepicker" class="timepicker" value=""><br/> 
+            <br class="clear" />
+            <label>Time </label><input type="text" size="10" name ="timepicker" id="timepicker" class="timepicker" value="">
+            <br class="clear" />
             
         <label>Number of seats</label>
         <select name="numOfSeatsAvailable">
@@ -132,16 +163,19 @@
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
-        </select><br>
+        </select>
+        <br class="clear" />
          <label>Comments</label>
         	<textarea  style="height:200px;" name="comments" > </textarea>
-        <br>
+        <br class="clear" />
+    </fieldset>
 <input type="submit" value="Offer a ride!" />
 
 </form> 
-</div>
-<br>
+<br class="clear" />
 
-<a href="@{Rides.search()}">Search rides</a>   <br>
+<a href="@{Rides.search()}">Search rides</a>  
+<br class="clear" /> 
 <a href="@{Rides.logout()}">Logout</a>    
+
 

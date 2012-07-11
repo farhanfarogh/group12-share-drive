@@ -1,6 +1,28 @@
 #{extends 'main.html' /}
 #{set title:'Register' /}
 
+<style type="text/css">
+    label, input {
+        display: compact;
+        width: 180px;
+        float: left;
+        margin-bottom: 1em;
+    }
+
+    label {
+        text-align: left;
+        width: 150px;
+        padding-right: 2em;
+    }
+
+    .clear {
+      clear: both;
+    }
+  </style>
+
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
+
 <h1>Register</h1>
     
     #{field 'userExist'}
@@ -20,42 +42,50 @@
 #{form @saveUser()}
     #{field 'user.fname'}
         <p class="${field.errorClass}">
-            <strong>First name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.fname}"> *
+            <label>First name:</label> 
+            <input type="text" name="${field.name}" size="16" value="${user?.fname}"> *<br class="clear" />
             <span class="error">${field.error}</span>
+     
         </p>
     #{/field}
     #{field 'user.lname'}
         <p class="${field.errorClass}">
-            <strong>Surname:</strong> <input type="text" name="${field.name}" size="16" value="${user?.lname}"> *
+            <label>Surname:</label> 
+            <input type="text" name="${field.name}" size="16" value="${user?.lname}"> *<br class="clear" />
             <span class="error">${field.error}</span>
+            
         </p>
     #{/field}
     #{field 'user.email'}
         <p class="${field.errorClass}">
-            <strong>Email:</strong> <input type="text" id="regEmailField" onchange="validateFieldRegEmail()" name="${field.name}" size="16" value="${user?.email}"> *
+            <label>Email:</label> 
+            <input type="text" id="regEmailField" onchange="validateFieldRegEmail()" name="${field.name}" size="16" value="${user?.email}"> *<br class="clear" />
             <span id="invalidEmailMsgField" class="error">${field.error}</span>            
         </p>
     #{/field}
     #{field 'user.username'}
         <p class="${field.errorClass}">
-            <strong>Username:</strong> <input type="text" name="${field.name}" size="16" value="${user?.username}"> *
+            <label>Username:</label> 
+            <input type="text" name="${field.name}" size="16" value="${user?.username}"> *<br class="clear" />
             <span class="error">${field.error}</span>
         </p>
     #{/field}	
     #{field 'user.password'}
         <p class="${field.errorClass}">
-            <strong>Password:</strong> <input type="password" name="${field.name}" id="txtPassword" onchange="chkPassword(this, passErrField)" size="16" value="${user?.password}"> *
+            <label>Password:</label> 
+            <input type="password" name="${field.name}" id="txtPassword" onchange="chkPassword(this, passErrField)" size="16" value="${user?.password}"> *<br class="clear" />
             <span id="passErrField" class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'verifyPassword'}
         <p class="${field.errorClass}">
-            <strong>Verify password:</strong> <input type="password" name="${field.name}" id="txtVerifyPassword" onchange="varifyPassword(this, txtPassword, verifyPassErrField)" size="16" value="${verifyPassword}"> *
+            <label>Verify password:</label> 
+            <input type="password" name="${field.name}" id="txtVerifyPassword" onchange="varifyPassword(this, txtPassword, verifyPassErrField)" size="16" value="${verifyPassword}"> *<br class="clear" />
             <span id="verifyPassErrField" class="error">${field.error}</span>
         </p>
     #{/field}   
     <p class="buttons">
-        <input type="submit" value="Register"> 
+        <input type="submit" value="Register"> <br class="clear" />
         <a href="@{index()}">Cancel</a>    
     </p>
 #{/form}
