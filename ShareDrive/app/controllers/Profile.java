@@ -85,5 +85,58 @@ public class Profile extends Application {
 		AppModel unis=new AppModel();
 		render(carInfo, unis);
 	}
+	
+	public static void manageAccount(String acknowledgementMsg)
+	{
+		String username = session.get("user");
+		System.out.println("user: "+  session.get("user"));
+		User myUserAccount = User.find("byUsername", username).first();
 
+		render(myUserAccount, acknowledgementMsg);
+	}
+	
+    public static void updateAccount(@Valid User user) 
+    {
+		String username = session.get("user");
+		System.out.println("user: "+  session.get("user"));
+		User myUserAccount = User.find("byUsername", username).first();
+
+        myUserAccount.aboutMe = user.aboutMe;
+        myUserAccount.university = user.university;
+        myUserAccount.contactNumber = user.contactNumber;
+        myUserAccount.fieldOfStudy = user.fieldOfStudy;
+        myUserAccount.save();
+		manageAccount("Changes updated successfully");
+		return;
+    }
+    
+    public static void changePassword(String acknowledgementMsg)
+    {
+    	render(acknowledgementMsg);
+    }
+    
+    public static void updatePassword(@Valid User user, String NewPassword, String verifyNewPassword)
+    {
+		String username = session.get("user");
+		System.out.println("user: "+  session.get("user"));
+		User myUserAccount = User.find("byUsername", username).first();
+
+		if(user.password != null) {
+	        if(user.password.equals(myUserAccount.password) != true) { //this check always gets true even the always are equal
+	        	changePassword("Old password is incorrect");
+	        	return;
+	        }
+	        if(NewPassword.equals(verifyNewPassword) != true) { //show form validation error
+	        	changePassword("New passowrd doesn't match");
+	        	return;
+	        }
+		}
+		else if(NewPassword != null || verifyNewPassword != null) {
+			changePassword("Please enter your old passowrd too");
+        	return;
+		}
+        myUserAccount.password = NewPassword;
+        myUserAccount.save();
+        changePassword("Password changed successfully!");
+    }
 }

@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+#{set title:'Manage Account' /}
+
+    #{field 'acknowledgementMsg'}
+    <p class="fError">
+        <span class="error"><strong>${acknowledgementMsg}</strong></span>
+    </p>
+    #{/field} 
+    
+#{form @updateAccount()}
+    #{field 'user.fname'}
+        <p class="${field.errorClass}">
+            <strong>First name:</strong> <input type="text" name="${field.name}" size="16" value="${myUserAccount?.fname}" disabled="disabled"> 
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.lname'}
+        <p class="${field.errorClass}">
+            <strong>Surname:</strong> <input type="text" name="${field.name}" size="16" value="${myUserAccount?.lname}" disabled="disabled"> 
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.university'}
+        <p class="${field.errorClass}">
+            <strong>University:</strong> <input type="text" name="${field.name}" size="16" value="${myUserAccount?.university}"> 
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.fieldOfStudy'}
+        <p class="${field.errorClass}">
+            <strong>Field of Study:</strong> <input type="text" name="${field.name}" size="16" value="${myUserAccount?.fieldOfStudy}"> 
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    <!--   
+    #{field 'user.aboutMe'}
+        <p class="${field.errorClass}">
+        <table><tr><td align="left" valign="top">
+            <strong>About Me:</strong></td>
+            <td><textarea name="${field.name}" rows="6" cols="20" value="${myUserAccount?.aboutMe}"></textarea></td>
+            <tr><span class="error">${field.error}</span></tr>
+        </table></p>
+    #{/field}
+    -->
+        #{field 'user.contactNumber'}
+        <p class="${field.errorClass}">
+            <strong>Contact Number:</strong> <input type="text" name="${field.name}" size="16" value="${myUserAccount?.contactNumber}"> 
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+   <p class="buttons">
+        <input type="submit" value="Update"> 
+    </p>
+#{/form}
+<a href="@{Profile.changePassword()}">Change Password</a> <br>
+<a href="@{Application.index()}">Back</a>   

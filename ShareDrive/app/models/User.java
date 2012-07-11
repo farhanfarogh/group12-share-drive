@@ -36,6 +36,14 @@ public class User extends Model {
     
     public String activationCode;
     
+    public String fieldOfStudy;
+    
+    public String university;
+    
+    public String aboutMe;
+    
+    public String contactNumber;
+   
     public User(String fname, String lname, String email, String password, String username) {
         this.username = username;
         this.password = password;
