@@ -35,44 +35,50 @@ public class Application extends Controller {
 		render();
 	}
 
-    public static void saveUser(@Valid User user, String verifyPassword) {
-        validation.required(verifyPassword);
-        validation.equals(verifyPassword, user.password).message("Your password doesn't match");
-        User objUser = User.findByUsername(user.username); 
+    public static void saveUser(@Valid User user, String verifyPassword, String register, String cancel) {
+    	if(register != null){
+            validation.required(verifyPassword);
+            validation.equals(verifyPassword, user.password).message("Your password doesn't match");
+            User objUser = User.findByUsername(user.username); 
 
-        if(validation.hasErrors()) { //show form validation error
-            render("@register", user, verifyPassword);
-            return;
-        }
-        else if(objUser != null) { //show user exist error
-            if(validation.equals(user.username, objUser.username) != null)
+            if(validation.hasErrors()) { //show form validation error
+                render("@register", user, verifyPassword);
+                return;
+            }
+            else if(objUser != null) { //show user exist error
+                if(validation.equals(user.username, objUser.username) != null)
+                {
+                	String userExist = "**Username exist! Please use different username.";
+                	render("@register", user, verifyPassword, userExist);
+                	return;
+                }
+            }
+            else {
+                objUser = User.UserExistByEmail(user.email);
+                if(objUser != null){
+                	String userExist = "**User already exists with this email address.";
+                	render("@register", user, verifyPassword, userExist);
+                	return;
+                }
+            }
+            if(AppModel.ValidateEmail(user.email) != true)
             {
-            	String userExist = "**Username exist! Please use different username.";
-            	render("@register", user, verifyPassword, userExist);
+            	String invalidEmail = "Please use university email address.";
+            	render("@register", user, verifyPassword, invalidEmail);
             	return;
             }
-        }
-        else {
-            objUser = User.UserExistByEmail(user.email);
-            if(objUser != null){
-            	String userExist = "**User already exists with this email address.";
-            	render("@register", user, verifyPassword, userExist);
-            	return;
-            }
-        }
-        if(AppModel.ValidateEmail(user.email) != true)
-        {
-        	String invalidEmail = "Please use university email address.";
-        	render("@register", user, verifyPassword, invalidEmail);
-        	return;
-        }
-        
-        sendActivationCode(user);
-        /*
-        user.create();
-        session.put("user", user.username);
-        flash.success("Welcome, " + user.lname);
-        Rides.index();*/
+            
+            sendActivationCode(user);
+            /*
+            user.create();
+            session.put("user", user.username);
+            flash.success("Welcome, " + user.lname);
+            Rides.index();*/
+    	}
+    	
+    	else if(cancel != null){
+    		index();
+    	}
     }
 	
     public static void login(String username, String password, String login, String register) {

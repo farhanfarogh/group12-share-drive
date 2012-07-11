@@ -1,7 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'Activation' /}
 
-<p>${message}</p>
-<p>Uni-CarPool 2012</p>
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
 
-<a href="@{index()}">Home</a>
+#{form @index()}
+	<p>${message}</p>
+	<p>Uni-CarPool 2012</p>
+	<br>
+	<input type="submit" style="width:80px;" name="index" value="Home" />
+#{/form}
