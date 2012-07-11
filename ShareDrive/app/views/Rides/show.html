@@ -10,7 +10,7 @@
 	<table>
 	  <tr>
 	    <td><strong>Name of Driver:</strong></td>
-	    <td>${newRide.driver.username ?: 'guest'}</td>
+	    <td><a href="@{Profile.showCarInfoForRide(newRide.driver)}">${newRide.driver.username ?: 'guest'}</a></td>
 	  </tr>
 	  <tr>
 	    <td><strong>Start point:</strong></td>
