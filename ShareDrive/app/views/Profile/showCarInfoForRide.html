@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+<div class="formLayout">
+<table border="0" cellspacing="20">
+#{field 'carInfo.car'}
+<tr><td>
+        <label>Car</label>
+        </td><td>
+        ${carInfo.car}
+
+</td></tr>
+#{/field}
+
+#{field 'carInfo.ageOfCar'}
+<tr><td>
+        <label>Age of car</label></td><td>
+        ${carInfo.ageOfCar}
+</td></tr>
+#{/field}
+
+#{field 'carInfo.maxNumberOfSeats'}
+<tr><td>
+        <label>Maximum Number Of Seats</label></td><td>
+        ${carInfo.maxNumberOfSeats}<br>
+</td></tr>
+#{/field}
+
+#{field 'carInfo.smoker'}
+<tr><td>
+        <label>Smoker</label></td><td>
+        #{if carInfo.smoker}
+        yes
+        #{/if}
+        #{else}
+        no
+        #{/else}
+        	
+</td></tr>
+#{/field}
+
+
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:history.back()">Back</a>
+
+</form> 
+</div>
+
