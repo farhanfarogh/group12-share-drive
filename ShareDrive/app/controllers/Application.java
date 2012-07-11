@@ -21,7 +21,6 @@ public class Application extends Controller {
 
 	static User connected() {
 		String username = session.get("user");
-		System.out.println(session.get("user"));
 		if (username != null) {
 			return User.find("byUsername", username).first();
 		}
@@ -39,7 +38,7 @@ public class Application extends Controller {
     public static void saveUser(@Valid User user, String verifyPassword) {
         validation.required(verifyPassword);
         validation.equals(verifyPassword, user.password).message("Your password doesn't match");
-        User objUser = User.UserExist(user.username); 
+        User objUser = User.findByUsername(user.username); 
 
         if(validation.hasErrors()) { //show form validation error
             render("@register", user, verifyPassword);

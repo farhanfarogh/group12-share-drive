@@ -59,11 +59,13 @@ public class User extends Model {
     }
     
     
-    public static User UserExist(String username) {
+    public static User findByUsername(String username) {
         return find("byUsername", username).first();
     }
     
     public static User UserExistByEmail(String email) {
         return find("byEmail", email).first();
     } 
+    
+    
 }

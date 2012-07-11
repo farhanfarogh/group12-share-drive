@@ -11,9 +11,10 @@ import play.db.jpa.*;
 @Table(name = "ride")
 public class Ride extends Model {
 
-	// public User driver (will be created during registration, for now
-	// @Required(message = "Name of the driver is required")
-	public String nameOfDriver;
+	@Required(message = "User can not be found")
+	
+	@ManyToOne
+	public User driver;
 
 	@Required(message = "Start point is required")
 	public String startPoint;
@@ -39,12 +40,12 @@ public class Ride extends Model {
 	@Temporal(TemporalType.DATE)
 	public Date rideDate;
 	
-	public Ride(String nameOfDriver, String startPoint,
+	public Ride(User driver, String startPoint,
 			int destinationCampusId, String timeOfArrival,
 			int numOfSeatsAvailable, int regularity, String comments,
 			Date rideDate) {
 		this.regularity = regularity;
-		this.nameOfDriver = nameOfDriver;
+		this.driver = driver;
 		this.startPoint = startPoint;
 		this.destinationCampusId = destinationCampusId;
 		this.timeOfArrival = timeOfArrival;
@@ -54,12 +55,12 @@ public class Ride extends Model {
 
 	}
 
-	public Ride(String nameOfDriver) {
-		this.nameOfDriver = nameOfDriver;
+	public Ride(User driver) {
+		this.driver = driver;
 	}
 
-	public Ride(String nameOfDriver, int regularity, int destinationCampusId) {
-		this.nameOfDriver = nameOfDriver;
+	public Ride(User driver, int regularity, int destinationCampusId) {
+		this.driver = driver;
 		this.regularity = regularity;
 		this.destinationCampusId = destinationCampusId;
 	}

@@ -10,27 +10,19 @@ import play.db.jpa.*;
 @Entity
 @Table(name = "booking")
 public class Booking extends Model {
-    public Long userId;
+    
+	@ManyToOne
+	public User user;
 	
-	public Long rideId;
-
-	public String startPoint;
-	
-	public String destination;
-	
-	public Date date;
+    @ManyToOne
+	public Ride ride;
 	
 	public Booking(User user, Ride ride) {
-		this.userId = user.id;
-		this.rideId = ride.id;
-		AppModel unis = new AppModel();
-		this.destination = unis.destinationCampusMap.get(ride.destinationCampusId);
-		this.startPoint = ride.startPoint;
-		this.date = ride.rideDate;
-		System.out.println(toString());
+		this.user = user;
+		this.ride = ride;
 	}
 
 	public String toString() {
-		return "Booking(" + userId + "," + rideId + "," + startPoint +","+ destination + "," + date + ")";
+		return "Booking(" + user + "," + ride + ")";
 	}
 }

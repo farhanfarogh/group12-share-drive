@@ -1,10 +1,7 @@
 package models;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 import play.db.jpa.Model;
 
@@ -15,13 +12,14 @@ public class Timetable extends Model {
 	
 	public boolean carMonday, carTuesday, carWednesday, carThursday, carFriday, carSaturday;
 	
-	public String user;
+	@OneToOne
+	public User user;
 	
 	public String startTimeMonday, startTimeTuesday, startTimeWednesday, startTimeThursday, startTimeFriday, startTimeSaturday;
 	
 	public String leaveTimeMonday, leaveTimeTuesday, leaveTimeWednesday, leaveTimeThursday, leaveTimeFriday, leaveTimeSaturday;
 
-	public Timetable(String user, boolean driveMonday, boolean driveTuesday,
+	public Timetable(User user, boolean driveMonday, boolean driveTuesday,
 			boolean driveWednesday, boolean driveThursday, boolean driveFriday,
 			boolean driveSaturday, boolean carMonday, boolean carTuesday,
 			boolean carWednesday, boolean carThursday, boolean carFriday,

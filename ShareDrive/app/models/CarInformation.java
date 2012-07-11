@@ -10,24 +10,27 @@ public class CarInformation extends Model{
 	
 	public int ageOfCar;
 	public String car;
+	public int maxNumberOfSeats;
+	public boolean smoker;
 
-	public String userna;
+	@OneToOne
+	public User user;
 	
-	public CarInformation(int ageOfCar, String car, String user) {
+	public CarInformation(int ageOfCar, String car, User user) {
 		super();
 		this.ageOfCar = ageOfCar;
 		this.car = car;
-		this.userna = user;
+		this.user = user;
 	}
 	
 	
-	public static CarInformation findByUser(String user) {
-        return find("byUserna", user).first();
+	public static CarInformation findByUser(User user) {
+        return find("byUser", user).first();
     }
 	
 	@Override
 	public String toString() {
-		return "AgeOfCar: " + this.ageOfCar + "; Car: " + this.car + "; User: " + this.userna;
+		return "AgeOfCar: " + this.ageOfCar + "; Car: " + this.car + "; User: " + this.user;
 	}
 	
 

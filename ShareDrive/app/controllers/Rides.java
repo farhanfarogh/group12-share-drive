@@ -14,6 +14,7 @@ import models.Ride;
 import models.Timetable;
 import models.User;
 import play.data.validation.Required;
+import play.db.jpa.JPABase;
 import play.mvc.Before;
 
 public class Rides extends Application {
@@ -40,9 +41,15 @@ public class Rides extends Application {
 				flash.error("Oops, please enter your name!");
 				index();
 			}
-
+			
+			User user = User.findByUsername(nameOfDriver);
+			if(user==null){
+				flash.error("Driver not found.");
+				return;
+			}
+			
 			if(regularity == 2){
-				Timetable timetable = Timetable.find("byUser", nameOfDriver).first();
+				Timetable timetable = Timetable.find("byUser", user).first();
 				
 				if(timetable == null){
 					flash.error("You have to deposite a timetable if you want to create a weekly drive!");
@@ -50,7 +57,7 @@ public class Rides extends Application {
 				}
 				
 				else{
-					Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId, null, numOfSeatsAvailable, regularity, comments, null);
+					Ride newRide = new Ride(user, startPoint, destinationCampusId, null, numOfSeatsAvailable, regularity, comments, null);
 					AppModel unis = new AppModel();
 					newRide.create();
 					render(newRide, unis);
@@ -63,7 +70,7 @@ public class Rides extends Application {
 				int min = Integer.parseInt(timepicker.substring(3, 5));
 				dp.setHours(hour);
 				dp.setMinutes(min);
-				Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
+				Ride newRide = new Ride(user, startPoint, destinationCampusId,
 						null, numOfSeatsAvailable, regularity, comments, dp);
 				
 				AppModel unis = new AppModel();
@@ -90,7 +97,6 @@ public class Rides extends Application {
 
 	public static void show(Long id) {
 		Ride newRide = Ride.findById(id);
-		System.out.print(newRide.nameOfDriver + " id: " + id);
 		AppModel unis = new AppModel();
 		render(newRide, unis);
 	}
@@ -104,16 +110,14 @@ public class Rides extends Application {
 	public static void bookNewRide(Long id, String book, String back) {
 		if(book != null){
 			Ride newRide = Ride.findById(id);
-			String username = session.get("user");
-			System.out.println("user: " + session.get("user"));
-			User user = User.find("byUsername", username).first();
+			User user = connected();
 			Booking newBooking = new Booking(user, newRide);
 
 			// so that the user doesn't save have multiple instances of same ride
 			boolean dontSave = false;
-			List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
+			List<Booking> bookings = Booking.find("byUser", user).fetch();
 			for (Booking bok : bookings) {
-				if (bok.rideId == id)
+				if (bok.ride.equals(newRide))
 					dontSave = true;
 			}
 			if (!dontSave)
@@ -134,7 +138,7 @@ public class Rides extends Application {
 		List<Ride> rides= new LinkedList<Ride>();
 		Ride tmp;
 		for(Booking bok : bookings){
-			tmp = Ride.findById(bok.rideId);
+			tmp = bok.ride;
 			rides.add(tmp);
 		}
 		
@@ -142,7 +146,8 @@ public class Rides extends Application {
 	}
 
 	public static void deleteBooking(Long id) {
-		Booking booking = Booking.find("byRideId", id).first();
+		Ride ride = Ride.findById(id);
+		Booking booking = Booking.find("byRide", ride).first();
 		booking.delete();
 		showBookings();
 	}
@@ -224,8 +229,8 @@ public class Rides extends Application {
 				List<Ride> weeklyRides = new LinkedList<Ride>();
 				List<Ride> finalRides2 = new LinkedList<Ride>();
 				int numberOfMatches = 0;
-				String username = session.get("user");
-				Timetable userTimetable = Timetable.find("byUser", username).first();
+				User user = connected();
+				Timetable userTimetable = Timetable.find("byUser", user).first();
 				
 				if(userTimetable == null){
 					flash.error("You have to deposite a timetable if you want to search a weekly drive!");
@@ -240,7 +245,7 @@ public class Rides extends Application {
 					}
 					
 					for (Ride ride : weeklyRides){
-						Timetable timetable = Timetable.find("byUser", ride.nameOfDriver).first();
+						Timetable timetable = Timetable.find("byUser", ride.driver).first();
 						
 						numberOfMatches = checkTimetable(userTimetable, timetable);
 						

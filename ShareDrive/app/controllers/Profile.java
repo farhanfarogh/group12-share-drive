@@ -44,7 +44,7 @@ public class Profile extends Application {
 	
 	public static void initiateTimetable(String yes, String logout){
 		if(yes != null){
-			Timetable timetable = new Timetable(session.get("user"), false, false, false, false, false, false, false, false, false, false, false, false, 
+			Timetable timetable = new Timetable(connected(), false, false, false, false, false, false, false, false, false, false, false, false, 
 					"00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
 			
 			timetable.create();
@@ -58,7 +58,7 @@ public class Profile extends Application {
 	}
 	
 	public static void saveTimetable(@Valid Timetable timetable, String save, String delete, String logout){		
-		String user = session.get("user");
+		User user = connected();
 		Timetable myTimetable = Timetable.find("byUser", user).first();
 		
 		if(save != null){
@@ -190,14 +190,14 @@ public class Profile extends Application {
 	
 	public static void changeCarInfo(CarInformation carInfo) {
 		User user=connected();
-		CarInformation carInfoActual = CarInformation.findByUser(user.username);
+		CarInformation carInfoActual = CarInformation.findByUser(user);
 		System.out.println("Anzahl: " + CarInformation.count());
 		System.out.println("CIA:" + carInfoActual);
 		if(carInfoActual!=null && (carInfo==null || ((carInfo.car==null || carInfo.car.isEmpty()) && carInfo.ageOfCar==0))){
 			carInfoActual.delete();
 		}
 		else if(carInfoActual==null){
-			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, connected().username);
+			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, user);
 			carInfoActual.create();
 		}
 		else{
@@ -214,9 +214,9 @@ public class Profile extends Application {
 	
 	public static void showCarInfo(){
 		User user = connected();
-		CarInformation carInfo = CarInformation.findByUser(user.username);
+		CarInformation carInfo = CarInformation.findByUser(user);
 		if(carInfo==null){
-			carInfo=new CarInformation(0, "", connected().username);
+			carInfo=new CarInformation(0, "", user);
 		}
 		AppModel unis=new AppModel();
 		render(carInfo, unis);
