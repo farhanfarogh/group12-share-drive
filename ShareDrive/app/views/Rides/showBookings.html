@@ -1,29 +1,45 @@
 #{extends 'main.html' /}
 #{set title:'Show rides' /}
 
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
+
 <script>
 	$(document).ready(function(){
 		showSubmenu('Rides');
 	});
 </script>
 
- <table class="ridesTable">
+
+ <div class="content"> 
+
+ <table class="hor-minimalist-a">
         <thead >
             <tr valign="middle">
-                <th  align="center">Who booked</th>
+                <th  align="center">Start point</th>
+                <th align="center">Destination</th>
+                <th align="center">Ride date</th>
+                <th align="center">Show details</th>
                 <th align="center">What booked</th>
             </tr>
         </thead>
         <tbody>
             #{list bookings, as:'booking'}
                 <tr valign="middle">
-                    <td align="center">${booking.userId}</td>
-                    <td align="center">${booking.rideId}</td>
-                    
+                    <td align="center">${booking.startPoint}</td>
+                    <td align="center">${booking.destination}</td>
+                    <td align="center">${booking.date}</td>
+                    <td align="center"><a href="@{showBookingDetails(booking.rideId)}">Show ride</a></td>
+                    <td align="center"><a href="@{deleteBooking(booking.rideId)}">Delete ride</a></td>
                 </tr>
             #{/list}
         </tbody>
     </table>
-
+    </table>
+    
+    </div>
+   
+<br>
+<br>
 <a href="@{Rides.logout()}">Logout</a> <br>
 <a href="@{Rides.search()}">Back to create ride</a>

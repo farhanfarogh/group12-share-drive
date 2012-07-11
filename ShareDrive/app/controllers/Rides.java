@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,30 +62,50 @@ public class Rides extends Application {
 		render(newRide, unis);
 	}
 
+	public static void showBookingDetails(Long id) {
+		Ride newRide = Ride.findById(id);
+		AppModel unis = new AppModel();
+		render(newRide, unis);
+	}
+
 	public static void bookNewRide(Long id) {
 		Ride newRide = Ride.findById(id);
 		String username = session.get("user");
-		System.out.println("user: "+  session.get("user"));
+		System.out.println("user: " + session.get("user"));
 		User user = User.find("byUsername", username).first();
 		Booking newBooking = new Booking(user, newRide);
-		
+
 		// so that the user doesn't save have multiple instances of same ride
 		boolean dontSave = false;
 		List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
-		for(Booking bok : bookings){
-			if(bok.rideId == id) dontSave = true;
+		for (Booking bok : bookings) {
+			if (bok.rideId == id)
+				dontSave = true;
 		}
-		if(!dontSave)
+		if (!dontSave)
 			newBooking.save();
 		render(newRide);
 	}
-	
+
 	public static void showBookings() {
 		String username = session.get("user");
-		System.out.println("user: "+  session.get("user"));
+		System.out.println("user: " + session.get("user"));
 		User user = User.find("byUsername", username).first();
 		List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
-		render(bookings);
+		List<Ride> rides= new LinkedList<Ride>();
+		Ride tmp;
+		for(Booking bok : bookings){
+			tmp = Ride.findById(bok.rideId);
+			rides.add(tmp);
+		}
+		
+		render(bookings, rides);
+	}
+
+	public static void deleteBooking(Long id) {
+		Booking booking = Booking.find("byRideId", id).first();
+		booking.delete();
+		showBookings();
 	}
 
 	public static void search() {
@@ -129,6 +150,8 @@ public class Rides extends Application {
 						+ " ride.destinationCampusId: "
 						+ ride.destinationCampusId);
 				if (ride.destinationCampusId == destinationCampusIndex) {
+
+					System.out.println("ride date: " + ride.rideDate);
 					finalRides.add(ride);
 				}
 			}
@@ -136,8 +159,15 @@ public class Rides extends Application {
 			System.out.println("search: " + startPoint + " " + finalRides);
 
 		}
-
+		List<Ride> finalRides2 = new LinkedList<Ride>();
 		rides = finalRides;
+
+		for(Ride rid : finalRides){
+			  Calendar cal = Calendar.getInstance();
+			if(rid.rideDate.after(cal.getTime()) || rid.rideDate ==null)
+				finalRides2.add(rid);
+		}
+		rides = finalRides2;
 		render(rides, unis);
 	}
 }
