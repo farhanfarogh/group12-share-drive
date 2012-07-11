@@ -1,5 +1,9 @@
 package controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import models.AppModel;
 import models.CarInformation;
 import models.Timetable;
@@ -22,18 +26,18 @@ public class Profile extends Application {
 	}
 	
 	
-	public static void timetable(){
+	public static void timetable(String acknowledgementMsg){
 		
 		String username = session.get("user");
 		User user = User.find("byUsername", username).first();
 		Timetable timetable = Timetable.find("byUser", username).first();
 		
 		if(timetable != null){
-			render(timetable, user);
+			render(timetable, user, acknowledgementMsg);
 		}
 		
 		else {
-			render(user);
+			render(user, acknowledgementMsg);
 		}
 	}
 	
@@ -43,41 +47,109 @@ public class Profile extends Application {
 		
 		timetable.create();
 		
-		timetable();
+		timetable("Timetable sucessfully initialized!");
 	}
 	
 	public static void saveTimetable(@Valid Timetable timetable){
 		String user = session.get("user");
 		Timetable myTimetable = Timetable.find("byUser", user).first();
 		
-		myTimetable.driveMonday = timetable.driveMonday;
-		myTimetable.driveTuesday = timetable.driveTuesday;
-		myTimetable.driveWednesday = timetable.driveWednesday;
-		myTimetable.driveFriday = timetable.driveFriday;
-		myTimetable.driveSaturday = timetable.driveSaturday;
-		myTimetable.carMonday = timetable.carMonday;
-		myTimetable.carTuesday = timetable.carTuesday;
-		myTimetable.carWednesday = timetable.carWednesday;
-		myTimetable.carThursday = timetable.carThursday;
-		myTimetable.carFriday = timetable.carFriday;
-		myTimetable.carSaturday = timetable.carSaturday;
-		myTimetable.startTimeMonday = timetable.startTimeMonday;
-		myTimetable.startTimeTuesday = timetable.startTimeTuesday;
-		myTimetable.startTimeWednesday = timetable.startTimeWednesday;
-		myTimetable.startTimeThursday = timetable.startTimeThursday;
-		myTimetable.startTimeFriday = timetable.startTimeFriday;
-		myTimetable.startTimeSaturday = timetable.startTimeSaturday;
-		myTimetable.leaveTimeMonday = timetable.leaveTimeMonday;
-		myTimetable.leaveTimeTuesday = timetable.leaveTimeTuesday;
-		myTimetable.leaveTimeWednesday = timetable.leaveTimeWednesday;
-		myTimetable.leaveTimeThursday = timetable.leaveTimeThursday;
-		myTimetable.leaveTimeFriday = timetable.leaveTimeFriday;
-		myTimetable.leaveTimeSaturday = timetable.leaveTimeSaturday;
+		if(!isValidDate(timetable.startTimeMonday) || !isValidDate(timetable.startTimeTuesday) || !isValidDate(timetable.startTimeWednesday) 
+				|| !isValidDate(timetable.startTimeThursday) || !isValidDate(timetable.startTimeFriday) || !isValidDate(timetable.startTimeSaturday)
+				|| !isValidDate(timetable.leaveTimeMonday) || !isValidDate(timetable.leaveTimeTuesday) || !isValidDate(timetable.leaveTimeWednesday) 
+				|| !isValidDate(timetable.leaveTimeThursday) || !isValidDate(timetable.leaveTimeFriday) || !isValidDate(timetable.leaveTimeSaturday)){
+			timetable("Please enter valid times for every start and leaving time!");
+		}
 		
-		myTimetable.save();
+		else if(!isLeaveAfterStart(timetable.startTimeMonday, timetable.leaveTimeMonday, timetable.driveMonday) || 
+				!isLeaveAfterStart(timetable.startTimeTuesday, timetable.leaveTimeTuesday, timetable.driveTuesday) || 
+				!isLeaveAfterStart(timetable.startTimeWednesday, timetable.leaveTimeWednesday, timetable.driveWednesday) || 
+				!isLeaveAfterStart(timetable.startTimeThursday, timetable.leaveTimeThursday, timetable.driveThursday) || 
+				!isLeaveAfterStart(timetable.startTimeFriday, timetable.leaveTimeFriday, timetable.driveFriday) || 
+				!isLeaveAfterStart(timetable.startTimeSaturday, timetable.leaveTimeSaturday, timetable.driveSaturday)){
+			timetable("Please make sure that start time is before leaving time!");
+		}
 		
-		timetable();
-	}	
+		else{
+			myTimetable.driveMonday = timetable.driveMonday;
+			myTimetable.driveTuesday = timetable.driveTuesday;
+			myTimetable.driveWednesday = timetable.driveWednesday;
+			myTimetable.driveFriday = timetable.driveFriday;
+			myTimetable.driveSaturday = timetable.driveSaturday;
+			myTimetable.carMonday = timetable.carMonday;
+			myTimetable.carTuesday = timetable.carTuesday;
+			myTimetable.carWednesday = timetable.carWednesday;
+			myTimetable.carThursday = timetable.carThursday;
+			myTimetable.carFriday = timetable.carFriday;
+			myTimetable.carSaturday = timetable.carSaturday;
+			myTimetable.startTimeMonday = timetable.startTimeMonday;
+			myTimetable.startTimeTuesday = timetable.startTimeTuesday;
+			myTimetable.startTimeWednesday = timetable.startTimeWednesday;
+			myTimetable.startTimeThursday = timetable.startTimeThursday;
+			myTimetable.startTimeFriday = timetable.startTimeFriday;
+			myTimetable.startTimeSaturday = timetable.startTimeSaturday;
+			myTimetable.leaveTimeMonday = timetable.leaveTimeMonday;
+			myTimetable.leaveTimeTuesday = timetable.leaveTimeTuesday;
+			myTimetable.leaveTimeWednesday = timetable.leaveTimeWednesday;
+			myTimetable.leaveTimeThursday = timetable.leaveTimeThursday;
+			myTimetable.leaveTimeFriday = timetable.leaveTimeFriday;
+			myTimetable.leaveTimeSaturday = timetable.leaveTimeSaturday;
+			
+			myTimetable.save();
+			
+			timetable("Timetable successfully saved!");			
+		}
+	}
+	
+	private static boolean isValidDate(String inDate) {
+
+		if (inDate == null)
+		  return false;
+		
+		//set the format to use as a constructor argument
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		
+		if (inDate.trim().length() != dateFormat.toPattern().length()){
+			return false;
+		}	  
+		
+		else{
+			dateFormat.setLenient(false);
+			
+			try {
+			  //parse the inDate parameter
+			  dateFormat.parse(inDate.trim());
+			}
+			catch (ParseException e) {
+			  return false;
+			}
+			
+			return true;
+		}
+    }
+	
+	private static boolean isLeaveAfterStart(String startTime, String leaveTime, boolean drive){
+		if (drive){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			try {
+				Date start = dateFormat.parse(startTime);
+				Date leave = dateFormat.parse(leaveTime);
+				
+				if(start.before(leave) && leave.after(start)){
+					return true;
+				}
+			} catch (ParseException e) {
+				return false;
+			}
+			
+			return false;
+		}
+		
+		else{
+			return true;
+		}
+	}
 	
 	public static void changeCarInfo(CarInformation carInfo) {
 		User user=connected();
