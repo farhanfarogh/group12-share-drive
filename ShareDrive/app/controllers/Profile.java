@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import models.AppModel;
+import models.Booking;
 import models.CarInformation;
 import models.Timetable;
 import models.User;
@@ -41,71 +42,90 @@ public class Profile extends Application {
 		}
 	}
 	
-	public static void initiateTimetable(){
-		Timetable timetable = new Timetable(session.get("user"), false, false, false, false, false, false, false, false, false, false, false, false, 
-				"00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
+	public static void initiateTimetable(String yes, String logout){
+		if(yes != null){
+			Timetable timetable = new Timetable(session.get("user"), false, false, false, false, false, false, false, false, false, false, false, false, 
+					"00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
+			
+			timetable.create();
+			
+			timetable("Timetable sucessfully initialized!");
+		}
 		
-		timetable.create();
-		
-		timetable("Timetable sucessfully initialized!");
+		else if(logout != null){
+			Application.logout();
+		}
 	}
 	
-	public static void saveTimetable(@Valid Timetable timetable){
+	public static void saveTimetable(@Valid Timetable timetable, String save, String delete, String logout){		
 		String user = session.get("user");
 		Timetable myTimetable = Timetable.find("byUser", user).first();
 		
-		if(!isValidDate(timetable.startTimeMonday) || !isValidDate(timetable.startTimeTuesday) || !isValidDate(timetable.startTimeWednesday) 
-				|| !isValidDate(timetable.startTimeThursday) || !isValidDate(timetable.startTimeFriday) || !isValidDate(timetable.startTimeSaturday)
-				|| !isValidDate(timetable.leaveTimeMonday) || !isValidDate(timetable.leaveTimeTuesday) || !isValidDate(timetable.leaveTimeWednesday) 
-				|| !isValidDate(timetable.leaveTimeThursday) || !isValidDate(timetable.leaveTimeFriday) || !isValidDate(timetable.leaveTimeSaturday)){
-			timetable("Please enter valid times for every start and leaving time!");
-		}
-		
-		else if(!isLeaveAfterStart(timetable.startTimeMonday, timetable.leaveTimeMonday, timetable.driveMonday) || 
-				!isLeaveAfterStart(timetable.startTimeTuesday, timetable.leaveTimeTuesday, timetable.driveTuesday) || 
-				!isLeaveAfterStart(timetable.startTimeWednesday, timetable.leaveTimeWednesday, timetable.driveWednesday) || 
-				!isLeaveAfterStart(timetable.startTimeThursday, timetable.leaveTimeThursday, timetable.driveThursday) || 
-				!isLeaveAfterStart(timetable.startTimeFriday, timetable.leaveTimeFriday, timetable.driveFriday) || 
-				!isLeaveAfterStart(timetable.startTimeSaturday, timetable.leaveTimeSaturday, timetable.driveSaturday)){
-			timetable("Please make sure that start time is before leaving time!");
-		}
-		
-		else if(!checkCar(timetable.driveMonday, timetable.carMonday) || !checkCar(timetable.driveTuesday, timetable.carTuesday) 
-				|| !checkCar(timetable.driveWednesday, timetable.carWednesday) || !checkCar(timetable.driveThursday, timetable.carThursday) 
-				|| !checkCar(timetable.driveFriday, timetable.carFriday) || !checkCar(timetable.driveSaturday, timetable.carSaturday)){
-			timetable("You shlould also select drive if you select that you have a car!");
-		}
-		
-		else{
-			myTimetable.driveMonday = timetable.driveMonday;
-			myTimetable.driveTuesday = timetable.driveTuesday;
-			myTimetable.driveWednesday = timetable.driveWednesday;
-			myTimetable.driveThursday = timetable.driveThursday;
-			myTimetable.driveFriday = timetable.driveFriday;
-			myTimetable.driveSaturday = timetable.driveSaturday;
-			myTimetable.carMonday = timetable.carMonday;
-			myTimetable.carTuesday = timetable.carTuesday;
-			myTimetable.carWednesday = timetable.carWednesday;
-			myTimetable.carThursday = timetable.carThursday;
-			myTimetable.carFriday = timetable.carFriday;
-			myTimetable.carSaturday = timetable.carSaturday;
-			myTimetable.startTimeMonday = timetable.startTimeMonday;
-			myTimetable.startTimeTuesday = timetable.startTimeTuesday;
-			myTimetable.startTimeWednesday = timetable.startTimeWednesday;
-			myTimetable.startTimeThursday = timetable.startTimeThursday;
-			myTimetable.startTimeFriday = timetable.startTimeFriday;
-			myTimetable.startTimeSaturday = timetable.startTimeSaturday;
-			myTimetable.leaveTimeMonday = timetable.leaveTimeMonday;
-			myTimetable.leaveTimeTuesday = timetable.leaveTimeTuesday;
-			myTimetable.leaveTimeWednesday = timetable.leaveTimeWednesday;
-			myTimetable.leaveTimeThursday = timetable.leaveTimeThursday;
-			myTimetable.leaveTimeFriday = timetable.leaveTimeFriday;
-			myTimetable.leaveTimeSaturday = timetable.leaveTimeSaturday;
+		if(save != null){
+			if(!isValidDate(timetable.startTimeMonday) || !isValidDate(timetable.startTimeTuesday) || !isValidDate(timetable.startTimeWednesday) 
+					|| !isValidDate(timetable.startTimeThursday) || !isValidDate(timetable.startTimeFriday) || !isValidDate(timetable.startTimeSaturday)
+					|| !isValidDate(timetable.leaveTimeMonday) || !isValidDate(timetable.leaveTimeTuesday) || !isValidDate(timetable.leaveTimeWednesday) 
+					|| !isValidDate(timetable.leaveTimeThursday) || !isValidDate(timetable.leaveTimeFriday) || !isValidDate(timetable.leaveTimeSaturday)){
+				timetable("Please enter valid times for every start and leaving time!");
+			}
 			
-			myTimetable.save();
+			else if(!isLeaveAfterStart(timetable.startTimeMonday, timetable.leaveTimeMonday, timetable.driveMonday) || 
+					!isLeaveAfterStart(timetable.startTimeTuesday, timetable.leaveTimeTuesday, timetable.driveTuesday) || 
+					!isLeaveAfterStart(timetable.startTimeWednesday, timetable.leaveTimeWednesday, timetable.driveWednesday) || 
+					!isLeaveAfterStart(timetable.startTimeThursday, timetable.leaveTimeThursday, timetable.driveThursday) || 
+					!isLeaveAfterStart(timetable.startTimeFriday, timetable.leaveTimeFriday, timetable.driveFriday) || 
+					!isLeaveAfterStart(timetable.startTimeSaturday, timetable.leaveTimeSaturday, timetable.driveSaturday)){
+				timetable("Please make sure that start time is before leaving time!");
+			}
 			
-			timetable("Timetable successfully saved!");			
+			else if(!checkCar(timetable.driveMonday, timetable.carMonday) || !checkCar(timetable.driveTuesday, timetable.carTuesday) 
+					|| !checkCar(timetable.driveWednesday, timetable.carWednesday) || !checkCar(timetable.driveThursday, timetable.carThursday) 
+					|| !checkCar(timetable.driveFriday, timetable.carFriday) || !checkCar(timetable.driveSaturday, timetable.carSaturday)){
+				timetable("You shlould also select drive if you select that you have a car!");
+			}
+			
+			else{
+				myTimetable.driveMonday = timetable.driveMonday;
+				myTimetable.driveTuesday = timetable.driveTuesday;
+				myTimetable.driveWednesday = timetable.driveWednesday;
+				myTimetable.driveThursday = timetable.driveThursday;
+				myTimetable.driveFriday = timetable.driveFriday;
+				myTimetable.driveSaturday = timetable.driveSaturday;
+				myTimetable.carMonday = timetable.carMonday;
+				myTimetable.carTuesday = timetable.carTuesday;
+				myTimetable.carWednesday = timetable.carWednesday;
+				myTimetable.carThursday = timetable.carThursday;
+				myTimetable.carFriday = timetable.carFriday;
+				myTimetable.carSaturday = timetable.carSaturday;
+				myTimetable.startTimeMonday = timetable.startTimeMonday;
+				myTimetable.startTimeTuesday = timetable.startTimeTuesday;
+				myTimetable.startTimeWednesday = timetable.startTimeWednesday;
+				myTimetable.startTimeThursday = timetable.startTimeThursday;
+				myTimetable.startTimeFriday = timetable.startTimeFriday;
+				myTimetable.startTimeSaturday = timetable.startTimeSaturday;
+				myTimetable.leaveTimeMonday = timetable.leaveTimeMonday;
+				myTimetable.leaveTimeTuesday = timetable.leaveTimeTuesday;
+				myTimetable.leaveTimeWednesday = timetable.leaveTimeWednesday;
+				myTimetable.leaveTimeThursday = timetable.leaveTimeThursday;
+				myTimetable.leaveTimeFriday = timetable.leaveTimeFriday;
+				myTimetable.leaveTimeSaturday = timetable.leaveTimeSaturday;
+				
+				myTimetable.save();
+				
+				timetable("Timetable successfully saved!");			
+			}
 		}
+		
+		else if(delete != null){
+			myTimetable.delete();
+			
+			timetable("Timetable deleted");
+		}
+		
+		else if(logout != null){
+			Application.logout();
+		}
+
 	}
 	
 	private static boolean isValidDate(String inDate) {

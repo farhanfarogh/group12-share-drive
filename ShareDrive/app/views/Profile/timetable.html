@@ -3,6 +3,12 @@
 
 <link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
 <link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.ui.timepicker.css'}" />
+
+#{set 'moreStyles'}
+    
+#{/set}
 
 #{if flash.error}
     <p style="color:#c00">
@@ -21,7 +27,7 @@
 
 <script>
 	$(function() {
-		$('#timepicker').timepicker({
+		$('#timepicker1, #timepicker2, #timepicker3, #timepicker4, #timepicker5, #timepicker6, #timepicker7, #timepicker8, #timepicker9, #timepicker10, #timepicker11, #timepicker12').timepicker({
 		    // Options
 		    timeSeparator: ':',           // The character to use to separate hours and minutes. (default: ':')
 		    showLeadingZero: true,        // Define whether or not to show a leading zero for hours < 10.
@@ -81,11 +87,6 @@
 		});
 	});	
 </script>
-#{/set}
-
-#{set 'moreStyles'}
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/jquery.ui.timepicker.css'}" />
 #{/set}
 
 <div align="left">
@@ -182,32 +183,32 @@
 				<td>Start Time:</td>
 				<td align="center">
 					#{field 'timetable.startTimeMonday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeMonday}" id="timepicker">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeMonday}" id="timepicker1">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.startTimeTuesday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeTuesday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeTuesday}" id="timepicker2">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.startTimeWednesday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeWednesday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeWednesday}" id="timepicker3">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.startTimeThursday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeThursday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeThursday}" id="timepicker4">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.startTimeFriday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeFriday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeFriday}" id="timepicker5">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.startTimeSaturday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeSaturday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeSaturday}" id="timepicker6">
 				    #{/field}
 				</td>
 			</tr>
@@ -215,39 +216,40 @@
 				<td>Leave Time:</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeMonday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeMonday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeMonday}" id="timepicker7">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeTuesday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeTuesday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeTuesday}" id="timepicker8">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeWednesday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeWednesday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeWednesday}" id="timepicker9">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeThursday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeThursday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeThursday}" id="timepicker10">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeFriday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeFriday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeFriday}" id="timepicker11">
 				    #{/field}
 				</td>
 				<td align="center">
 					#{field 'timetable.leaveTimeSaturday'}
-				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeSaturday}">
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeSaturday}" id="timepicker12">
 				    #{/field}
 				</td>
 			</tr>
 		</table>
 		<br>
-		<input type="submit" style="width:80px;" value="Save">
-		<a href="@{Profile.logout()}">Logout</a> 
+		<input type="submit" style="width:80px;" name="save" value="Save">
+		<input type="submit" style="width:80px;" name="delete" value="Delete">
+		<input type="submit" style="width:80px;" name="logout" value="Logout">
 	</form>
 
 #{/if}
@@ -255,7 +257,7 @@
 	<p>You don't have a timetable deposited yet. Do you want to deposit one now?</p>
 	<form action="@{Profile.initiateTimetable()}" method="GET">
 		<br>
-		<input type="submit" style="width:80px;" value="Yes">
-		<a href="@{Profile.logout()}">Logout</a> 
+		<input type="submit" style="width:80px;" name="yes" value="Yes">
+		<input type="submit" style="width:80px;" name="logout" value="Logout"> 
 	</form>
 #{/if}
