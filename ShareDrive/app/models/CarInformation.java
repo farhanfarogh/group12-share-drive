@@ -16,12 +16,18 @@ public class CarInformation extends Model{
 	@OneToOne
 	public User user;
 	
-	public CarInformation(int ageOfCar, String car, User user) {
+	
+	
+	public CarInformation(int ageOfCar, String car, int maxNumberOfSeats,
+			boolean smoker, User user) {
 		super();
 		this.ageOfCar = ageOfCar;
 		this.car = car;
+		this.maxNumberOfSeats = maxNumberOfSeats;
+		this.smoker = smoker;
 		this.user = user;
 	}
+
 	
 	
 	public static CarInformation findByUser(User user) {

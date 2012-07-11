@@ -196,12 +196,14 @@ public class Profile extends Application {
 			carInfoActual.delete();
 		}
 		else if(carInfoActual==null){
-			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, user);
+			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, carInfo.maxNumberOfSeats, carInfo.smoker, user);
 			carInfoActual.create();
 		}
 		else{
 			carInfoActual.ageOfCar=carInfo.ageOfCar;
 			carInfoActual.car=carInfo.car;
+			carInfoActual.maxNumberOfSeats=carInfo.maxNumberOfSeats;
+			carInfoActual.smoker=carInfo.smoker;
 			carInfoActual.save();
 		}
 		AppModel unis=new AppModel();
@@ -215,7 +217,7 @@ public class Profile extends Application {
 		User user = connected();
 		CarInformation carInfo = CarInformation.findByUser(user);
 		if(carInfo==null){
-			carInfo=new CarInformation(0, "", user);
+			carInfo=new CarInformation(0, "", 0, false, user);
 		}
 		AppModel unis=new AppModel();
 		render(carInfo, unis);
