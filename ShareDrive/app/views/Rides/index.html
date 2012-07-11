@@ -98,12 +98,7 @@
 		    deselectButtonText: 'Deselect' // Text for the deselect button
 
 		});
-	});
-	
-	$(document).ready(function(){
-		showSubmenu('Rides');
-	});
-	
+	});	
 </script>
     
    
@@ -133,7 +128,7 @@
         </select>
 		<br class="clear" />
         <label>Name of driver</label>
-        <input name="nameOfDriver">
+        <input type="text" name="nameOfDriver" value="${username}" disabled="disabled">
 		<br class="clear" />
         <label>Start point</label>
         <input name="startPoint">

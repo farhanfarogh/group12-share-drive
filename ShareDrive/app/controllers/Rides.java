@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -9,6 +11,7 @@ import java.util.Set;
 import models.AppModel;
 import models.Booking;
 import models.Ride;
+import models.Timetable;
 import models.User;
 import play.data.validation.Required;
 import play.mvc.Before;
@@ -24,7 +27,8 @@ public class Rides extends Application {
 	}
 
 	public static void index() {
-		render();
+		String username = session.get("user");
+		render(username);
 	}
 
 	public static void bookRide(@Required String nameOfDriver,
@@ -113,15 +117,18 @@ public class Rides extends Application {
 	}
 
 	public static void searchResults(String startPoint,
-			String destinationCampusId, String search, String logout) {
+			String destinationCampusId, int regularity, String search, String logout) throws ParseException {
 		if(search != null){
 			AppModel unis = new AppModel();
 			List<Ride> rides = new LinkedList<Ride>();
 			List<Ride> finalRides = new LinkedList<Ride>();
+			
 			if (destinationCampusId.equals("")) {
 				finalRides = Ride.find("startPoint like ? ", startPoint).from(0)
 						.fetch();
-			} else if (startPoint.equals("")) {
+			} 
+			
+			else if (startPoint.equals("")) {
 				Set<Integer> unisId = unis.destinationCampusMap.keySet();
 				int destinationCampusIndex = -1;
 				for (Integer uni : unisId) {
@@ -134,10 +141,13 @@ public class Rides extends Application {
 				finalRides = Ride
 						.find("destinationCampusId like ? ", destinationCampusIndex)
 						.from(0).fetch();
-			} else {
+			} 
+			
+			else {
 				rides = Ride.find("startPoint like ? ", startPoint).from(0).fetch();
 				Set<Integer> unisId = unis.destinationCampusMap.keySet();
 				int destinationCampusIndex = -1;
+				
 				for (Integer uni : unisId) {
 					if (unis.destinationCampusMap.get(uni).contains(
 							destinationCampusId)) {
@@ -145,6 +155,7 @@ public class Rides extends Application {
 						break;
 					}
 				}
+				
 				for (Ride ride : rides) {
 					System.out.println("destinationCampusIndex: "
 							+ destinationCampusIndex
@@ -160,20 +171,193 @@ public class Rides extends Application {
 				System.out.println("search: " + startPoint + " " + finalRides);
 
 			}
-			List<Ride> finalRides2 = new LinkedList<Ride>();
-			rides = finalRides;
+			
+			if (regularity < 2){
+				List<Ride> finalRides2 = new LinkedList<Ride>();
+				rides = finalRides;
 
-			for(Ride rid : finalRides){
-				  Calendar cal = Calendar.getInstance();
-				if(rid.rideDate.after(cal.getTime()) || rid.rideDate ==null)
-					finalRides2.add(rid);
+				for(Ride rid : finalRides){
+					  Calendar cal = Calendar.getInstance();
+					if(rid.rideDate.after(cal.getTime()) || rid.rideDate ==null)
+						finalRides2.add(rid);
+				}
+				rides = finalRides2;
+				render(rides, unis);
 			}
-			rides = finalRides2;
-			render(rides, unis);
+			
+			else if (regularity == 2){
+				List<Ride> weeklyRides = new LinkedList<Ride>();
+				List<Ride> finalRides2 = new LinkedList<Ride>();
+				int numberOfMatches = 0;
+				String username = session.get("user");
+				Timetable userTimetable = Timetable.find("byUser", username).first();
+				
+				for (Ride ride : finalRides){
+					if(ride.regularity == 2){
+						weeklyRides.add(ride);
+					}
+				}
+				
+				for (Ride ride : weeklyRides){
+					Timetable timetable = Timetable.find("byUser", ride.nameOfDriver).first();
+					
+					numberOfMatches = checkTimetable(userTimetable, timetable);
+					
+					if(numberOfMatches >= 1){
+						finalRides2.add(ride);
+					}
+				}
+				
+				render(finalRides2, unis, numberOfMatches);
+			}
 		}
 		
 		else if(logout != null){
 			Application.logout();
 		}
+	}
+	
+	private static int checkTimetable(Timetable userTimetable, Timetable timetable) throws ParseException{
+		int numberOfMatches = 0;
+		
+		if(userTimetable.driveMonday == true && timetable.carMonday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		if(userTimetable.driveTuesday == true && timetable.carTuesday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		if(userTimetable.driveWednesday == true && timetable.carWednesday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		if(userTimetable.driveThursday == true && timetable.carThursday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		if(userTimetable.driveFriday == true && timetable.carFriday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		if(userTimetable.driveSaturday == true && timetable.carSaturday == true){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+			
+			Date startUser = dateFormat.parse(userTimetable.startTimeMonday);
+			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
+			Date startRide = dateFormat.parse(timetable.startTimeMonday);
+			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
+			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Date tmp2 = new Date(tmp1);
+			String tmp3 = dateFormat.format(tmp2);
+			Date startRide2 = dateFormat.parse(tmp3);
+			Long tmp4 = leaveRide.getTime()-(31*60*1000);
+			Date tmp5 = new Date(tmp4);
+			String tmp6 = dateFormat.format(tmp5);
+			Date leaveRide2 = dateFormat.parse(tmp6);
+				
+			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
+					numberOfMatches++;
+				}
+			}
+		}
+		
+		return numberOfMatches;
 	}
 }
