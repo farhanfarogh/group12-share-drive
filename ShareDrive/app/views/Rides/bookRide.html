@@ -1,5 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
+
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
  
 <p><strong>Name of Driver:</strong> ${newRide.driver.username ?: 'guest'}!</p>
 <p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>

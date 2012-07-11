@@ -1,12 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
- 
-<p>Congratulations you have just booked a ride. To see your bookings go into your profile.
 
-<a href="@{Rides.showBookings()}">Show bookings</a>    
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
 
-<br><br>Thanks<br>Uni-CarPool 2012</p>
-<a href="@{index()}">Home</a>    
-
-
-<br>
+#{form @showBookings()}
+	<h2>Congratulations</h2>
+	<p>you have just booked a ride. To see your bookings go into your profile.</p>
+	<br>
+	<p>Thanks<br>Uni-CarPool 2012</p>  
+	<br>
+	<input type="submit" style="width:100px;" name="bookings" value="Show bookings" />   
+	<input type="submit" style="width:100px;" name="back" value="Home" />
+#{/form}

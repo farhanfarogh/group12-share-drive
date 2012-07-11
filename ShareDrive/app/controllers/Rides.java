@@ -130,24 +130,30 @@ public class Rides extends Application {
 		}
 	}
 
-	public static void showBookings() {
-		User user = connected();
-		List<Booking> bookings = Booking.find("byUser", user).fetch();
-		List<Ride> rides= new LinkedList<Ride>();
-		Ride tmp;
-		for(Booking bok : bookings){
-			tmp = bok.ride;
-			rides.add(tmp);
+	public static void showBookings(String booking, String back) {
+		if(booking != null){
+			User user = connected();
+			List<Booking> bookings = Booking.find("byUser", user).fetch();
+			List<Ride> rides= new LinkedList<Ride>();
+			Ride tmp;
+			for(Booking bok : bookings){
+				tmp = bok.ride;
+				rides.add(tmp);
+			}
+			
+			render(bookings, rides);
 		}
 		
-		render(bookings, rides);
+		else if(back != null){
+			Application.index();
+		}
 	}
 
 	public static void deleteBooking(Long id) {
 		Ride ride = Ride.findById(id);
 		Booking booking = Booking.find("byRide", ride).first();
 		booking.delete();
-		showBookings();
+		showBookings("booking", null);
 	}
 
 	public static void search() {
