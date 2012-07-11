@@ -11,12 +11,19 @@ User(u1):
     fieldOfStudy :
     university :
     contactNumber :
+    
+CarInformation(c1):
+    ageOfCar: 3
+    car: "VW Golf"
+    maxNumberOfSeats: 5
+    smoker: false
+    user: [u1]
 
 Ride(r1):
     driver: [u1]
     startPoint: Kieferngarten
     destinationCampusId: 1
-    timeOfArrival: 11:30
+    timeOfArrival: "11:30"
     numOfSeatsAvailable: 4
     comments: Do not hesitate to join me
     rideDate : 2012-08-12
@@ -25,7 +32,7 @@ Ride(r2):
     driver: [u1]
     startPoint: Apian
     destinationCampusId: 1
-    timeOfArrival: 8:30
+    timeOfArrival: "8:30"
     numOfSeatsAvailable: 2
     comments: Join me
     rideDate : 2012-08-10
@@ -34,7 +41,7 @@ Ride(r3):
     driver: [u1]
     startPoint: Munchner Freiheit
     destinationCampusId: 2
-    timeOfArrival: 16:30
+    timeOfArrival: "16:30"
     numOfSeatsAvailable: 3
     comments: Sample comment
     rideDate : 2012-08-09
@@ -43,7 +50,7 @@ Ride(r4):
     driver: [u1]
     startPoint: Studentenstadt
     destinationCampusId: 3
-    timeOfArrival: 11:30
+    timeOfArrival: "11:30"
     numOfSeatsAvailable: 4
     comments: Great ride
     rideDate : 2012-08-07
