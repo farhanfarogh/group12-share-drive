@@ -136,21 +136,34 @@
 		<div class="sidebar">
 			<!--Sidebar login-->
 			<div class="login">
-				<h3></h3>
-				<br> <br>
-				<h4>Username:</h4>
-				<input name="username" type="text" size="25" maxlength="30" value="">
-				<br>
-				<br>
-				<h4>Kennwort:</h4>
-				<input name="kennwort" type="password" size="25" maxlength="12">
-				<br>
-				<br>
-				<br> <input type="button" name="Text 2" value="Login"
-					style="height: 25px; width: 50px;"> <input type="button"
-					name="Text 2" value="Forgot password"
-					style="height: 25px; width: 120px;"> <br>
-				<br> <a href="@{register()}"> register</a>
+				#{if session.get("user")}
+					#{form @Application.logout()}
+						<br><br> <br>
+						<h2 style="color: white">Welcome ${session.get("user")}:</h2>
+						<div style="float: left;"><img src="/public/images/user.png" style="width: 120px; height: 120px;" /></div>
+						<div style="float: right;"><input type="submit" name="logout" value="Logout"
+							style="height: 25px; width: 60px; margin-top: 100px;"></div>
+					#{/form}
+				#{/if}
+				#{else}
+					#{form @Application.login()}
+						<h3></h3>
+						<br> <br>
+						<h4>Username:</h4>
+						<input name="username" type="text" size="25" maxlength="30" value="">
+						<br>
+						<br>
+						<h4>Kennwort:</h4>
+						<input name="password" type="password" size="25" maxlength="12">
+						<br>
+						<br>
+						<br> <input type="submit" name="login" value="Login"
+							style="height: 25px; width: 50px;"> <input type="button"
+							name="Text 2" value="Forgot password"
+							style="height: 25px; width: 120px;"> <br>
+						<br> <a href="@{register()}"> register</a>
+					#{/form}
+				#{/else}
 			</div>
 			<!--Sidebar other info-->
 			<div class="advertising">

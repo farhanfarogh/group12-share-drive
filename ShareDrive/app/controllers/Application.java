@@ -172,4 +172,7 @@ public class Application extends Controller {
 		return;
 	}
 	
+	public static void forgotPassword(){
+		
+	}
 }
