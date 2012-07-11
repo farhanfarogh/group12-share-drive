@@ -190,14 +190,14 @@ public class Profile extends Application {
 	
 	public static void changeCarInfo(CarInformation carInfo) {
 		User user=connected();
-		CarInformation carInfoActual = CarInformation.findByUser(user);
+		CarInformation carInfoActual = CarInformation.findByUser(user.username);
 		System.out.println("Anzahl: " + CarInformation.count());
 		System.out.println("CIA:" + carInfoActual);
 		if(carInfoActual!=null && (carInfo==null || ((carInfo.car==null || carInfo.car.isEmpty()) && carInfo.ageOfCar==0))){
 			carInfoActual.delete();
 		}
 		else if(carInfoActual==null){
-			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, connected());
+			carInfoActual = new CarInformation(carInfo.ageOfCar, carInfo.car, connected().username);
 			carInfo.create();
 		}
 		else{
@@ -213,9 +213,9 @@ public class Profile extends Application {
 	
 	public static void showCarInfo(){
 		User user = connected();
-		CarInformation carInfo = CarInformation.findByUser(user);
+		CarInformation carInfo = CarInformation.findByUser(user.username);
 		if(carInfo==null){
-			carInfo=new CarInformation(0, "", connected());
+			carInfo=new CarInformation(0, "", connected().username);
 		}
 		AppModel unis=new AppModel();
 		render(carInfo, unis);
