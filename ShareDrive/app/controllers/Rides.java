@@ -271,7 +271,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -280,7 +280,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}
@@ -294,7 +294,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -303,7 +303,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}
@@ -317,7 +317,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -326,7 +326,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}
@@ -340,7 +340,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -349,7 +349,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}
@@ -363,7 +363,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -372,7 +372,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}
@@ -386,7 +386,7 @@ public class Rides extends Application {
 			Date leaveUser = dateFormat.parse(userTimetable.leaveTimeMonday);
 			Date startRide = dateFormat.parse(timetable.startTimeMonday);
 			Date leaveRide = dateFormat.parse(timetable.leaveTimeMonday);
-			Long tmp1 = startRide.getTime()-(31*60*1000);
+			Long tmp1 = startRide.getTime()+(31*60*1000);
 			Date tmp2 = new Date(tmp1);
 			String tmp3 = dateFormat.format(tmp2);
 			Date startRide2 = dateFormat.parse(tmp3);
@@ -395,7 +395,7 @@ public class Rides extends Application {
 			String tmp6 = dateFormat.format(tmp5);
 			Date leaveRide2 = dateFormat.parse(tmp6);
 				
-			if(startUser.equals(startRide) || (startUser.before(startRide) && startUser.after(startRide2))){
+			if(startUser.equals(startRide) || (startUser.after(startRide) && startUser.before(startRide2))){
 				if(leaveUser.equals(leaveRide) || (leaveUser.before(leaveRide) && leaveUser.after(leaveRide2))){
 					numberOfMatches++;
 				}

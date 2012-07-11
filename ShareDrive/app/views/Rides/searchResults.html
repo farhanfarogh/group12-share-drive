@@ -1,17 +1,25 @@
 #{extends 'main.html' /}
 #{set title:'Show rides' /}
 
+<link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
+<link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
+
+<h2>Search Results:</h2>
  
  <table class="ridesTable">
         <thead >
             <tr valign="middle">
-                <th width="18%" align="center">Name of driver</th>
-                <th width="15%" align="center">Start point</th>
-                <th width="16%" align="center">Dest. campus</th>
-                <th align="center">Date</th>
-                <th width="6%" align="center">Seats</th>
-                <th width="15" align="center">Regularity</th>
-                <th width="20%" align="center">Comments</th>
+                <th align="center">Name of driver</th>
+                <th align="center">Start point</th>
+                <th align="center">Dest. campus</th>
+                #{if !numberOfMatches}
+                	<th align="center">Date</th>
+                #{/if}
+                #{if numberOfMatches}
+                	<th align="center">No. Drives</th>
+                #{/if}
+                <th align="center">Seats</th>
+                <th align="center">Regularity</th>
                 <th align="center">Action</th>
             </tr>
         </thead>
@@ -21,17 +29,17 @@
                     <td align="center">${ride.nameOfDriver}</td>
                     <td align="center">${ride.startPoint}</td>
                     <td align="center">${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
-                    <td align="center">${ride.rideDate}</td>
+                    #{if !numberOfMatches}
+                	<td align="center">${ride.rideDate}</td>
+	                #{/if}
+	                #{if numberOfMatches}
+	                	<td align="center">${numberOfMatches}</td>
+	                #{/if}
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
-                    <td align="center">${ride.comments}</td>
                     <td align="center"><a href="@{show(ride.id)}">Show ride</a></td>
                     
                 </tr>
             #{/list}
         </tbody>
     </table>
-
-
-<a href="@{Rides.logout()}">Logout</a> <br>
-<a href="@{Rides.index()}">Back to post ride page</a>
