@@ -9,31 +9,30 @@ public class BasicTest extends UnitTest {
 	public void setup() {
 		Fixtures.delete();
 		Fixtures.deleteDatabase();
+		Fixtures.loadModels("data.yml");
 	}
 
 	@Test
 	public void createAndRetrieveUser() {
 		// Create a new ride
-		new Ride("testing", "Munchen", 1, null, 4, 1, "some comments", null)
+		User driver = (User)User.findAll().get(0);
+		new Ride(driver, "Munchen", 1, null, 4, 1, "some comments", null)
 				.save();
 		// Retrieve the ride
 		Ride testRide = Ride.find("nameOfDriver", "testing").first();
 
 		// Test
 		assertNotNull(testRide);
-		assertEquals("testing", testRide.nameOfDriver);
+		assertEquals(driver, testRide.driver);
 	}
 
 	@Test
-	public void fullTest() {
+	public void countDataModelTest() {
 		Fixtures.loadModels("data.yml");
 
 		// Count things
 		assertEquals(4, Ride.count());
 
-		Ride testRide = Ride.find("nameOfDriver", "abc").first();
-		assertNotNull(testRide);
-		assertEquals("abc", testRide.nameOfDriver);
 	}
 
 	@Test
@@ -46,13 +45,4 @@ public class BasicTest extends UnitTest {
 		assertEquals(userCountBefore + 1, User.count());
 	}
 
-	@Test
-	public void addRide() {
-		Ride newRide = new Ride("TestDriver", "TestSite", 0, null, 2, 1,
-				"Not punctual", null);
-		long rideCountBefore = Ride.count();
-		assertNotNull(newRide);
-		newRide.create();
-		assertEquals(rideCountBefore + 1, Ride.count());
-	}
 }
