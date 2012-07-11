@@ -4,10 +4,11 @@
 <link href="@{'/public/css/main.css'}" rel="stylesheet" type="text/css" />
 <link href="@{'/public/css/tables.css'}" rel="stylesheet" type="text/css" />
 
-<h2>Search Results:</h2>
- 
- <table class="ridesTable">
-        <thead >
+#{form @search()}
+	<h2>Search Results:</h2>
+
+ 	<table class="hor-minimalist-a" style="width: 95%">
+        <thead>
             <tr valign="middle">
                 <th align="center">Name of driver</th>
                 <th align="center">Start point</th>
@@ -38,8 +39,12 @@
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
                     <td align="center"><a href="@{show(ride.id)}">Show ride</a></td>
-                    
                 </tr>
             #{/list}
+            	<tr></tr>
+            	<tr>
+            		<td><input type="submit" style="width:120px;" name="search" value="Back to Search"></td>
+            	</tr>
         </tbody>
-    </table>
+    </table> 
+#{/form}

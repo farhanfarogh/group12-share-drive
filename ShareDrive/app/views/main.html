@@ -41,11 +41,13 @@
 
 		<div class="nav">
 
-			<a style="left: 20px;" id="Start" onMouseOver="show('Start')"
-				onmouseout="hide()">START</a> <a style="left: 170px;" id="Rides"
-				onMouseOver="show('Rides')" onmouseout="hide()">RIDES</a> <a
-				style="left: 320px;" id="Profile" onMouseOver="show('Profile')"
-				onmouseout="hide()">PROFILE</a> <a style="left: 470px;" id="Help"
+			<a style="left: 20px; text-decoration:none;" id="Start" 
+				href="@{Application.index()}">START</a> 
+			<a style="left: 170px;" id="Rides"
+				onMouseOver="show('Rides')" onmouseout="hide()">RIDES</a> 
+			<a 	style="left: 320px;" id="Profile" onMouseOver="show('Profile')"
+				onmouseout="hide()">PROFILE</a> 
+			<a style="left: 470px;" id="Help"
 				onMouseOver="show('Help')" onmouseout="hide()">HELP</a>
 
 		</div>
@@ -53,21 +55,6 @@
 		<div class="subNav">
 
 			<table id="SubStart" onMouseOver="show('Start')">
-				<tr>
-					<td><a class="whiteAnchor" title="Start"
-						href="@{Application.index()}">Start</a>
-					</td>
-				</tr>
-				<tr>
-					<td>About</td>
-				</tr>
-				<tr>
-					<td>Test</td>
-				</tr>
-				<tr>
-					<td>...</td>
-				</tr>
-
 			</table>
 
 			<table style="left: 140px;" id="SubRides" onMouseOver="show('Rides')"
@@ -135,8 +122,6 @@
 
 		</div>
 
-
-
 		<div class="content-wrap">
 			<div class="content">
 				#{if flash.error}
@@ -164,7 +149,7 @@
 				<h4>Kennwort:</h4>
 				<input name="kennwort" type="password" size="25" maxlength="12">
 				<br>
-				<br> <br>
+				<br>
 				<br> <input type="button" name="Text 2" value="Login"
 					style="height: 25px; width: 50px;"> <input type="button"
 					name="Text 2" value="Forgot password"
@@ -191,15 +176,11 @@
 	</div>
 	<div class="footer">
 
-
-
-
 		<p id="copyright">Copyright &copy; 2012</p>
 
 		<p>UniCarpool.com</p>
 
 		Impressum | AGB | Copyright by unicarpool.com, 2012
-
 
 	</div>	
 </body>

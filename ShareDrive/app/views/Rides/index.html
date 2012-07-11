@@ -131,10 +131,10 @@
 #{/if}
 
 <form action="@{Rides.bookRide()}" method="GET">
-    
-	<fieldset>
-        <label>Type of ride*</label>
-        <select name="regularity" id="regularity" onChange="changetextbox()">
+    <h2>Register a Ride:</h2>
+	<fieldset style="width: 93%;">
+        <label style="margin-top: 10px">Type of ride*</label>
+        <select style="margin-top: 10px" name="regularity" id="regularity" onChange="changetextbox()">
             <option value="0">One time</option>
             <option value="1">Multiple times</option>
             <option value="2">Weekly</option>
@@ -179,10 +179,10 @@
         
         <p align="right" style="margin-right: 20px;">*(Weekly automatically includes your timetable!)</p>
     </fieldset>
-    
-<input type="submit" style="width:80px;" name="offer" value="Offer a ride">
-<input type="submit" style="width:80px;" name="search" value="Search">
-<input type="submit" style="width:80px;" name="logout" value="Logout">
+    <br>
+	<input type="submit" style="width:80px;" name="offer" value="Offer a ride">
+	<input type="submit" style="width:80px;" name="search" value="Search">
+	<input type="submit" style="width:80px;" name="logout" value="Logout">
 </form> 
 <br class="clear" />
 

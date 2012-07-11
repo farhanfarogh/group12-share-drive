@@ -84,7 +84,7 @@ public class Application extends Controller {
             	if(user.username != ""){ //login when the user object is not null and also the return obj has a username
                     session.put("user", user.username);
                     flash.success("Welcome, " + user.lname);
-                    Rides.index();         
+                    Rides.search();         
 
             	}
             	else { //executes when the return obj is emty, i.e. it does not contain any username
