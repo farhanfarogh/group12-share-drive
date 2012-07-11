@@ -2,20 +2,41 @@
 #{set title:'Home' /}
  
 #{form @bookNewRide(newRide.id)}
-<p><strong>Name of Driver:</strong> ${newRide.nameOfDriver ?: 'guest'}!</p>
-<p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>
-<p><strong>Destination campus:</strong> ${unis.destinationCampusMap.get(newRide.destinationCampusId)?: 'error'}</p>
-<p><strong>Number of seats available:</strong> ${newRide.numOfSeatsAvailable ?: 'error'}</p>
-<p><strong>Date:</strong> ${newRide.rideDate?: 'error'}</p>
-<p><strong>Regularity:</strong> ${unis.regularityList.get(newRide.regularity) ?: 'error'}</p>
-<p><strong>Comments:</strong> ${newRide.comments ?: 'No comments'}</p>
- 
-    <p class="">
-        <input type="submit" style="width:80px;" name="book" value="Book Ride">      
-        <input type="submit" style="width:80px;" name="back" value="Back">
-    </p>
+	<h2>Detailed Information:</h2>
+	<br>
+	<table>
+	  <tr>
+	    <td><strong>Name of Driver:</strong></td>
+	    <td>${newRide.nameOfDriver ?: 'guest'}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Start point:</strong></td>
+	    <td>${newRide.startPoint?: 'Muenchen'}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Destination campus:</strong></td>
+	    <td>${unis.destinationCampusMap.get(newRide.destinationCampusId)?: 'error'}</td>
+	  </tr>
+	  <tr>
+	    <td width="220px"><strong>Number of seats available:</strong></td>
+	    <td>${newRide.numOfSeatsAvailable ?: 'error'}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Date:</strong></td>
+	    <td>${newRide.rideDate?: ''}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Regularity:</strong></td>
+	    <td>${unis.regularityList.get(newRide.regularity) ?: 'error'}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Comments:</strong></td>
+	    <td>${newRide.comments ?: 'No comments'}</td>
+	  </tr>
+	</table>
+	<br>
+	<input type="submit" style="width:80px;" name="book" value="Book Ride">      
+    <input type="submit" style="width:80px;" name="back" value="Back">
 #{/form}
-<br>
-<br>
 
     

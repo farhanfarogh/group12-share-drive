@@ -2,10 +2,13 @@
 #{set title:'Home' /}
 
 <div id="login">
-
-    #{form @login(), id:'formLogin'}
-    #{/form}
-    #{form @login(), id:'formLogin'}
+	<div>
+		<h2>Welcome to UniCarpool.com</h2>
+		<p style="width: 90%">We provide the first carpooling center for students. If your University is member of our 
+			platform you can easily search and book single as well as weekly rides to your University. That could safe you a lot of time each morning!</p>
+	</div>
+	
+	#{form @login(), id:'formLogin'}
         <p class="field">
             <label>Username:</label>
             <input type="text" name="username" size="19" value="${flash.username}" />
@@ -15,14 +18,10 @@
             <input type="password" name="password" size="19"/>
         </p>    
         <p class="buttons">
-            <input type="submit" value="Account login" />
+            <input type="submit" style="width: 80px;" name="login" value="Login" />
+            <input type="submit" style="width: 80px;" name="register" value="Register" />
         </p> 
     #{/form}
-
-    <p>
-        <a href="@{register()}">Register New User</a>
-    </p>
-
 </div>
 
 <script type="text/javascript" charset="${_response_encoding}">

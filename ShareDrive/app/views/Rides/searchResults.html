@@ -12,6 +12,7 @@
                 <th width="6%" align="center">Seats</th>
                 <th width="15" align="center">Regularity</th>
                 <th width="20%" align="center">Comments</th>
+                <th align="center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
                     <td align="center">${ride.comments}</td>
+                    <td align="center"><a href="@{show(ride.id)}">Show ride</a></td>
                     
                 </tr>
             #{/list}

@@ -31,7 +31,7 @@ public class Application extends Controller {
 
 	public static void index() {
 		if (connected() != null) {
-			Rides.index();
+			Rides.search();
 		}
 		render();
 	}
@@ -76,32 +76,37 @@ public class Application extends Controller {
         Rides.index();*/
     }
 	
-    public static void login(String username, String password) {
-        User user = User.find("byUsernameAndPassword", username, password).first();
-        if(user != null) { //executes when the username and password is empty
-        	//if(user.username != "" && user.isActivated)
-        	if(user.username != ""){ //login when the user object is not null and also the return obj has a username
-                session.put("user", user.username);
-                flash.success("Welcome, " + user.lname);
-                Rides.index();         
+    public static void login(String username, String password, String login, String register) {
+    	if(login != null){
+            User user = User.find("byUsernameAndPassword", username, password).first();
+            if(user != null) { //executes when the username and password is empty
+            	//if(user.username != "" && user.isActivated)
+            	if(user.username != ""){ //login when the user object is not null and also the return obj has a username
+                    session.put("user", user.username);
+                    flash.success("Welcome, " + user.lname);
+                    Rides.index();         
 
-        	}
-        	else { //executes when the return obj is emty, i.e. it does not contain any username
-        		flash.put("username", username);
-                if(user.isActivated) 
-                	flash.error("Login failed! Please try again.");
-                else 
-                	flash.error("Please activate your account.");
+            	}
+            	else { //executes when the return obj is emty, i.e. it does not contain any username
+            		flash.put("username", username);
+                    if(user.isActivated) 
+                    	flash.error("Login failed! Please try again.");
+                    else 
+                    	flash.error("Please activate your account.");
+                    index();
+            	}
+            }
+            else { //executes the query returns a null when the username and password does not match
+                // Oops
+               flash.put("username", username);
+                flash.error("Login failed! Please try again.");
                 index();
-        	}
-        }
-        else { //executes the query returns a null when the username and password does not match
-            // Oops
-           flash.put("username", username);
-            flash.error("Login failed! Please try again.");
-            index();
-        }
-
+            }
+    	}
+    	
+    	else if(register != null){
+    		register();
+    	}
     }
 
 	public static void logout() {
