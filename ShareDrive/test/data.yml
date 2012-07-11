@@ -1,6 +1,6 @@
 # Test data
 
-User(u1):
+User(uTest1):
     username: test
     password: test
     fname: Testuser
@@ -13,7 +13,7 @@ User(u1):
     contactNumber :
 
 Ride(r1):
-    driver: [u1]
+    driver: [uTest1]
     startPoint: Kieferngarten
     destinationCampusId: 1
     timeOfArrival: 11:30
@@ -22,7 +22,7 @@ Ride(r1):
     rideDate : 2012-08-12
 
 Ride(r2):
-    driver: [u1]
+    driver: [uTest1]
     startPoint: Apian
     destinationCampusId: 1
     timeOfArrival: 8:30
@@ -31,7 +31,7 @@ Ride(r2):
     rideDate : 2012-08-10
 
 Ride(r3):
-    driver: [u1]
+    driver: [uTest1]
     startPoint: Munchner Freiheit
     destinationCampusId: 2
     timeOfArrival: 16:30
@@ -40,7 +40,7 @@ Ride(r3):
     rideDate : 2012-08-09
 
 Ride(r4):
-    driver: [u1]
+    driver: [uTest1]
     startPoint: Studentenstadt
     destinationCampusId: 3
     timeOfArrival: 11:30
