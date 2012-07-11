@@ -70,10 +70,17 @@ public class Profile extends Application {
 			timetable("Please make sure that start time is before leaving time!");
 		}
 		
+		else if(!checkCar(timetable.driveMonday, timetable.carMonday) || !checkCar(timetable.driveTuesday, timetable.carTuesday) 
+				|| !checkCar(timetable.driveWednesday, timetable.carWednesday) || !checkCar(timetable.driveThursday, timetable.carThursday) 
+				|| !checkCar(timetable.driveFriday, timetable.carFriday) || !checkCar(timetable.driveSaturday, timetable.carSaturday)){
+			timetable("You shlould also select drive if you select that you have a car!");
+		}
+		
 		else{
 			myTimetable.driveMonday = timetable.driveMonday;
 			myTimetable.driveTuesday = timetable.driveTuesday;
 			myTimetable.driveWednesday = timetable.driveWednesday;
+			myTimetable.driveThursday = timetable.driveThursday;
 			myTimetable.driveFriday = timetable.driveFriday;
 			myTimetable.driveSaturday = timetable.driveSaturday;
 			myTimetable.carMonday = timetable.carMonday;
@@ -143,6 +150,16 @@ public class Profile extends Application {
 				return false;
 			}
 			
+			return false;
+		}
+		
+		else{
+			return true;
+		}
+	}
+	
+	private static boolean checkCar(boolean drive, boolean car){
+		if(!drive && car){
 			return false;
 		}
 		

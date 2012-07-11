@@ -100,20 +100,6 @@
 #{/field}
 </div> 
 
-<div align="right" style="margin-right: 35px">
-	<form action="select.htm">
-	 <p>Semester: 
-	   <select name="semester" size="1">
-	     <option selected value="SS 2010">SS 2010</option>
-	     <option>WS 11/12</option>
-	     <option>SS 2012</option>
-	     <option>WS 12/13</option>
-	     <option>SS 2013</option>
-	   </select>
-	 </p>
-</form>
-</div>
-
 #{if timetable}
 	<form action="@{Profile.saveTimetable()}" method="GET">
 		<table class="box-table-a" border="1" style="width: 95%;">
