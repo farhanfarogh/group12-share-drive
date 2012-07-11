@@ -26,11 +26,11 @@
         <tbody>
             #{list bookings, as:'booking'}
                 <tr valign="middle">
-                    <td align="center">${booking.startPoint}</td>
-                    <td align="center">${booking.destination}</td>
+                    <td align="center">${booking.ride.startPoint}</td>
+                    <td align="center">${unis.destinationCampusMap.get(booking.ride..destinationCampusId)}</td>
                     <td align="center">${booking.date}</td>
-                    <td align="center"><a href="@{showBookingDetails(booking.rideId)}">Show ride</a></td>
-                    <td align="center"><a href="@{deleteBooking(booking.rideId)}">Delete ride</a></td>
+                    <td align="center"><a href="@{showBookingDetails(booking.ride.id)}">Show ride</a></td>
+                    <td align="center"><a href="@{deleteBooking(booking.ride.id)}">Delete ride</a></td>
                 </tr>
             #{/list}
         </tbody>

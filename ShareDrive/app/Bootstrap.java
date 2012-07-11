@@ -12,6 +12,8 @@ public class Bootstrap extends Job {
         if(Ride.count() == 0) {
             Fixtures.loadModels("initial-data.yml");
         }
+        System.out.println(User.count());
+        System.out.println(Ride.count());
     }
  
 }
