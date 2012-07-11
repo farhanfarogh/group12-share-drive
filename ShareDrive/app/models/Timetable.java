@@ -25,7 +25,7 @@ public class Timetable extends Model {
 			boolean driveWednesday, boolean driveThursday, boolean driveFriday,
 			boolean driveSaturday, boolean carMonday, boolean carTuesday,
 			boolean carWednesday, boolean carThursday, boolean carFriday,
-			boolean carSaturday, String user, String semester,
+			boolean carSaturday, String user,
 			String startTimeMonday, String startTimeTuesday,
 			String startTimeWednesday, String startTimeThursday,
 			String startTimeFriday, String startTimeSaturday,
@@ -45,7 +45,6 @@ public class Timetable extends Model {
 		this.carFriday = carFriday;
 		this.carSaturday = carSaturday;
 		this.user = user;
-		this.semester = semester;
 		this.startTimeMonday = startTimeMonday;
 		this.startTimeTuesday = startTimeTuesday;
 		this.startTimeWednesday = startTimeWednesday;

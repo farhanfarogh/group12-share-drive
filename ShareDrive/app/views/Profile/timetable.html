@@ -32,8 +32,6 @@
 
 #{if timetable}
 	<form action="@{Profile.saveTimetable()}" method="GET">
-	</form>
-	<form action="@{Profile.saveTimetable()}" method="GET">
 		<table class="box-table-a" border="1" style="width: 95%;">
 			<tr valign="middle">
 			    <th align="center" width="14%"></th>
@@ -46,7 +44,12 @@
 			</tr>
 			<tr>
 				<td>Drive?</td>
-				<td align="center"><input type="checkbox" ${timetable.driveMonday ? 'checked':''}  /> </td>
+				<td align="center">#{field 'timetable.driveMonday'}
+				        <p class="${field.errorClass}">
+				            <input type="checkbox" name="${timetable.driveMonday}" size="16" value="${timetable?.driveMonday}">
+				        </p>
+				    #{/field}
+				</td>
 				<td align="center"><input type="checkbox" ${timetable.driveTuesday ? 'checked':''}  /> </td>
 				<td align="center"><input type="checkbox" ${timetable.driveWednesday? 'checked':''}  /> </td>
 				<td align="center"><input type="checkbox" ${timetable.driveThursday ? 'checked':''}  /> </td>
@@ -81,18 +84,19 @@
 				<td align="center">${timetable.leaveTimeSaturday}</td>
 			</tr>
 		</table>
+		<br>
+		<input type="submit" value="Save">
 	</form>
 
-	<br>
-	<input type="submit" value="Save">
+	
 	
 #{/if}
 #{if !timetable}
 	<p>You don't have a timetable deposited yet. Do you want to deposit one now?</p>
-	<form action="@{Profile.createTimetable()}" method="GET">
+	<form action="@{Profile.initiateTimetable()}" method="GET">
+		<br>
+		<input type="submit" value="Create">
 	</form>
-	<br>
-	<input type="submit" value="Create">
 #{/if}
 
 

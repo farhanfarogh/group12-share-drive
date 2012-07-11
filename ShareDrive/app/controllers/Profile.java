@@ -30,23 +30,27 @@ public class Profile extends Application {
 			render(timetable);
 		}
 		
-		else{
-			createTimetable();
+		else {
+			render();
 		}
-		
 	}
 	
-	public static void createTimetable(){
+	public static void initiateTimetable(){
 		Timetable timetable = new Timetable(false, false, false, false, false, false, false, false, false, false, false, false, 
-				session.get("user"), "ss2020", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
+				session.get("user"), "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
 		
 		timetable.create();
 		
 		timetable();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void saveTimetable(Timetable timetable){
+		timetable.edit("timetable", params.all());
+		
 		timetable.save();
+		
+		timetable();
 	}	
 	
 	public static void changeCarInfo(CarInformation carInfo) {
