@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
  
-<p><strong>Name of Driver:</strong> ${newRide.nameOfDriver ?: 'guest'}!</p>
+<p><strong>Name of Driver:</strong> ${newRide.driver.username ?: 'guest'}!</p>
 <p><strong>Start point:</strong> ${newRide.startPoint?: 'Muenchen'}</p>
 <p><strong>Destination campus:</strong> ${unis.destinationCampusMap.get(newRide.destinationCampusId)?: 'error'}</p>
 <p><strong>Number of seats available:</strong> ${newRide.numOfSeatsAvailable ?: 'error'}</p>

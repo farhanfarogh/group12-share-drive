@@ -27,7 +27,7 @@
         <tbody>
             #{list rides, as:'ride'}
                 <tr valign="middle">
-                    <td align="center">${ride.nameOfDriver}</td>
+                    <td align="center">${ride.driver.username}</td>
                     <td align="center">${ride.startPoint}</td>
                     <td align="center">${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
                     #{if !numberOfMatches}

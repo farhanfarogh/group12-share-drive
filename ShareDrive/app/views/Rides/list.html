@@ -13,7 +13,7 @@
         <tbody>
             #{list rides, as:'ride'}
                 <tr>
-                    <td>${ride.nameOfDriver}</td>
+                    <td>${ride.driver.username}</td>
                     <td>${ride.startPoint}</td>
                     <td>${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
                     <td>${ride.numOfSeatsAvailable }</td>
