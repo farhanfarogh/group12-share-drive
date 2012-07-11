@@ -131,10 +131,8 @@ public class Rides extends Application {
 	}
 
 	public static void showBookings() {
-		String username = session.get("user");
-		System.out.println("user: " + session.get("user"));
-		User user = User.find("byUsername", username).first();
-		List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
+		User user = connected();
+		List<Booking> bookings = Booking.find("byUser", user).fetch();
 		List<Ride> rides= new LinkedList<Ride>();
 		Ride tmp;
 		for(Booking bok : bookings){
