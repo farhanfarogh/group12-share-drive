@@ -9,7 +9,7 @@
 
 <div class="formLayout">
 <form action="@{Profile.changeCarInfo()}" method="GET">
-<table border="0" cellspacing="0">
+<table border="0" cellspacing="20">
 #{field 'carInfo.car'}
 <tr><td>
         <label>Car</label>
@@ -25,8 +25,29 @@
         <input type="text" name="${field.name}" value=${carInfo.ageOfCar}><br>
 </td></tr>
 #{/field}
+
+#{field 'carInfo.maxNumberOfSeats'}
+<tr><td>
+        <label>Maximum Number Of Seats</label></td><td>
+        <input type="text" name="${field.name}" value=${carInfo.maxNumberOfSeats}><br>
+</td></tr>
+#{/field}
+
+#{field 'carInfo.smoker'}
+<tr><td>
+        <label>Smoker</label></td><td>
+        #{if carInfo.smoker}
+        	<input type="checkbox" name="${field.name}" checked><br>
+        #{/if}
+        #{else}
+        	<input type="checkbox" name="${field.name}"><br>
+        #{/else}
+</td></tr>
+#{/field}
+
+
 </table>
-<input type="submit" value="Save" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Save" />
 
 </form> 
 </div>

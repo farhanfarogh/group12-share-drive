@@ -16,26 +16,22 @@
  <table class="hor-minimalist-a">
         <thead >
             <tr valign="middle">
-                <th align="center">Driver</th>
                 <th align="center">Start point</th>
                 <th align="center">Dest. campus</th>
                 <th align="center">Date</th>
                 <th align="center">Seats</th>
                 <th align="center">Regularity</th>
-                <th align="center">Comments</th>
                 <th align="center">Action</th>
             </tr>
         </thead>
         <tbody>
             #{list rides, as:'ride'}
                 <tr valign="middle">
-                    <td align="center">${ride.driver.username}</td>
                     <td align="center">${ride.startPoint}</td>
                     <td align="center">${unis.destinationCampusMap.get(ride.destinationCampusId)}</td>
-                    <td align="center">${ride.rideDate}</td>
+                    <td align="center">${ride.rideDate} ${ride.timeOfArrival}</td>
                     <td align="center">${ride.numOfSeatsAvailable }</td>
                     <td align="center">${unis.regularityList.get(ride.regularity)}</td>
-                    <td align="center">${ride.comments}</td>
                     <td align="center"><a href="@{show(ride.id)}">Show ride</a></td>
                     
                 </tr>
