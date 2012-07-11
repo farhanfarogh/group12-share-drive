@@ -28,10 +28,9 @@ public class Profile extends Application {
 	
 	
 	public static void timetable(String acknowledgementMsg){
-		
-		String username = session.get("user");
-		User user = User.find("byUsername", username).first();
-		Timetable timetable = Timetable.find("byUser", username).first();
+	
+		User user = connected();
+		Timetable timetable = Timetable.find("byUser", user).first();
 		
 		if(timetable != null){
 			render(timetable, user, acknowledgementMsg);
