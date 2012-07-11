@@ -12,7 +12,7 @@
 
 <div align="left">
 	<h1>Timetable</h1>
-	<p>Please select the days you're going to <University> and specify your arrival and leaving times. 
+	<p>Please select the days you're going to <b>${user.university}</b> and specify your arrival and leaving times. 
 		Additionally you can add information about having a car available. (Don't forget to save your changes!)</p>
 </div>
 
@@ -44,60 +44,148 @@
 			</tr>
 			<tr>
 				<td>Drive?</td>
-				<td align="center">#{field 'timetable.driveMonday'}
-				        <p class="${field.errorClass}">
-				            <input type="checkbox" name="${timetable.driveMonday}" size="16" value="${timetable?.driveMonday}">
-				        </p>
+				<td align="center">
+					#{field 'timetable.driveMonday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveMonday ? 'checked':''}>
 				    #{/field}
 				</td>
-				<td align="center"><input type="checkbox" ${timetable.driveTuesday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.driveWednesday? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.driveThursday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.driveFriday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.driveSaturday ? 'checked':''}  /> </td>
+				<td align="center">
+					#{field 'timetable.driveTuesday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveTuesday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.driveWednesday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveWednesday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.driveThursday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveThursday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.driveFriday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveFriday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.driveSaturday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.driveSaturday ? 'checked':''}>
+				    #{/field}
+				</td>
 			</tr>
 			<tr>
 				<td>Car?</td>
-				<td align="center"><input type="checkbox" ${timetable.carMonday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.carTuesday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.carWednesday? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.carThursday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.carFriday ? 'checked':''}  /> </td>
-				<td align="center"><input type="checkbox" ${timetable.carSaturday ? 'checked':''}  /> </td>
+				<td align="center">
+					#{field 'timetable.carMonday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carMonday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.carTuesday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carTuesday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.carWednesday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carWednesday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.carThursday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carThursday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.carFriday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carFriday ? 'checked':''}>
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.carSaturday'}
+				            <input type="checkbox" name="${field.name}" ${timetable?.carSaturday ? 'checked':''}>
+				    #{/field}
+				</td>
 			</tr>
 			<tr>
 				<td>Start Time:</td>
-				<td align="center">${timetable.startTimeMonday}</td>
-				<td align="center">${timetable.startTimeTuesday}</td>
-				<td align="center">${timetable.startTimeWednesday}</td>
-				<td align="center">${timetable.startTimeThursday}</td>
-				<td align="center">${timetable.startTimeFriday}</td>
-				<td align="center">${timetable.startTimeSaturday}</td>
+				<td align="center">
+					#{field 'timetable.startTimeMonday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeMonday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.startTimeTuesday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeTuesday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.startTimeWednesday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeWednesday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.startTimeThursday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeThursday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.startTimeFriday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeFriday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.startTimeSaturday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.startTimeSaturday}">
+				    #{/field}
+				</td>
 			</tr>
 			<tr>
 				<td>Leave Time:</td>
-				<td align="center">${timetable.leaveTimeMonday}</td>
-				<td align="center">${timetable.leaveTimeTuesday}</td>
-				<td align="center">${timetable.leaveTimeWednesday}</td>
-				<td align="center">${timetable.leaveTimeThursday}</td>
-				<td align="center">${timetable.leaveTimeFriday}</td>
-				<td align="center">${timetable.leaveTimeSaturday}</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeMonday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeMonday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeTuesday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeTuesday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeWednesday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeWednesday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeThursday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeThursday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeFriday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeFriday}">
+				    #{/field}
+				</td>
+				<td align="center">
+					#{field 'timetable.leaveTimeSaturday'}
+				            <input type="text" style="width: 40px; text-align:center;" name="${field.name}" value="${timetable?.leaveTimeSaturday}">
+				    #{/field}
+				</td>
 			</tr>
 		</table>
 		<br>
-		<input type="submit" value="Save">
+		<input type="submit" style="width:80px;" value="Save">
+		<a href="@{Profile.logout()}">Logout</a> 
 	</form>
 
-	
-	
 #{/if}
 #{if !timetable}
 	<p>You don't have a timetable deposited yet. Do you want to deposit one now?</p>
 	<form action="@{Profile.initiateTimetable()}" method="GET">
 		<br>
-		<input type="submit" value="Create">
+		<input type="submit" style="width:80px;" value="Yes">
+		<a href="@{Profile.logout()}">Logout</a> 
 	</form>
 #{/if}
-
-
-<a href="@{Profile.logout()}">Logout</a> 

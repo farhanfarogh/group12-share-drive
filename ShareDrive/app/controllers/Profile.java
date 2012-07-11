@@ -4,6 +4,7 @@ import models.AppModel;
 import models.CarInformation;
 import models.Timetable;
 import models.User;
+import play.data.validation.Valid;
 import play.mvc.Before;
 
 public class Profile extends Application {
@@ -23,32 +24,57 @@ public class Profile extends Application {
 	
 	public static void timetable(){
 		
-		String user = session.get("user");
-		Timetable timetable = Timetable.find("byUser", user).first();
+		String username = session.get("user");
+		User user = User.find("byUsername", username).first();
+		Timetable timetable = Timetable.find("byUser", username).first();
 		
 		if(timetable != null){
-			render(timetable);
+			render(timetable, user);
 		}
 		
 		else {
-			render();
+			render(user);
 		}
 	}
 	
 	public static void initiateTimetable(){
-		Timetable timetable = new Timetable(false, false, false, false, false, false, false, false, false, false, false, false, 
-				session.get("user"), "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
+		Timetable timetable = new Timetable(session.get("user"), false, false, false, false, false, false, false, false, false, false, false, false, 
+				"00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00", "00:00");
 		
 		timetable.create();
 		
 		timetable();
 	}
 	
-	@SuppressWarnings("deprecation")
-	public static void saveTimetable(Timetable timetable){
-		timetable.edit("timetable", params.all());
+	public static void saveTimetable(@Valid Timetable timetable){
+		String user = session.get("user");
+		Timetable myTimetable = Timetable.find("byUser", user).first();
 		
-		timetable.save();
+		myTimetable.driveMonday = timetable.driveMonday;
+		myTimetable.driveTuesday = timetable.driveTuesday;
+		myTimetable.driveWednesday = timetable.driveWednesday;
+		myTimetable.driveFriday = timetable.driveFriday;
+		myTimetable.driveSaturday = timetable.driveSaturday;
+		myTimetable.carMonday = timetable.carMonday;
+		myTimetable.carTuesday = timetable.carTuesday;
+		myTimetable.carWednesday = timetable.carWednesday;
+		myTimetable.carThursday = timetable.carThursday;
+		myTimetable.carFriday = timetable.carFriday;
+		myTimetable.carSaturday = timetable.carSaturday;
+		myTimetable.startTimeMonday = timetable.startTimeMonday;
+		myTimetable.startTimeTuesday = timetable.startTimeTuesday;
+		myTimetable.startTimeWednesday = timetable.startTimeWednesday;
+		myTimetable.startTimeThursday = timetable.startTimeThursday;
+		myTimetable.startTimeFriday = timetable.startTimeFriday;
+		myTimetable.startTimeSaturday = timetable.startTimeSaturday;
+		myTimetable.leaveTimeMonday = timetable.leaveTimeMonday;
+		myTimetable.leaveTimeTuesday = timetable.leaveTimeTuesday;
+		myTimetable.leaveTimeWednesday = timetable.leaveTimeWednesday;
+		myTimetable.leaveTimeThursday = timetable.leaveTimeThursday;
+		myTimetable.leaveTimeFriday = timetable.leaveTimeFriday;
+		myTimetable.leaveTimeSaturday = timetable.leaveTimeSaturday;
+		
+		myTimetable.save();
 		
 		timetable();
 	}	

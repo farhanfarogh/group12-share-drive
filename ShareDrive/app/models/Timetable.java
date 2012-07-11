@@ -15,23 +15,23 @@ public class Timetable extends Model {
 	
 	public boolean carMonday, carTuesday, carWednesday, carThursday, carFriday, carSaturday;
 	
-	public String user, semester;
+	public String user;
 	
 	public String startTimeMonday, startTimeTuesday, startTimeWednesday, startTimeThursday, startTimeFriday, startTimeSaturday;
 	
 	public String leaveTimeMonday, leaveTimeTuesday, leaveTimeWednesday, leaveTimeThursday, leaveTimeFriday, leaveTimeSaturday;
 
-	public Timetable(boolean driveMonday, boolean driveTuesday,
+	public Timetable(String user, boolean driveMonday, boolean driveTuesday,
 			boolean driveWednesday, boolean driveThursday, boolean driveFriday,
 			boolean driveSaturday, boolean carMonday, boolean carTuesday,
 			boolean carWednesday, boolean carThursday, boolean carFriday,
-			boolean carSaturday, String user,
-			String startTimeMonday, String startTimeTuesday,
+			boolean carSaturday, String startTimeMonday, String startTimeTuesday,
 			String startTimeWednesday, String startTimeThursday,
 			String startTimeFriday, String startTimeSaturday,
 			String leaveTimeMonday, String leaveTimeTuesday,
 			String leaveTimeWednesday, String leaveTimeThursday,
 			String leaveTimeFriday, String leaveTimeSaturday) {
+		this.user = user;
 		this.driveMonday = driveMonday;
 		this.driveTuesday = driveTuesday;
 		this.driveWednesday = driveWednesday;
@@ -44,7 +44,6 @@ public class Timetable extends Model {
 		this.carThursday = carThursday;
 		this.carFriday = carFriday;
 		this.carSaturday = carSaturday;
-		this.user = user;
 		this.startTimeMonday = startTimeMonday;
 		this.startTimeTuesday = startTimeTuesday;
 		this.startTimeWednesday = startTimeWednesday;
