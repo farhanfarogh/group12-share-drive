@@ -99,6 +99,21 @@
 
 		});
 	});	
+	
+	function changetextbox() {
+	    var selMenu = document.getElementById('regularity');
+	    var txtField1 = document.getElementById('datep');
+	    var txtField2 = document.getElementById('timepicker');
+	    if(selMenu.value == '2'){
+	        txtField1.disabled = true
+	        txtField2.disabled = true
+	    }
+	    
+	    else {
+	    	txtField1.disabled = false
+	        txtField2.disabled = false
+	    } 
+	}
 </script>
     
    
@@ -115,20 +130,18 @@
     </p>
 #{/if}
 
-
-
-
 <form action="@{Rides.bookRide()}" method="GET">
+    
 	<fieldset>
-        <label>Type of ride</label>
-        <select name="regularity">
+        <label>Type of ride*</label>
+        <select name="regularity" id="regularity" onChange="changetextbox()">
             <option value="0">One time</option>
             <option value="1">Multiple times</option>
             <option value="2">Weekly</option>
         </select>
 		<br class="clear" />
         <label>Name of driver</label>
-        <input type="text" name="nameOfDriver" value="${username}" disabled="disabled">
+        <input type="text" name="nameOfDriver" value="${username}" readonly="readonly">
 		<br class="clear" />
         <label>Start point</label>
         <input name="startPoint">
@@ -163,14 +176,14 @@
          <label>Comments</label>
         	<textarea  style="height:200px;" name="comments" > </textarea>
         <br class="clear" />
+        
+        <p align="right" style="margin-right: 20px;">*(Weekly automatically includes your timetable!)</p>
     </fieldset>
-<input type="submit" value="Offer a ride!" />
-
+    
+<input type="submit" style="width:80px;" name="offer" value="Offer a ride">
+<input type="submit" style="width:80px;" name="search" value="Search">
+<input type="submit" style="width:80px;" name="logout" value="Logout">
 </form> 
 <br class="clear" />
-
-<a href="@{Rides.search()}">Search rides</a>  
-<br class="clear" /> 
-<a href="@{Rides.logout()}">Logout</a>    
 
 

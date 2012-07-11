@@ -34,22 +34,51 @@ public class Rides extends Application {
 	public static void bookRide(@Required String nameOfDriver,
 			String startPoint, int destinationCampusId, String datep,
 			String timepicker, int numOfSeatsAvailable, int regularity,
-			String comments) {
-		if (validation.hasErrors()) {
-			flash.error("Oops, please enter your name!");
-			index();
-		}
-		Date dp = new Date(datep);
-		int hour = Integer.parseInt(timepicker.substring(0, 2));
-		int min = Integer.parseInt(timepicker.substring(3, 5));
-		dp.setHours(hour);
-		dp.setMinutes(min);
-		Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
-				null, numOfSeatsAvailable, regularity, comments, dp);
+			String comments, String offer, String search, String logout) {
+		if(offer != null){
+			if (validation.hasErrors()) {
+				flash.error("Oops, please enter your name!");
+				index();
+			}
 
-		AppModel unis = new AppModel();
-		newRide.create();
-		render(newRide, unis);
+			if(regularity == 2){
+				Timetable timetable = Timetable.find("byUser", nameOfDriver).first();
+				
+				if(timetable == null){
+					flash.error("You have to deposite a timetable if you want to create a weekly drive!");
+					index();
+				}
+				
+				else{
+					Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId, null, numOfSeatsAvailable, regularity, comments, null);
+					AppModel unis = new AppModel();
+					newRide.create();
+					render(newRide, unis);
+				}
+			}
+			
+			else{
+				Date dp = new Date(datep);
+				int hour = Integer.parseInt(timepicker.substring(0, 2));
+				int min = Integer.parseInt(timepicker.substring(3, 5));
+				dp.setHours(hour);
+				dp.setMinutes(min);
+				Ride newRide = new Ride(nameOfDriver, startPoint, destinationCampusId,
+						null, numOfSeatsAvailable, regularity, comments, dp);
+				
+				AppModel unis = new AppModel();
+				newRide.create();
+				render(newRide, unis);
+			}
+		}
+		
+		else if(search != null){
+			search();
+		}
+		
+		else if(logout!= null){
+			Application.logout();
+		}
 	}
 
 	public static void showRides() {
@@ -72,23 +101,29 @@ public class Rides extends Application {
 		render(newRide, unis);
 	}
 
-	public static void bookNewRide(Long id) {
-		Ride newRide = Ride.findById(id);
-		String username = session.get("user");
-		System.out.println("user: " + session.get("user"));
-		User user = User.find("byUsername", username).first();
-		Booking newBooking = new Booking(user, newRide);
+	public static void bookNewRide(Long id, String book, String back) {
+		if(book != null){
+			Ride newRide = Ride.findById(id);
+			String username = session.get("user");
+			System.out.println("user: " + session.get("user"));
+			User user = User.find("byUsername", username).first();
+			Booking newBooking = new Booking(user, newRide);
 
-		// so that the user doesn't save have multiple instances of same ride
-		boolean dontSave = false;
-		List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
-		for (Booking bok : bookings) {
-			if (bok.rideId == id)
-				dontSave = true;
+			// so that the user doesn't save have multiple instances of same ride
+			boolean dontSave = false;
+			List<Booking> bookings = Booking.find("byUserId", user.id).fetch();
+			for (Booking bok : bookings) {
+				if (bok.rideId == id)
+					dontSave = true;
+			}
+			if (!dontSave)
+				newBooking.save();
+			render(newRide);
 		}
-		if (!dontSave)
-			newBooking.save();
-		render(newRide);
+		
+		else if(back != null){
+			showRides();
+		}
 	}
 
 	public static void showBookings() {
@@ -192,23 +227,32 @@ public class Rides extends Application {
 				String username = session.get("user");
 				Timetable userTimetable = Timetable.find("byUser", username).first();
 				
-				for (Ride ride : finalRides){
-					if(ride.regularity == 2){
-						weeklyRides.add(ride);
-					}
+				if(userTimetable == null){
+					flash.error("You have to deposite a timetable if you want to search a weekly drive!");
+					search();
 				}
 				
-				for (Ride ride : weeklyRides){
-					Timetable timetable = Timetable.find("byUser", ride.nameOfDriver).first();
-					
-					numberOfMatches = checkTimetable(userTimetable, timetable);
-					
-					if(numberOfMatches >= 1){
-						finalRides2.add(ride);
+				else{
+					for (Ride ride : finalRides){
+						if(ride.regularity == 2){
+							weeklyRides.add(ride);
+						}
 					}
+					
+					for (Ride ride : weeklyRides){
+						Timetable timetable = Timetable.find("byUser", ride.nameOfDriver).first();
+						
+						numberOfMatches = checkTimetable(userTimetable, timetable);
+						
+						if(numberOfMatches >= 1){
+							finalRides2.add(ride);
+						}
+					}
+					
+					rides = finalRides2;
+					
+					render(rides, unis, numberOfMatches);
 				}
-				
-				render(finalRides2, unis, numberOfMatches);
 			}
 		}
 		
