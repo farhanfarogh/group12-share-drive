@@ -57,7 +57,7 @@ public class Rides extends Application {
 				}
 				
 				else{
-					Ride newRide = new Ride(user, startPoint, destinationCampusId, null, numOfSeatsAvailable, regularity, comments, null);
+					Ride newRide = new Ride(user, startPoint, destinationCampusId, timepicker, numOfSeatsAvailable, regularity, comments, null);
 					AppModel unis = new AppModel();
 					newRide.create();
 					render(newRide, unis);
@@ -71,7 +71,7 @@ public class Rides extends Application {
 				dp.setHours(hour);
 				dp.setMinutes(min);
 				Ride newRide = new Ride(user, startPoint, destinationCampusId,
-						null, numOfSeatsAvailable, regularity, comments, dp);
+						timepicker, numOfSeatsAvailable, regularity, comments, dp);
 				
 				AppModel unis = new AppModel();
 				newRide.create();

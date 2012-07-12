@@ -22,7 +22,7 @@
                     <td align="center">${booking.ride.startPoint}</td>
                     <td align="center">${unis.destinationCampusMap.get(booking.ride.destinationCampusId)}</td>
                     <td align="center">${booking.ride.rideDate} ${booking.ride.timeOfArrival}</td>
-                    <td align="center"><a href="@{showBookingDetails(booking.ride.id)}">Show ride</a></td>
+                    <td align="center"><a href="@{show(booking.ride.id)}">Show ride</a></td>
                     <td align="center"><a href="@{deleteBooking(booking.ride.id)}">Delete ride</a></td>
                 </tr>
             #{/list}

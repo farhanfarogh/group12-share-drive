@@ -81,7 +81,7 @@ public class Application extends Controller {
     	}
     }
 	
-    public static void login(String username, String password, String login, String register) {
+    public static void login(String username, String password, String login, String register, String pass) {
     	if(login != null){
             User user = User.find("byUsernameAndPassword", username, password).first();
             if(user != null) { //executes when the username and password is empty
@@ -111,6 +111,10 @@ public class Application extends Controller {
     	
     	else if(register != null){
     		register();
+    	}
+    	
+    	else if(pass != null){
+    		forgotPassword(username);
     	}
     }
 
@@ -172,7 +176,33 @@ public class Application extends Controller {
 		return;
 	}
 	
-	public static void forgotPassword(){
+	public static void forgotPassword(String username){
+		User user = User.findByUsername(username);	
+		boolean success;
 		
+		if(user == null){
+			success = false;
+			render(success);
+		}
+		String password = user.password;		
+		
+		//String message = "";
+		try {
+			HtmlEmail email = new HtmlEmail();
+			email.addTo(user.email);
+			email.setFrom("seba.group.12@gmail.com","Uni-CarPool");
+			email.setSubject("Uni-CarPool: Forgot Password");
+			email.setHtmlMsg("<html> Hello, "+ user.username+"! <br><br>"+
+					 "Your password is: " + password + "<br><br></html>");
+			email.setTextMsg("Hello " + user.username + "! There is some problem with your email client." +
+							" However, your password is: " + password);
+			Mail.send(email);
+			success = true;
+			render(success);
+			}
+		catch (EmailException e) {
+			success = false;
+			render(success);
+		}
 	}
 }
