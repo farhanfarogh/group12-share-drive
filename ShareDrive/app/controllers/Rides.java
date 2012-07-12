@@ -140,8 +140,8 @@ public class Rides extends Application {
 				tmp = bok.ride;
 				rides.add(tmp);
 			}
-			
-			render(bookings, rides);
+			AppModel unis = new AppModel();
+			render(bookings, rides, unis);
 		}
 		
 		else if(back != null){
